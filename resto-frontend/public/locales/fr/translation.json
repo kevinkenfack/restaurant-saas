@@ -291,8 +291,18 @@
   },
   "no_access": {
     "title": "Oups ! Vous n'avez pas accès à cette zone ! Veuillez vous reconnecter pour vérifier à nouveau.",
-    "go_back": "Retourner"
+    "go_back": "Retourner",
+    "error_code": "Code 403",
+    "go_home": "Aller a l'accueil"
   },
+"not_found": {
+  "title": "Page non trouvée",
+  "description": "Désolé, la page que vous recherchez n’existe pas ou a été déplacée. Vérifiez l’URL ou retournez à l’accueil.",
+  "go_back": "Retour",
+  "go_home": "Aller a l'accueil",
+  "error_code": "Erreur 404"
+},
+
   "kitchen": {
     "title": "Cuisine",
     "refresh": "Rafraîchir",

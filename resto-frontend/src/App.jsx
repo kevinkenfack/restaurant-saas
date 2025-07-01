@@ -30,7 +30,7 @@ import { getIsNavbarCollapsed } from "./helpers/NavbarSettings";
 import PrintReceiptPage from "./views/PrintReceiptPage";
 import PrintTokenPage from "./views/PrintTokenPage";
 import NoAccessPage from "./views/ErrorsPages/NoAccessPage";
-// import NotFoundPage from "./views/ErrorsPages/NotFoundPage";
+import NotFoundPage from "./views/ErrorsPages/NotFoundPage";
 import ProfilePage from "./views/ProfilePage";
 import { SCOPES } from "./config/scopes";
 import ScopeProtectedRoute from "./helpers/ScopeProtectedRoute";
@@ -86,7 +86,7 @@ export default function App() {
 
               {/* ================== PAGES D'ERREUR ================== */}
               <Route path="/no-access" element={<NoAccessPage />} />
-              {/* <Route path="*" element={<NotFoundPage />} /> */}
+              <Route path="*" element={<NotFoundPage />} />
 
               {/* ================== PAIEMENTS ================== */}
               <Route path="/success" element={<PaymentSuccessPage />} />

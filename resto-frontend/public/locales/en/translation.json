@@ -290,9 +290,19 @@
     "select_payment_method": "Select Payment Method!"
   },
   "no_access": {
-    "title": "Oops! You don't have access to this area! Relogin to check again.",
-    "go_back": "Go back"
-  },
+  "title": "Oops! You don't have access to this area! Please log in again to verify.",
+  "go_back": "Go Back",
+  "error_code": "Code 403",
+  "go_home": "Go to Home"
+},
+"not_found": {
+  "title": "Page Not Found",
+  "description": "Sorry, the page you’re looking for doesn’t exist or has been moved. Please check the URL or return to the homepage.",
+  "go_back": "Back",
+  "go_home": "Go to Home",
+  "error_code": "Error 404"
+},
+
   "kitchen": {
     "title": "Kitchen",
     "refresh": "Refresh",
