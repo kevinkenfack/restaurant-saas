@@ -3,22 +3,28 @@ import { useTranslation } from 'react-i18next';
 import Page from "../../components/Page";
 import { IconChevronLeft, IconShieldX } from '@tabler/icons-react';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export default function NoAccessPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   return (
-    <Page className='w-full min-h-screen bg-gradient-to-b from-green-50/30 to-white'>
+    <Page className="w-full min-h-screen">
       <div className="container mx-auto px-4 py-12 flex flex-col items-center justify-center min-h-screen text-center">
 
         {/* Icon */}
-        <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center text-red-500 mb-6">
+        <div className={`w-20 h-20 rounded-full flex items-center justify-center text-red-500 mb-6 ${
+          theme === 'black' ? 'bg-red-900/20' : 'bg-red-100'
+        }`}>
           <IconShieldX size={36} />
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+        <h1 className={`text-2xl md:text-3xl font-bold mb-8 ${
+          theme === 'black' ? 'text-white' : 'text-gray-900'
+        }`}>
           {t('no_access.title') || 'Accès refusé'}
         </h1>
 
@@ -33,14 +39,20 @@ export default function NoAccessPage() {
 
           <button 
             onClick={() => navigate('/')} 
-            className='border border-gray-200 hover:bg-gray-50 text-gray-700 rounded-xl px-6 py-3 text-base font-medium transition active:scale-95'
+            className={`rounded-xl px-6 py-3 text-base font-medium transition active:scale-95 ${
+              theme === 'black' 
+                ? 'border border-gray-600 hover:bg-gray-800 text-gray-300' 
+                : 'border border-gray-200 hover:bg-gray-50 text-gray-700'
+            }`}
           >
             {t('no_access.go_home') || 'Accueil'}
           </button>
         </div>
 
         {/* Footer */}
-        <p className="text-sm text-gray-400 mt-10">
+        <p className={`text-sm mt-10 ${
+          theme === 'black' ? 'text-gray-500' : 'text-gray-400'
+        }`}>
           {t('no_access.error_code') || 'Erreur 403'}
         </p>
       </div>

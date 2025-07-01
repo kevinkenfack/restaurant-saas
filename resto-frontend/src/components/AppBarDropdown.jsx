@@ -46,20 +46,20 @@ export default function AppBarDropdown() {
   };
 
   const itemBaseClasses =
-    "group flex gap-2 w-full items-center rounded-2xl px-3 py-2 text-sm transition-colors ";
+    "group flex gap-2 w-full items-center rounded-xl px-3 py-2 text-sm transition-colors ";
 
   return (
     <Menu as="div" className="relative inline-block text-left z-50">
       <div>
         <Menu.Button
           className={clsx(
-            "text-sm transition rounded-full flex items-center gap-0 md:gap-2",
+            "text-sm transition rounded-xl flex items-center gap-0 md:gap-2",
             theme === "black"
               ? "bg-restro-gray hover:bg-restro-button-hover text-white"
               : "bg-restro-green-light hover:bg-restro-button-hover text-restro-green-dark"
           )}
         >
-          <img src={AvatarImg} alt="avatar" className="w-10 h-10 rounded-full p-1" />
+          <img src={AvatarImg} alt="avatar" className="w-10 h-10 rounded-xl p-1" />
           <p className="font-medium hidden md:block">{user.name}</p>
           <IconChevronDown stroke={iconStroke} className="mr-1" size={18} />
         </Menu.Button>
