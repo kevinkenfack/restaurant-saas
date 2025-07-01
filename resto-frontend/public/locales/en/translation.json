@@ -712,7 +712,7 @@
     "privacy_policy": "Privacy Policy",
     "refund_policy": "Refund Policy",
     "terms_conditions": "Terms & Conditions",
-    "made_with_love": "Made with ❤️ by UIFLOW",
+    "made_with_love": "Made with ❤️ by Kevin Kenfack",
     "language": "Language",
     "footer_description": "App for Restaurant, Cafe, Bars, Food Trucks, Quick Serving Restaurants."
   },
@@ -1302,5 +1302,46 @@
     "insufficient_stock_message_pos":"Insufficient stock: One or more ingredients are missing. Please restock or select a different item.",
     "low_stock":"Low Stock",
     "qty":"Qty"
-  }
+  },
+
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro_title": "Introduction",
+    "intro_text": "Your privacy is important to us. This policy explains what data we collect, why we collect it, and how we use it.",
+    "data_collection_title": "Data Collected",
+    "data_collection_text": "We collect information you provide directly (such as your name and email) as well as data automatically collected during your use of the service.",
+    "use_of_data_title": "Use of Data",
+    "use_of_data_text": "The collected data is used to provide and improve our services, communicate with you, and ensure platform security.",
+    "security_title": "Data Security",
+    "security_text": "We take technical and organizational measures to protect your data from unauthorized access.",
+    "contact_title": "Contact Us",
+    "contact_text": "For any questions about this policy, please contact us at support@yourcompany.com."
+},
+
+"refund": {
+  "title": "Refund Policy",
+  "intro_title": "Introduction",
+  "intro_text": "We want you to be completely satisfied with your purchase. If you are not satisfied, here is our refund policy.",
+  "conditions_title": "Refund Conditions",
+  "conditions_text": "Refunds are possible within 14 days of purchase, provided the product/service has not been used or consumed.",
+  "process_title": "Refund Process",
+  "process_text": "To request a refund, please contact our customer support with your purchase details. We will process your request as quickly as possible.",
+  "contact_title": "Contact Us",
+  "contact_text": "For any questions regarding this policy, please contact us at support@yourcompany.com."
+},
+
+"terms": {
+  "title": "Terms & Conditions",
+  "intro_title": "Introduction",
+  "intro_text": "These terms and conditions govern your use of our services. By accessing or using our services, you agree to these terms.",
+  "user_responsibilities_title": "User Responsibilities",
+  "user_responsibilities_text": "You agree to use our services lawfully and not to misuse them in any way.",
+  "limitation_of_liability_title": "Limitation of Liability",
+  "limitation_of_liability_text": "We are not liable for any damages resulting from the use or inability to use our services.",
+  "contact_title": "Contact Us",
+  "contact_text": "If you have any questions about these terms, please contact us at support@yourcompany.com."
+}
+
+
+
 }

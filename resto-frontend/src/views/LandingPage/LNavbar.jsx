@@ -15,30 +15,31 @@ export default function LNavbar() {
     <div className="w-full backdrop-blur-md sticky top-0 bg-white/95 border-b border-gray-100/50 z-50">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="flex items-center justify-between gap-4 container mx-auto px-6 lg:px-12 py-4">
-        <a href="#home">
+        {/* Logo */}
+        <Link to="/">
           <img src={Logo} alt="logo" className="h-10" />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="items-center hidden lg:flex gap-2">
-          <a
+          <Link
             className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
-            href="#features"
+            to="/#features"
           >
             {t("landing_page.features")}
-          </a>
-          <a
+          </Link>
+          <Link
             className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
-            href="#pricing"
+            to="/#pricing"
           >
             {t("landing_page.pricing")}
-          </a>
-          <a
+          </Link>
+          <Link
             className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
-            href="#contact"
+            to="/#contact"
           >
             {t("landing_page.contact")}
-          </a>
+          </Link>
         </div>
 
         {/* Desktop CTA Buttons */}
@@ -79,7 +80,9 @@ export default function LNavbar() {
         <div className="w-80 min-h-full bg-white shadow-xl">
           {/* Mobile Menu Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-100">
-            <img src={Logo} alt="logo" className="h-10" />
+            <Link to="/" onClick={closeDrawer}>
+              <img src={Logo} alt="logo" className="h-10" />
+            </Link>
             <label
               htmlFor="my-drawer"
               className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-gray-100 active:scale-95 text-gray-500 transition-all duration-200 cursor-pointer"
@@ -91,27 +94,27 @@ export default function LNavbar() {
           {/* Mobile Menu Items */}
           <div className="p-6">
             <nav className="space-y-2">
-              <a
+              <Link
                 onClick={closeDrawer}
                 className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
-                href="#features"
+                to="/#features"
               >
                 {t("landing_page.features")}
-              </a>
-              <a
+              </Link>
+              <Link
                 onClick={closeDrawer}
                 className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
-                href="#pricing"
+                to="/#pricing"
               >
                 {t("landing_page.pricing")}
-              </a>
-              <a
+              </Link>
+              <Link
                 onClick={closeDrawer}
                 className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
-                href="#contact"
+                to="/#contact"
               >
                 {t("landing_page.contact")}
-              </a>
+              </Link>
             </nav>
 
             {/* Mobile CTA Buttons */}

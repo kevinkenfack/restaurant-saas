@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import LNavbar from "./LNavbar";
 import { Link } from "react-router-dom";
 import {
@@ -13,8 +14,22 @@ import { subscriptionPrice, supportEmail } from "../../config/config";
 import LanguageChanger from "../../components/LanguageChanger";
 import { useTranslation } from "react-i18next";
 
-export default function LadingPage() {
+export default function LandingPage() {
   const { t } = useTranslation();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        // Scroll smooth vers la section
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Scroll en haut si pas de hash
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
 
   return (
     <div className="w-full bg-white text-gray-800" id="home">
@@ -220,24 +235,24 @@ export default function LadingPage() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 w-full lg:w-auto">
-              <a
-                href="#"
+              <Link
+                to="/privacy-policy"
                 className="text-gray-600 hover:text-gray-900 px-3 sm:px-4 py-2 rounded-lg hover:bg-white transition-colors text-sm text-center sm:text-left"
               >
                 {t("landing_page.privacy_policy")}
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/refund-policy"
                 className="text-gray-600 hover:text-gray-900 px-3 sm:px-4 py-2 rounded-lg hover:bg-white transition-colors text-sm text-center sm:text-left"
               >
                 {t("landing_page.refund_policy")}
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to={"/terms-conditions"}
                 className="text-gray-600 hover:text-gray-900 px-3 sm:px-4 py-2 rounded-lg hover:bg-white transition-colors text-sm text-center sm:text-left"
               >
                 {t("landing_page.terms_conditions")}
-              </a>
+              </Link>
             </div>
           </div>
           

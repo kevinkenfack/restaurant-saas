@@ -712,7 +712,7 @@
     "privacy_policy": "Politique de confidentialité",
     "refund_policy": "Politique de remboursement",
     "terms_conditions": "Conditions générales",
-    "made_with_love": "Fait avec ❤️ par UIFLOW",
+    "made_with_love": "Fait avec ❤️ par Kevin Kenfack",
     "language": "Langue",
     "footer_description": "Application pour restaurants, cafés, bars, food trucks, restaurants à service rapide."
   },
@@ -1302,5 +1302,43 @@
     "insufficient_stock_message_pos": "STOCK Insuffisant: un ou plusieurs ingrédients sont manquants. ",
     "low_stock": "Stock bas",
     "qty": "Qté"
-  }
+  },
+
+"privacy": {
+  "title": "Politique de confidentialité",
+  "intro_title": "Introduction",
+  "intro_text": "Votre vie privée est importante pour nous. Cette politique explique quelles données nous collectons, pourquoi nous les collectons, et comment nous les utilisons.",
+  "data_collection_title": "Données collectées",
+  "data_collection_text": "Nous collectons des informations que vous nous fournissez directement (comme votre nom et email) ainsi que des données automatiquement recueillies lors de l'utilisation du service.",
+  "use_of_data_title": "Utilisation des données",
+  "use_of_data_text": "Les données collectées sont utilisées pour fournir et améliorer nos services, communiquer avec vous, et assurer la sécurité de la plateforme.",
+  "security_title": "Sécurité des données",
+  "security_text": "Nous prenons des mesures techniques et organisationnelles pour protéger vos données contre tout accès non autorisé.",
+  "contact_title": "Nous contacter",
+  "contact_text": "Pour toute question sur cette politique, veuillez nous contacter à l'adresse email support@votreentreprise.com."
+},
+"refund": {
+  "title": "Politique de remboursement",
+  "intro_title": "Introduction",
+  "intro_text": "Nous voulons que vous soyez entièrement satisfait de votre achat. Si vous n'êtes pas satisfait, voici notre politique de remboursement.",
+  "conditions_title": "Conditions de remboursement",
+  "conditions_text": "Les remboursements sont possibles dans les 14 jours suivant l'achat, à condition que le produit/service n'ait pas été utilisé ou consommé.",
+  "process_title": "Processus de remboursement",
+  "process_text": "Pour demander un remboursement, veuillez contacter notre support client avec les détails de votre achat. Nous traiterons votre demande dans les plus brefs délais.",
+  "contact_title": "Nous contacter",
+  "contact_text": "Pour toute question concernant cette politique, contactez-nous à support@votreentreprise.com."
+},
+
+"terms": {
+  "title": "Conditions Générales",
+  "intro_title": "Introduction",
+  "intro_text": "Ces conditions générales régissent votre utilisation de nos services. En accédant ou utilisant nos services, vous acceptez ces conditions.",
+  "user_responsibilities_title": "Responsabilités de l'utilisateur",
+  "user_responsibilities_text": "Vous vous engagez à utiliser nos services de manière légale et à ne pas en faire un usage abusif.",
+  "limitation_of_liability_title": "Limitation de responsabilité",
+  "limitation_of_liability_text": "Nous ne sommes pas responsables des dommages résultant de l'utilisation ou de l'impossibilité d'utiliser nos services.",
+  "contact_title": "Nous contacter",
+  "contact_text": "Si vous avez des questions concernant ces conditions, veuillez nous contacter à support@votreentreprise.com."
+}
+
 }

@@ -63,6 +63,10 @@ import InventoryLogsPage from "./views/InventoryLogsPage";
 import InventoryDashboardPage from "./views/InventoryDashboard";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import MyToaster from "./components/MyToaster";
+import RefundPolicyPage from "./views/LegalPages/RefundPolicyPage";
+import PrivacyPolicyPage from "./views/LegalPages/PrivacyPolicyPage";
+import TermsConditionsPage from "./views/LegalPages/TermsConditionsPage";
+
 
 export default function App() {
   const [isNavbarCollapsed, setIsNavbarCollapsed] = useState(
@@ -87,6 +91,11 @@ export default function App() {
               {/* ================== PAGES D'ERREUR ================== */}
               <Route path="/no-access" element={<NoAccessPage />} />
               <Route path="*" element={<NotFoundPage />} />
+
+              {/* ================== PAGES LÉGALES ================== */}
+              <Route path="/refund-policy" element={<RefundPolicyPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms-conditions" element={<TermsConditionsPage />} />
 
               {/* ================== PAIEMENTS ================== */}
               <Route path="/success" element={<PaymentSuccessPage />} />
