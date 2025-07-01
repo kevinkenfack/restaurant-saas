@@ -676,13 +676,15 @@
   },
   "landing_page": {
     "features": "Fonctionnalités",
+    "features_description": "Découvrez les fonctionnalités qui font la différence",
     "pricing": "Tarifs",
+    "pricing_description": " Un tarif simple et transparent",
     "contact": "Contact",
     "login": "Connexion",
     "get_started": "Commencer",
     "all_in_one_pos": "PDV tout-en-un",
     "for_your_business": "pour votre entreprise de restauration.",
-    "hero_description": "PDV sans effort. Croissance inégalée. RestroPRO POS vous offre les outils dont vous avez besoin pour rationaliser vos opérations, augmenter la productivité du personnel et obtenir de précieuses informations sur les clients. Prenez des décisions basées sur les données, optimisez votre menu et regardez votre entreprise de restauration prospérer.",
+    "hero_description": "Simplifiez votre service. Boostez vos ventes. RestroPRO POS optimise vos opérations et révèle le potentiel de votre restaurant.",
     "view_pricing": "Afficher les tarifs",
     "minimal_ui": "Interface utilisateur minimaliste",
     "minimal_ui_description": "Interface sans effort, RestroPRO POS bénéficie d'un design épuré et intuitif. Pas d'écrans encombrés, juste l'essentiel dont vous avez besoin pour gérer votre entreprise facilement.",
@@ -691,10 +693,10 @@
     "live_updates": "Mises à jour en direct",
     "live_updates_description": "Cuisine synchronisée, ne manquez jamais rien. Les mises à jour des commandes en direct envoient les détails directement à votre cuisine, garantissant la précision et minimisant le temps de préparation.",
     "per_month": "par mois",
-    "unlimited_orders": "✅ Commandes illimitées",
-    "monthly_renewals": "✅ Renouvellements mensuels",
-    "unlimited_devices": "✅ Appareils illimités",
-    "live_kitchen_orders": "✅ Commandes de cuisine en direct",
+    "unlimited_orders": "Commandes illimitées",
+    "monthly_renewals": "Renouvellements mensuels",
+    "unlimited_devices": "Appareils illimités",
+    "live_kitchen_orders": "Commandes de cuisine en direct",
     "have_any_queries": "Vous avez des questions ?",
     "contact_us": "Contactez-nous",
     "privacy_policy": "Politique de confidentialité",
@@ -704,6 +706,14 @@
     "language": "Langue",
     "footer_description": "Application pour restaurants, cafés, bars, food trucks, restaurants à service rapide."
   },
+
+  "cta": {
+    "title": "Prêt à transformer votre restaurant ?",
+    "description": "Rejoignez des centaines de restaurateurs qui ont déjà optimisé leur service avec notre solution.",
+    "button": "Commencer maintenant",
+    "contact": "Contactez-nous"
+    },
+
   "categories": {
     "title": "Catégories",
     "new": "Nouveau",

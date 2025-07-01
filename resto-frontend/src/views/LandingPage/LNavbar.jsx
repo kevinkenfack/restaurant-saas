@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
-import { IconMenu } from "@tabler/icons-react";
+import { IconMenu, IconX } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
 
 export default function LNavbar() {
@@ -12,115 +12,128 @@ export default function LNavbar() {
   };
 
   return (
-    <div className="w-full backdrop-blur-md sticky top-0 bg-white/80 lg:px-12">
+    <div className="w-full backdrop-blur-md sticky top-0 bg-white/95 border-b border-gray-100/50 z-50">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="flex items-center justify-between gap-4 container mx-auto px-4 py-3">
-        <div>
-          <img src={Logo} alt="logo" className="h-12" />
-        </div>
-        <div className="items-center hidden lg:flex">
+      <div className="flex items-center justify-between gap-4 container mx-auto px-6 lg:px-12 py-4">
+        <a href="#home">
+          <img src={Logo} alt="logo" className="h-10" />
+        </a>
+
+        {/* Desktop Navigation */}
+        <div className="items-center hidden lg:flex gap-2">
           <a
-            className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
+            className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
             href="#features"
           >
             {t("landing_page.features")}
           </a>
           <a
-            className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
+            className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
             href="#pricing"
           >
             {t("landing_page.pricing")}
           </a>
           <a
-            className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
+            className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
             href="#contact"
           >
             {t("landing_page.contact")}
           </a>
         </div>
-        <div className="hidden lg:flex items-center gap-4">
+
+        {/* Desktop CTA Buttons */}
+        <div className="hidden lg:flex items-center gap-3">
           <Link
-            className="hover:bg-gray-100 text-restro-green-dark rounded-full px-4 py-2 transition active:scale-95"
+            className="text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
             to="/login"
           >
             {t("landing_page.login")}
           </Link>
           <Link
-            className="hover:bg-[#70B56A] bg-[#70B56A] text-white rounded-full px-4 py-2 transition active:scale-95"
+            className="bg-[#70B56A] hover:bg-[#70B56A]/90 text-white rounded-xl px-6 py-2.5 transition-all duration-200 active:scale-95 font-medium"
             to="/register"
           >
             {t("landing_page.get_started")}
           </Link>
         </div>
 
-        {/* mobile btn */}
+        {/* Mobile Menu Button */}
         <div className="block lg:hidden">
           <label
             aria-label="open sidebar"
             htmlFor="my-drawer"
-            className="w-12 h-12 rounded-full flex items-center justify-center bg-gray-100 hover:bg-gray-200 active:scale-95 text-gray-500 transition"
+            className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-gray-100 active:scale-95 text-gray-600 transition-all duration-200 cursor-pointer"
           >
-            <IconMenu />
+            <IconMenu size={20} />
           </label>
         </div>
-        {/* mobile btn */}
       </div>
 
-      {/* mobile menu */}
-      <div className="drawer-side">
+      {/* Mobile Drawer */}
+      <div className="drawer-side lg:hidden">
         <label
           htmlFor="my-drawer"
           aria-label="close sidebar"
-          className="drawer-overlay "
+          className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full text-base-content bg-white">
-          {/* Sidebar content here */}
-          <div className="mb-8">
-            <img src={Logo} alt="logo" className="h-12" />
+        <div className="w-80 min-h-full bg-white shadow-xl">
+          {/* Mobile Menu Header */}
+          <div className="flex items-center justify-between p-6 border-b border-gray-100">
+            <img src={Logo} alt="logo" className="h-10" />
+            <label
+              htmlFor="my-drawer"
+              className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-gray-100 active:scale-95 text-gray-500 transition-all duration-200 cursor-pointer"
+            >
+              <IconX size={20} />
+            </label>
           </div>
-          <li onClick={closeDrawer}>
-            <a
-              className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
-              href="#features"
-            >
-              {t("landing_page.features")}
-            </a>
-          </li>
-          <li onClick={closeDrawer}>
-            <a
-              className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
-              href="#pricing"
-            >
-              {t("landing_page.pricing")}
-            </a>
-          </li>
-          <li onClick={closeDrawer}>
-            <a
-              className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
-              href="#contact"
-            >
-              {t("landing_page.contact")}
-            </a>
-          </li>
-          <li onClick={closeDrawer} className="mt-8">
-            <Link
-              className="hover:bg-gray-200 border text-center block text-restro-green-dark rounded-full px-4 py-2 transition active:scale-95"
-              to="/login"
-            >
-              {t("landing_page.login")}
-            </Link>
-          </li>
-          <li onClick={closeDrawer} className="mt-4">
-            <Link
-              className="hover:bg-[#70B56A] block text-center bg-[#70B56A] text-white rounded-full px-4 py-2 transition active:scale-95"
-              to="/register"
-            >
-              {t("landing_page.get_started")}
-            </Link>
-          </li>
-        </ul>
+
+          {/* Mobile Menu Items */}
+          <div className="p-6">
+            <nav className="space-y-2">
+              <a
+                onClick={closeDrawer}
+                className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
+                href="#features"
+              >
+                {t("landing_page.features")}
+              </a>
+              <a
+                onClick={closeDrawer}
+                className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
+                href="#pricing"
+              >
+                {t("landing_page.pricing")}
+              </a>
+              <a
+                onClick={closeDrawer}
+                className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
+                href="#contact"
+              >
+                {t("landing_page.contact")}
+              </a>
+            </nav>
+
+            {/* Mobile CTA Buttons */}
+            <div className="mt-8 space-y-3">
+              <Link
+                onClick={closeDrawer}
+                className="block text-center border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
+                to="/login"
+              >
+                {t("landing_page.login")}
+              </Link>
+              <Link
+                onClick={closeDrawer}
+                className="block text-center bg-[#70B56A] hover:bg-[#70B56A]/90 text-white rounded-xl px-4 py-3 transition-all duration-200 active:scale-95 font-medium"
+                to="/register"
+              >
+                {t("landing_page.get_started")}
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-      {/* mobile menu */}
     </div>
   );
 }

@@ -676,13 +676,15 @@
   },
   "landing_page": {
     "features": "Features",
+    "features_description": "Discover the features that make a difference",
     "pricing": "Pricing",
+    "pricing_description": "Simple and transparent pricing",
     "contact": "Contact",
     "login": "Login",
     "get_started": "Get Started",
     "all_in_one_pos": "All-in-One POS",
     "for_your_business": "for Your Food & Beverage Business.",
-    "hero_description": "Effortless POS. Unparalleled Growth. RestroPRO POS empowers you with the tools you need to streamline operations, increase staff productivity, and gain valuable customer insights. Make data-driven decisions, optimize your menu, and watch your foodservice business flourish.",
+    "hero_description": "Simplify service. Boost sales. RestroPRO POS streamlines your operations and unlocks your restaurant’s full potential.",
     "view_pricing": "View Pricing",
     "minimal_ui": "Minimal UI",
     "minimal_ui_description": "Effortless Interface, RestroPRO POS boasts a clean and intuitive design. No cluttered screens, just the essentials you need to manage your business with ease.",
@@ -691,10 +693,10 @@
     "live_updates": "Live Updates",
     "live_updates_description": "Kitchen in Sync, Never miss a beat. Live order updates send details directly to your kitchen, ensuring accuracy and minimizing prep time.",
     "per_month": "per month",
-    "unlimited_orders": "✅ Unlimited Orders",
-    "monthly_renewals": "✅ Monthly Renewals",
-    "unlimited_devices": "✅ Unlimited Devices",
-    "live_kitchen_orders": "✅ Live Kitchen Orders",
+    "unlimited_orders": "Unlimited Orders",
+    "monthly_renewals": "Monthly Renewals",
+    "unlimited_devices": "Unlimited Devices",
+    "live_kitchen_orders": "Live Kitchen Orders",
     "have_any_queries": "Have any queries?",
     "contact_us": "Contact us",
     "privacy_policy": "Privacy Policy",
@@ -704,6 +706,14 @@
     "language": "Language",
     "footer_description": "App for Restaurant, Cafe, Bars, Food Trucks, Quick Serving Restaurants."
   },
+
+    "cta": {
+      "title": "Ready to Transform Your Restaurant?",
+      "description": "Join hundreds of restaurant owners who have already optimized their service with our solution.",
+      "button": "Get Started Now",
+      "contact": "Contact Us"
+    },
+
   "categories": {
     "title": "Categories",
     "new": "New",

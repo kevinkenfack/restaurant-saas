@@ -4,8 +4,9 @@ import { Link } from "react-router-dom";
 import {
   IconChefHat,
   IconDeviceIpadHorizontal,
-  IconDeviceTablet,
   IconLayout,
+  IconCheck,
+  IconArrowRight,
 } from "@tabler/icons-react";
 import Logo from "../../assets/logo.svg";
 import { subscriptionPrice, supportEmail } from "../../config/config";
@@ -16,164 +17,237 @@ export default function LadingPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full bg-white text-gray-800">
+    <div className="w-full bg-white text-gray-800" id="home">
       {/* navbar */}
       <LNavbar />
-      {/* navbar */}
-
-      {/* hero */}
-      <div className="w-full container mx-auto flex flex-col items-center mt-40 px-6 lg:px-12">
-        <h3 className="text-3xl lg:text-5xl font-bold text-center text-gray-800">{t("landing_page.all_in_one_pos")}</h3>
-        <h3 className="text-3xl lg:text-5xl font-bold text-center text-gray-800">
-          {t("landing_page.for_your_business")}
-        </h3>
-
-        <p className="text-gray-500 mt-8 text-center">
-          {t("landing_page.hero_description")}
-        </p>
-
-        <div className="flex items-center gap-4 mt-8">
-          <Link
-            className="hover:bg-[#70B56A]-dark bg-[#70B56A] text-lg text-white rounded-full px-5 py-3 transition active:scale-95"
-            to="/login"
-          >
-            {t("landing_page.get_started")}
-          </Link>
-          <a
-            className="hover:bg-gray-100 text-restro-green-dark text-lg rounded-full px-5 py-3 transition active:scale-95"
-            href="#pricing"
-          >
-            {t("landing_page.view_pricing")}
-          </a>
-        </div>
-      </div>
-      <img
-        src="/assets/hero.png"
-        alt="restro pro image"
-        className="w-full block"
-      />
-      {/* hero */}
-
-      {/* features */}
-      <h3 className="text-4xl font-bold text-center container mx-auto mt-40">
-        {t("landing_page.features")}
-      </h3>
-      <div
-        id="features"
-        className="w-full container mx-auto grid grid-cols-1 lg:grid-cols-3 my-20 gap-10 px-6 lg:px-12"
-      >
-        <div className="rounded-2xl px-8 py-6 border flex flex-col items-center justify-center">
-          <div className="w-12 h-12 flex items-center justify-center rounded-full text-restro-green bg-green-100">
-            <IconLayout />
-          </div>
-          <h3 className="mt-4 font-bold text-2xl text-center">{t("landing_page.minimal_ui")}</h3>
-          <p className="text-gray-700 mt-2 text-center">
-            {t("landing_page.minimal_ui_description")}
-          </p>
-        </div>
-
-        <div className="rounded-2xl px-8 py-6 border flex flex-col items-center justify-center">
-          <div className="w-12 h-12 flex items-center justify-center rounded-full text-restro-green bg-green-100">
-            <IconDeviceIpadHorizontal />
-          </div>
-          <h3 className="mt-4 font-bold text-2xl text-center">{t("landing_page.pos")}</h3>
-          <p className="text-gray-700 mt-2 text-center">
-            {t("landing_page.pos_description")}
-          </p>
-        </div>
-
-        <div className="rounded-2xl px-8 py-6 border flex flex-col items-center justify-center">
-          <div className="w-12 h-12 flex items-center justify-center rounded-full text-restro-green bg-green-100">
-            <IconChefHat />
-          </div>
-          <h3 className="mt-4 font-bold text-2xl text-center">{t("landing_page.live_updates")}</h3>
-          <p className="text-gray-700 mt-2 text-center">
-            {t("landing_page.live_updates_description")}
-          </p>
-        </div>
-      </div>
-      {/* features */}
-
-      {/* pricing */}
-      <h3 className="text-4xl font-bold text-center container mx-auto mt-40">
-        {t("landing_page.pricing")}
-      </h3>
-      <div
-        id="pricing"
-        className="w-full container mx-auto grid grid-cols-1 my-20 gap-10 place-items-center px-6 lg:px-0"
-      >
-        <div className="rounded-2xl px-8 py-6 border flex flex-col w-full lg:w-96">
-          <h3 className="text-4xl text-green-700 font-bold text-center">{subscriptionPrice}</h3>
-          <h3 className=" font-bold text-2xl text-center">{t("landing_page.per_month")}</h3>
-          <ul className="text-gray-700 mt-6 flex flex-col gap-2 text-start">
-            <li>{t("landing_page.unlimited_orders")}</li>
-            <li>{t("landing_page.monthly_renewals")}</li>
-            <li>{t("landing_page.unlimited_devices")}</li>
-            <li>{t("landing_page.live_kitchen_orders")}</li>
-          </ul>
-        </div>
-      </div>
-      {/* pricing */}
-
-      {/* contact */}
-      <div id="contact" className="container mx-auto my-40 px-6 lg:px-12">
-        <div
-          className="lg:h-40 px-10 py-6 flex gap-4 flex-col md:flex-row lg:items-center rounded-3xl bg-[#243922] text-restro-green shadow-2xl shadow-green-700/40"
-        >
-          <h3 className="flex-1 font-bold text-4xl text-white">
-            {t("landing_page.have_any_queries")}
-          </h3>
-          <a
-            className="bg-white text-lg text-restro-green-dark rounded-full px-5 py-3 transition active:scale-95 block"
-            href={`mailto:${supportEmail}`}
-          >
-            {t("landing_page.contact_us")}
-          </a>
-        </div>
-      </div>
-      {/* contact */}
-
-      {/* footer */}
-      <div className="w-full border-t">
-        <div className="flex flex-col lg:flex-row  lg:justify-between gap-4 container mx-auto px-4 py-10 lg:px-12">
-          <div className="w-full md:max-w-80">
-            <img src={Logo} alt="logo" className="h-12" />
-            <p className="mt-2 text-sm text-gray-500">
-              {t('landing_page.footer_description')}
+      
+      {/* hero section */}
+      <div className="w-full bg-gradient-to-b from-green-50/30 to-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 pt-16 sm:pt-20 pb-24 sm:pb-32">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
+              {t("landing_page.all_in_one_pos")}
+              <br />
+              <span className="text-[#70B56A]">{t("landing_page.for_your_business")}</span>
+            </h1>
+            
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 mt-6 sm:mt-8 max-w-2xl mx-auto leading-relaxed px-2">
+              {t("landing_page.hero_description")}
             </p>
 
-            <div className="flex items-center mt-6 gap-2">
-              <label htmlFor="language">{t("landing_page.language")}</label>
-              <LanguageChanger className="border bg-white hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95" />
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 px-4 sm:px-0">
+              <Link
+                className="w-full sm:w-auto bg-[#70B56A] hover:bg-[#70B56A]/90 text-white text-base sm:text-lg font-medium rounded-xl px-6 sm:px-8 py-3 sm:py-4 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 min-w-[160px]"
+                to="/login"
+              >
+                {t("landing_page.get_started")}
+                <IconArrowRight size={18} className="sm:w-5 sm:h-5" />
+              </Link>
+              <a
+                className="w-full sm:w-auto border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 text-base sm:text-lg font-medium rounded-xl px-6 sm:px-8 py-3 sm:py-4 transition-all duration-200 active:scale-95 text-center min-w-[160px]"
+                href="#pricing"
+              >
+                {t("landing_page.view_pricing")}
+              </a>
             </div>
           </div>
-          <div className="flex flex-col lg:flex-col">
-            <a
-              className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
-              href="#"
+        </div>
+      </div>
+
+      {/* hero image */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 -mt-12 sm:-mt-16">
+        <div className="max-w-5xl mx-auto">
+          <img
+            src="/assets/hero.png"
+            alt="restro pro image"
+            className="w-full rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl shadow-gray-900/10"
+          />
+        </div>
+      </div>
+
+      {/* features section */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-20 sm:py-32" id="features">
+        <div className="text-center mb-12 sm:mb-20">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-2">
+            {t("landing_page.features")}
+          </h2>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
+            {t("landing_page.features_description")}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          <div className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-100 hover:border-[#70B56A]/20 hover:shadow-xl transition-all duration-300">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-xl sm:rounded-2xl flex items-center justify-center text-[#70B56A] mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+              <IconLayout size={24} className="sm:w-7 sm:h-7" />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+              {t("landing_page.minimal_ui")}
+            </h3>
+            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+              {t("landing_page.minimal_ui_description")}
+            </p>
+          </div>
+
+          <div className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-100 hover:border-[#70B56A]/20 hover:shadow-xl transition-all duration-300">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-xl sm:rounded-2xl flex items-center justify-center text-[#70B56A] mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+              <IconDeviceIpadHorizontal size={24} className="sm:w-7 sm:h-7" />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+              {t("landing_page.pos")}
+            </h3>
+            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+              {t("landing_page.pos_description")}
+            </p>
+          </div>
+
+          <div className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-100 hover:border-[#70B56A]/20 hover:shadow-xl transition-all duration-300 sm:col-span-2 lg:col-span-1">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-xl sm:rounded-2xl flex items-center justify-center text-[#70B56A] mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+              <IconChefHat size={24} className="sm:w-7 sm:h-7" />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+              {t("landing_page.live_updates")}
+            </h3>
+            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+              {t("landing_page.live_updates_description")}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* pricing section */}
+      <div className="bg-gray-50/50 py-20 sm:py-32" id="pricing">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="text-center mb-12 sm:mb-20">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-2">
+              {t("landing_page.pricing")}
+            </h2>
+            <p className="text-lg sm:text-xl text-gray-600 px-4">
+              {t("landing_page.pricing_description")}
+            </p>
+          </div>
+
+          <div className="max-w-sm mx-auto px-4">
+            <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 p-6 sm:p-8 shadow-xl">
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="text-4xl sm:text-5xl font-bold text-[#70B56A] mb-2">
+                  {subscriptionPrice}
+                </div>
+                <div className="text-base sm:text-lg text-gray-600">
+                  {t("landing_page.per_month")}
+                </div>
+              </div>
+
+              <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+                <li className="flex items-center gap-3">
+                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <IconCheck size={12} className="text-[#70B56A]" />
+                  </div>
+                  <span className="text-gray-700 text-sm sm:text-base">{t("landing_page.unlimited_orders")}</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <IconCheck size={12} className="text-[#70B56A]" />
+                  </div>
+                  <span className="text-gray-700 text-sm sm:text-base">{t("landing_page.monthly_renewals")}</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <IconCheck size={12} className="text-[#70B56A]" />
+                  </div>
+                  <span className="text-gray-700 text-sm sm:text-base">{t("landing_page.unlimited_devices")}</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <IconCheck size={12} className="text-[#70B56A]" />
+                  </div>
+                  <span className="text-gray-700 text-sm sm:text-base">{t("landing_page.live_kitchen_orders")}</span>
+                </li>
+              </ul>
+
+              <Link
+                to="/login"
+                className="w-full bg-[#70B56A] hover:bg-[#70B56A]/90 text-white text-base sm:text-lg font-medium rounded-xl px-6 py-3 sm:py-4 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2"
+              >
+                {t("landing_page.get_started")}
+                <IconArrowRight size={18} className="sm:w-5 sm:h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA section */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-20 sm:py-32" id="contact">
+        <div className="bg-gradient-to-r from-[#243922] to-[#2d4529] rounded-2xl sm:rounded-3xl p-8 sm:p-12 lg:p-20 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
+            {t("cta.title")}
+          </h2>
+          <p className="text-lg sm:text-xl text-green-100 mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
+            {t("cta.description")}
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+            <Link
+              to="/login"
+              className="w-full sm:w-auto bg-white text-[#243922] text-base sm:text-lg font-medium rounded-xl px-6 sm:px-8 py-3 sm:py-4 hover:bg-gray-50 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 min-w-[160px]"
             >
-              {t("landing_page.privacy_policy")}
-            </a>
+              {t("cta.button")}
+              <IconArrowRight size={18} className="sm:w-5 sm:h-5" />
+            </Link>
             <a
-              className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
-              href="#"
+              href={`mailto:${supportEmail}`}
+              className="w-full sm:w-auto border border-white/20 text-white text-base sm:text-lg font-medium rounded-xl px-6 sm:px-8 py-3 sm:py-4 hover:bg-white/10 transition-all duration-200 active:scale-95 text-center min-w-[160px]"
             >
-              {t("landing_page.refund_policy")}
-            </a>
-            <a
-              className="hover:bg-gray-100 text-gray-700 rounded-full px-4 py-2 transition active:scale-95"
-              href="#"
-            >
-              {t("landing_page.terms_conditions")}
+              {t("cta.contact")}
             </a>
           </div>
         </div>
-
-        <div className="border-t text-sm text-gray-500 text-center py-6">
-          {t("landing_page.made_with_love")}
-        </div>
       </div>
+
       {/* footer */}
+      <footer className="bg-gray-50 border-t border-gray-200">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-8 sm:py-12">
+          <div className="flex flex-col lg:flex-row justify-between items-start gap-6 sm:gap-8">
+            <div className="max-w-sm w-full lg:w-auto">
+              <img src={Logo} alt="logo" className="h-8 sm:h-10 mb-3 sm:mb-4" />
+              <p className="text-gray-600 text-sm leading-relaxed mb-4 sm:mb-6">
+                {t('landing_page.footer_description')}
+              </p>
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-gray-500">{t("landing_page.language")}</span>
+                <LanguageChanger className="border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 rounded-lg px-3 py-1.5 text-sm transition-colors" />
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 w-full lg:w-auto">
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-900 px-3 sm:px-4 py-2 rounded-lg hover:bg-white transition-colors text-sm text-center sm:text-left"
+              >
+                {t("landing_page.privacy_policy")}
+              </a>
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-900 px-3 sm:px-4 py-2 rounded-lg hover:bg-white transition-colors text-sm text-center sm:text-left"
+              >
+                {t("landing_page.refund_policy")}
+              </a>
+              <a
+                href="#"
+                className="text-gray-600 hover:text-gray-900 px-3 sm:px-4 py-2 rounded-lg hover:bg-white transition-colors text-sm text-center sm:text-left"
+              >
+                {t("landing_page.terms_conditions")}
+              </a>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-200 mt-6 sm:mt-8 pt-4 sm:pt-6 text-center">
+            <p className="text-sm text-gray-500">
+              {t("landing_page.made_with_love")}
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

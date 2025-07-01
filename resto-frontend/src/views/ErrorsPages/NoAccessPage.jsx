@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Page from "../components/Page";
-import Logo from "../assets/logo.svg";
-import LogoDark from "../assets/LogoDark.svg"
+import Page from "../../components/Page";
+import Logo from "../../assets/logo.svg";
+import LogoDark from "../../assets/LogoDark.svg"
 import { IconChevronLeft } from '@tabler/icons-react';
-import { iconStroke } from '../config/config';
+import { iconStroke } from '../../config/config';
 import { useNavigate } from 'react-router-dom';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../../contexts/ThemeContext';
 
 export default function NoAccessPage() {
   const { t } = useTranslation();

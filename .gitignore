@@ -1,0 +1,16 @@
+# Ignore node_modules only in the front folder
+/resto-frontend/node_modules/
+
+
+# Optionally, ignore environment files
+
+# Optional: ignore build output
+/front/.next/
+/front/dist/
+/front/build/
+
+/resto-backend/node_modules/  # Si tu as aussi un node_modules dans back
+
+# System files
+.DS_Store
+*.log
