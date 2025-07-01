@@ -125,18 +125,19 @@ export default function LoginPage() {
       />
 
       <div className="flex flex-col md:flex-row items-center justify-end md:justify-between gap-10 h-screen container mx-auto px-4 md:px-0 py-4 md:py-0 relative">
-        <div className="lg:mx-12">
-          <h3 className='text-2xl lg:text-6xl font-black text-restro-green-dark dark:text-restro-green-dark-mode'>
+        <div className="lg:mx-12 w-full md:w-auto flex flex-col items-start justify-center">
+          <h3 className='text-3xl md:text-5xl lg:text-7xl font-black text-restro-green-dark dark:text-restro-green-dark-mode mb-2 md:mb-4'>
             {t("home.cafe_restaurant")}
           </h3>
-          <h3 className='text-2xl lg:text-6xl font-black outline-text text-restro-green-light dark:text-restro-green'>
+          <h3 className='text-2xl md:text-4xl lg:text-6xl font-black outline-text text-restro-green-light dark:text-restro-green mt-2 md:mt-6'>
             {t("home.hotel_bar")}
           </h3>
         </div>
 
-        <div className='sm:w-96 mx-8 sm:mx-0 shadow-2xl lg:mx-12 rounded-2xl px-8 py-8 w-full bg-white dark:bg-black border border-restro-green-light'>
+        <div className='sm:w-96 mx-8 sm:mx-0 shadow-2xl lg:mx-12 rounded-2xl px-8 py-8 w-full bg-white dark:bg-black border border-restro-green-light'
+          style={{ maxWidth: '540px', minWidth: '320px', width: '100%' }}>
           <div className="flex items-center justify-between">
-            <div className='text-xl font-medium'>
+            <div className='text-xl md:text-2xl font-medium'>
               {t("login.title")}
             </div>
             <div>
@@ -144,7 +145,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <form className="mt-6" onSubmit={handleSubmit}>
+          <form className="mt-8" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="username"
@@ -158,7 +159,7 @@ export default function LoginPage() {
                 name="username"
                 required
                 placeholder={t("login.email_placeholder")}
-                className='mt-1 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray focus-visible:ring-restro-ring'
+                className='mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray focus-visible:ring-restro-ring text-base md:text-lg'
                 tabIndex={1}
               />
             </div>
@@ -185,14 +186,14 @@ export default function LoginPage() {
                 name="password"
                 required
                 placeholder={t("login.password_placeholder")}
-                className='mt-1 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray focus-visible:ring-restro-ring'
+                className='mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray focus-visible:ring-restro-ring text-base md:text-lg'
                 tabIndex={2}
               />
             </div>
 
             <button
               type="submit"
-              className='block w-full mt-6 text-white rounded-xl px-4 py-3 transition hover:scale-105 active:scale-95 hover:shadow-md outline-none focus-visible:ring-1 bg-restro-green focus-visible:ring-restro-ring hover:bg-restro-green-button-hover'
+              className='block w-full mt-6 text-white rounded-xl px-4 py-3 transition hover:scale-105 active:scale-95 hover:shadow-md outline-none focus-visible:ring-1 bg-restro-green focus-visible:ring-restro-ring hover:bg-restro-green-button-hover text-base md:text-lg'
               tabIndex={3}
             >
               {t("login.login_button")}
@@ -208,7 +209,7 @@ export default function LoginPage() {
 
             <Link
               to="/register"
-              className='block w-full text-center rounded-xl px-4 py-3 transition hover:scale-105 active:scale-95 hover:shadow-xl outline-none focus-visible:ring-1 bg-restro-gray hover:bg-restro-button-hover focus-visible:ring-restro-ring dark:focus-visible:ring-restro-ring-dark'
+              className='block w-full text-center rounded-xl px-4 py-3 transition hover:scale-105 active:scale-95 hover:shadow-xl outline-none focus-visible:ring-1 bg-restro-gray hover:bg-restro-button-hover focus-visible:ring-restro-ring dark:focus-visible:ring-restro-ring-dark text-base md:text-lg'
               tabIndex={4}
             >
               {t("login.create_account")}

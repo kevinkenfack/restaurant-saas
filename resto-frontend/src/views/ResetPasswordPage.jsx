@@ -49,13 +49,14 @@ export default function ResetPasswordPage() {
       <img src="/assets/circle_illustration.svg" alt="illustration" className="absolute w-96 lg:w-[1024px] h-96 lg:h-[1024px]  lg:-bottom-96 lg:-right-52 -right-36 " />
 
       <div className="flex flex-col md:flex-row items-center justify-end md:justify-between gap-10 h-screen container mx-auto px-4 md:px-0 py-4 md:py-0 relative">
-        <div>
-          <h3 className="text-2xl lg:text-6xl font-black text-restro-green-dark">{t("home.cafe_restaurant")}</h3>
-          <h3 className="text-2xl lg:text-6xl font-black text-restro-green-light outline-text">{t("home.hotel_bar")}</h3>
+        <div className="w-full md:w-auto flex flex-col items-start justify-center">
+          <h3 className="text-3xl md:text-5xl lg:text-7xl font-black text-restro-green-dark mb-2 md:mb-4">{t("home.cafe_restaurant")}</h3>
+          <h3 className="text-2xl md:text-4xl lg:text-6xl font-black text-restro-green-light outline-text mt-2 md:mt-6">{t("home.hotel_bar")}</h3>
         </div>
-        <div className="bg-white rounded-2xl px-8 py-8 w-full sm:w-96 mx-8 sm:mx-0 shadow-2xl">
+        <div className="bg-white rounded-2xl px-8 py-8 w-full sm:w-96 mx-8 sm:mx-0 shadow-2xl"
+          style={{ maxWidth: '540px', minWidth: '320px', width: '100%' }}>
           <div className="flex items-center justify-between">
-            <div className="text-restro-green-dark text-xl font-medium">
+            <div className="text-restro-green-dark text-xl md:text-2xl font-medium">
               {t("reset_password.title")}
             </div>
             <div>
@@ -63,7 +64,7 @@ export default function ResetPasswordPage() {
             </div>
           </div>
 
-          <form className="mt-6" onSubmit={handleSubmit}>
+          <form className="mt-8" onSubmit={handleSubmit}>
             <div>
               <label className="block" htmlFor="password">
                 {t("reset_password.new_password_label")}
@@ -74,13 +75,13 @@ export default function ResetPasswordPage() {
                 name="password"
                 required
                 placeholder={t("reset_password.new_password_placeholder")}
-                className="mt-1 block w-full bg-gray-100 px-4 py-3 rounded-xl"
+                className="mt-2 block w-full bg-gray-100 px-4 py-3 rounded-xl text-base md:text-lg"
               />
             </div>
 
             <button
               type="submit"
-              className="block w-full mt-6 bg-restro-green text-white rounded-xl px-4 py-3 transition hover:scale-105 active:scale-95 hover:shadow-xl hover:shadow-green-800/20"
+              className="block w-full mt-6 bg-restro-green text-white rounded-xl px-4 py-3 transition hover:scale-105 active:scale-95 hover:shadow-xl hover:shadow-green-800/20 text-base md:text-lg"
             >
               {t("reset_password.reset_button")}
             </button>

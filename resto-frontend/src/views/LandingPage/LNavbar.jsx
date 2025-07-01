@@ -3,6 +3,7 @@ import Logo from "../../assets/logo.svg";
 import { Link } from "react-router-dom";
 import { IconMenu, IconX } from "@tabler/icons-react";
 import { useTranslation } from "react-i18next";
+import LanguageChanger from "../../components/LanguageChanger";
 
 export default function LNavbar() {
   const { t } = useTranslation();
@@ -33,6 +34,12 @@ export default function LNavbar() {
             to="/#pricing"
           >
             {t("landing_page.pricing")}
+          </Link>
+          <Link
+            className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
+            to="/#faq"
+          >
+            {t("landing_page.faq")}
           </Link>
           <Link
             className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
@@ -108,6 +115,13 @@ export default function LNavbar() {
               >
                 {t("landing_page.pricing")}
               </Link>
+               <Link
+                onClick={closeDrawer}
+                className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
+                to="/#faq"
+              >
+                {t("landing_page.faq")}
+              </Link>
               <Link
                 onClick={closeDrawer}
                 className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
@@ -117,8 +131,16 @@ export default function LNavbar() {
               </Link>
             </nav>
 
+            {/* Language Selector - Mobile */}
+            <div className="mt-6 mb-6 p-4 bg-gray-50 rounded-xl">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-700">{t("landing_page.language")}</span>
+              </div>
+              <LanguageChanger className="w-full border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 rounded-lg px-4 py-2.5 text-sm transition-colors" />
+            </div>
+
             {/* Mobile CTA Buttons */}
-            <div className="mt-8 space-y-3">
+            <div className="space-y-3">
               <Link
                 onClick={closeDrawer}
                 className="block text-center border border-gray-200 hover:border-gray-300 hover:bg-gray-50 text-gray-700 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
