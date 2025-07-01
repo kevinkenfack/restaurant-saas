@@ -324,7 +324,7 @@ export default function LandingPage() {
                     </li>
                     <li>
                       <a href="#pricing" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">
-                        {t('landing_page.pricing')}
+                        {t('landing_page.pricing_link')}
                       </a>
                     </li>
                     <li>
