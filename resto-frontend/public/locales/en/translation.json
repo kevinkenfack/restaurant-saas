@@ -367,10 +367,10 @@
     "subscribe_button": "Subscribe",
     "price_per_month": "per month",
     "features": {
-      "unlimited_orders": "✅ Unlimited Orders",
-      "monthly_renewals": "✅ Monthly Renewals",
-      "unlimited_devices": "✅ Unlimited Devices",
-      "live_kitchen_orders": "✅ Live Kitchen Orders"
+      "unlimited_orders": "Unlimited Orders",
+      "monthly_renewals": "Monthly Renewals",
+      "unlimited_devices": "Unlimited Devices",
+      "live_kitchen_orders": "Live Kitchen Orders"
     }
   },
   "forgot_password": {
@@ -689,6 +689,7 @@
     "features_description": "Discover the features that make the difference",
     "pricing": "One plan, full access",
     "special_badge": "Special Offer",
+    "pricing_link": "Special Offer",
     "faq": "FAQ",
     "faq_title": "Frequently Asked Questions",
     "faq_subtitle": "Find answers to the most common questions about our restaurant management solution",
