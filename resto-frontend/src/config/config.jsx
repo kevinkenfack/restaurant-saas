@@ -7,6 +7,8 @@ export const iconStroke = 1.5;
 
 export const supportEmail = "hi@kenfack.me";
 export const appVersion = "1.8.0";
+export const appName = "Restro";
+export const phoneNumber = "+91 9999999999";
 
 export const subscriptionAmount = 5;
 export const subscriptionPrice = "$" + subscriptionAmount;
