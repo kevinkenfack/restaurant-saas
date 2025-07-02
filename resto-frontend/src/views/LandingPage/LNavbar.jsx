@@ -30,10 +30,13 @@ export default function LNavbar() {
             {t("landing_page.features")}
           </Link>
           <Link
-            className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
+            className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium flex items-center gap-1.5"
             to="/#pricing"
           >
             {t("landing_page.pricing_link")}
+            <span className="bg-[#70B56A]/10 text-[#70B56A] text-xs font-medium px-2 py-0.5 rounded-full border border-[#70B56A]/20">
+              {t("landing_page.special_badge")}
+            </span>
           </Link>
           <Link
             className="hover:bg-gray-100 text-gray-600 hover:text-gray-900 rounded-xl px-4 py-2.5 transition-all duration-200 font-medium"
@@ -108,12 +111,15 @@ export default function LNavbar() {
               >
                 {t("landing_page.features")}
               </Link>
-              <Link
+ <Link
                 onClick={closeDrawer}
-                className="block hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
+                className="flex items-center justify-between hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
                 to="/#pricing"
               >
-                {t("landing_page.pricing_link")}
+                <span>{t("landing_page.pricing_link")}</span>
+                <span className="bg-[#70B56A]/10 text-[#70B56A] text-xs font-medium px-2 py-0.5 rounded-full border border-[#70B56A]/20">
+                  {t("landing_page.pricing_gift")}
+                </span>
               </Link>
                <Link
                 onClick={closeDrawer}

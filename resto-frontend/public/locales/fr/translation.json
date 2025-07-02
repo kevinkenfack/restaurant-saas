@@ -685,11 +685,72 @@
     "created_at": "Créé le"
   },
   "landing_page": {
+    "features_heading": "Fonctionnalités puissantes",
+    "features_subtitle": "Découvrez comment notre solution peut transformer la gestion de votre établissement",
+    "features_list": {
+      "pos": {
+        "title": "Point de vente intelligent",
+        "description": "Gérez vos ventes en toute simplicité avec notre interface de caisse intuitive et rapide.",
+        "icon": "IconShoppingCart"
+      },
+      "inventory": {
+        "title": "Gestion des stocks",
+        "description": "Suivez vos stocks en temps réel et recevez des alertes pour les réapprovisionnements.",
+        "icon": "IconPackage"
+      },
+      "tables": {
+        "title": "Gestion des tables",
+        "description": "Organisez votre salle et gérez les réservations en un clin d'œil.",
+        "icon": "IconTable"
+      },
+      "analytics": {
+        "title": "Analyses avancées",
+        "description": "Prenez des décisions éclairées avec nos rapports détaillés et statistiques.",
+        "icon": "IconChartBar"
+      },
+      "menu": {
+        "title": "Menu digital",
+        "description": "Créez et gérez facilement votre menu en ligne avec photos et descriptions.",
+        "icon": "IconMenu2"
+      },
+      "staff": {
+        "title": "Gestion d'équipe",
+        "description": "Organisez vos équipes et gérez les plannings en toute simplicité.",
+        "icon": "IconUsers"
+      }
+    },
     "features": "Fonctionnalités",
     "features_description": "Découvrez les fonctionnalités qui font la différence",
+    "minimal_ui": "Interface intuitive",
+    "minimal_ui_description": "Une interface utilisateur moderne et facile à utiliser pour une prise en main immédiate.",
+    "pos": "Point de vente",
+    "demo": {
+      "title": "Découvrez notre solution tout-en-un",
+      "subtitle": "Une expérience utilisateur fluide sur tous les appareils pour gérer votre restaurant avec facilité",
+      "features": {
+        "desktop": {
+          "title": "Version Bureau Complète",
+          "description": "Accédez à toutes les fonctionnalités avancées depuis votre ordinateur."
+        },
+        "tablet": {
+          "title": "Version Tablette Optimisée",
+          "description": "Gérez votre restaurant en déplacement avec notre interface tablette intuitive."
+        },
+        "mobile": {
+          "title": "Application Mobile",
+          "description": "Restez connecté à votre entreprise où que vous soyez avec notre application mobile."
+        }
+      },
+      "cta": {
+        "title": "Prêt à révolutionner votre restaurant ?",
+        "description": "Rejoignez des milliers de restaurateurs qui font confiance à notre solution pour gérer leur établissement plus efficacement.",
+        "button": "Commencer l'essai gratuit"
+      }
+    },
     "pricing": "Formule unique, accès total",
     "pricing_link": "Offre Spéciale", 
     "special_badge": "Offre spéciale",
+    "pricing_gift": "Promo",
     "faq": "FAQ",
     "faq_title": "Questions fréquemment posées",
     "faq_subtitle": "Trouvez des réponses aux questions les plus courantes sur notre solution de gestion de restaurant",
@@ -713,9 +774,7 @@
     "for_your_business": "pour votre entreprise de restauration.",
     "hero_description": "Simplifiez votre service. Boostez vos ventes. RestroPRO POS optimise vos opérations et révèle le potentiel de votre restaurant.",
     "view_pricing": "Afficher les tarifs",
-    "minimal_ui": "Interface utilisateur minimaliste",
-    "minimal_ui_description": "Interface sans effort, RestroPRO POS bénéficie d'un design épuré et intuitif. Pas d'écrans encombrés, juste l'essentiel dont vous avez besoin pour gérer votre entreprise facilement.",
-    "pos": "PDV",
+
     "pos_description": "RestroPRO POS simplifie les ventes. Gérez facilement les commandes, les catégories et les variantes. Envoyez à la cuisine instantanément et acceptez les paiements en toute sécurité. Tout-en-un pour un flux fluide.",
     "live_updates": "Mises à jour en direct",
     "live_updates_description": "Cuisine synchronisée, ne manquez jamais rien. Les mises à jour des commandes en direct envoient les détails directement à votre cuisine, garantissant la précision et minimisant le temps de préparation.",
@@ -741,9 +800,11 @@
   "cta": {
     "title": "Prêt à transformer votre restaurant ?",
     "description": "Rejoignez des centaines de restaurateurs qui ont déjà optimisé leur service avec notre solution.",
-    "button": "Commencer maintenant",
-    "contact": "Contactez-nous"
-    },
+    "button": "Commencer",
+    "contact": "Nous contacter",
+    "trusted_by": "Faites confiance à",
+    "businesses": "entreprises dans le monde"
+  },
 
   "categories": {
     "title": "Catégories",

@@ -18,6 +18,9 @@ export default function LoginPage() {
   const { t } = useTranslation();
   const {theme} = useTheme();
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     const restroAuthenticated = isRestroUserAuthenticated();

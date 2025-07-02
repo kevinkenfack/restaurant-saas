@@ -10,11 +10,18 @@ import {
   IconArrowRight,
   IconPlus,
   IconMinus,
+  IconShoppingCart,
+  IconPackage,
+  IconTable,
+  IconChartBar,
+  IconMenu2,
+  IconUsers
 } from "@tabler/icons-react";
 import Logo from "../../assets/logo.svg";
 import { subscriptionPrice, supportEmail } from "../../config/config";
 import LanguageChanger from "../../components/LanguageChanger";
 import { useTranslation } from "react-i18next";
+import ProductDemo from "./components/ProductDemo";
 
 export default function LandingPage() {
   const { t } = useTranslation();
@@ -83,51 +90,45 @@ export default function LandingPage() {
       </div>
 
       {/* features section */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-20 sm:py-32" id="features">
-        <div className="text-center mb-12 sm:mb-20">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4 px-2">
-            {t("landing_page.features")}
-          </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto px-4">
-            {t("landing_page.features_description")}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-          <div className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-100 hover:border-[#70B56A]/20 hover:shadow-xl transition-all duration-300">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-xl sm:rounded-2xl flex items-center justify-center text-[#70B56A] mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-              <IconLayout size={24} className="sm:w-7 sm:h-7" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-              {t("landing_page.minimal_ui")}
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-              {t("landing_page.minimal_ui_description")}
+      <div className="py-20 bg-gray-50" id="features">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              {t("landing_page.features_heading")}
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              {t("landing_page.features_subtitle")}
             </p>
           </div>
 
-          <div className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-100 hover:border-[#70B56A]/20 hover:shadow-xl transition-all duration-300">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-xl sm:rounded-2xl flex items-center justify-center text-[#70B56A] mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-              <IconDeviceIpadHorizontal size={24} className="sm:w-7 sm:h-7" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-              {t("landing_page.pos")}
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-              {t("landing_page.pos_description")}
-            </p>
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Object.entries(t("landing_page.features_list", { returnObjects: true })).map(([key, feature]) => {
+              const IconComponent = {
+                IconShoppingCart: IconShoppingCart,
+                IconPackage: IconPackage,
+                IconTable: IconTable,
+                IconChartBar: IconChartBar,
+                IconMenu2: IconMenu2,
+                IconUsers: IconUsers
+              }[feature.icon] || IconLayout;
 
-          <div className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-gray-100 hover:border-[#70B56A]/20 hover:shadow-xl transition-all duration-300 sm:col-span-2 lg:col-span-1">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-xl sm:rounded-2xl flex items-center justify-center text-[#70B56A] mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
-              <IconChefHat size={24} className="sm:w-7 sm:h-7" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-              {t("landing_page.live_updates")}
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-              {t("landing_page.live_updates_description")}
-            </p>
+              return (
+                <div 
+                  key={key}
+                  className="group bg-white p-8 rounded-xl border border-gray-100 hover:border-[#70B56A]/30 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-14 h-14 bg-green-50 rounded-lg flex items-center justify-center text-[#70B56A] mb-6 group-hover:bg-green-100 transition-colors duration-300">
+                    <IconComponent size={28} className="w-7 h-7" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -206,6 +207,9 @@ export default function LandingPage() {
         </div>
       </div>
 
+      {/* Product Demo Section */}
+      <ProductDemo />
+
       {/* FAQ Section */}
       <section className="py-16 sm:py-24 bg-gray-50/50" id="faq">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
@@ -266,28 +270,60 @@ export default function LandingPage() {
       </section>
 
       {/* CTA section */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12 py-20 sm:py-32" id="contact">
-        <div className="bg-gradient-to-r from-[#243922] to-[#2d4529] rounded-2xl sm:rounded-3xl p-8 sm:p-12 lg:p-20 text-center">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
-            {t("cta.title")}
-          </h2>
-          <p className="text-lg sm:text-xl text-green-100 mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
-            {t("cta.description")}
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <Link
-              to="/login"
-              className="w-full sm:w-auto bg-white text-[#243922] text-base sm:text-lg font-medium rounded-xl px-6 sm:px-8 py-3 sm:py-4 hover:bg-gray-50 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 min-w-[160px]"
-            >
-              {t("cta.button")}
-              <IconArrowRight size={18} className="sm:w-5 sm:h-5" />
-            </Link>
-            <a
-              href={`mailto:${supportEmail}`}
-              className="w-full sm:w-auto border border-white/20 text-white text-base sm:text-lg font-medium rounded-xl px-6 sm:px-8 py-3 sm:py-4 hover:bg-white/10 transition-all duration-200 active:scale-95 text-center min-w-[160px]"
-            >
-              {t("cta.contact")}
-            </a>
+      <div className="relative overflow-hidden py-20 sm:py-32 bg-gradient-to-br from-green-50 to-white" id="contact">
+        {/* Background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-20 -right-20 w-96 h-96 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+          <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-[#70B56A] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#4E944F] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
+        </div>
+        
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="bg-gradient-to-r from-[#243922] to-[#2d4529] rounded-2xl sm:rounded-3xl p-8 sm:p-12 lg:p-16 text-center shadow-2xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl">
+            {/* Decorative elements */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full -mr-16 -mt-16"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-green-400/10 rounded-full -ml-24 -mb-24"></div>
+            
+            <div className="relative z-10">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-2 leading-tight">
+                {t("cta.title")}
+              </h2>
+              <p className="text-lg sm:text-xl text-green-100 mb-8 sm:mb-10 max-w-2xl mx-auto px-2 leading-relaxed">
+                {t("cta.description")}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+                <Link
+                  to="/register"
+                  className="group relative w-full sm:w-auto bg-white text-[#243922] text-base sm:text-lg font-semibold rounded-xl px-8 py-4 hover:bg-gray-50 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 min-w-[180px] shadow-lg hover:shadow-xl hover:-translate-y-1"
+                >
+                  <span className="relative z-10">{t("cta.button")}</span>
+                  <IconArrowRight size={20} className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-white to-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                </Link>
+                
+                <a
+                  href={`mailto:${supportEmail}`}
+                  className="group relative w-full sm:w-auto border-2 border-white/30 text-white text-base sm:text-lg font-semibold rounded-xl px-8 py-4 hover:bg-white/10 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 min-w-[180px] hover:border-white/50 hover:shadow-lg"
+                >
+                  <span className="relative z-10">{t("cta.contact")}</span>
+                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                </a>
+              </div>
+              
+              <div className="mt-8 flex items-center justify-center space-x-4">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3].map((item) => (
+                    <div key={item} className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center text-white text-xs font-bold">
+                      {item}+{item*2}
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-green-100">
+                  {t("cta.trusted_by")} <span className="font-semibold">20+</span> {t("cta.businesses")}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

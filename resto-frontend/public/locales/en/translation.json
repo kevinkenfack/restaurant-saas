@@ -684,12 +684,82 @@
     "status": "Status",
     "created_at": "Created at"
   },
+  "cta": {
+    "title": "Ready to Transform Your Restaurant?",
+    "description": "Join hundreds of restaurant owners who have already optimized their service with our solution.",
+    "button": "Start Free Trial",
+    "contact": "Contact Us",
+    "trusted_by": "Trusted by",
+    "businesses": "businesses worldwide"
+  },
+
   "landing_page": {
+    "features_heading": "Powerful Features",
+    "features_subtitle": "Discover how our solution can transform your business management",
+    "features_list": {
+      "pos": {
+        "title": "Smart Point of Sale",
+        "description": "Manage your sales with ease using our intuitive and fast checkout interface.",
+        "icon": "IconShoppingCart"
+      },
+      "inventory": {
+        "title": "Inventory Management",
+        "description": "Track your stock in real-time and receive alerts for restocking.",
+        "icon": "IconPackage"
+      },
+      "tables": {
+        "title": "Table Management",
+        "description": "Organize your dining area and manage reservations at a glance.",
+        "icon": "IconTable"
+      },
+      "analytics": {
+        "title": "Advanced Analytics",
+        "description": "Make informed decisions with detailed reports and statistics.",
+        "icon": "IconChartBar"
+      },
+      "menu": {
+        "title": "Digital Menu",
+        "description": "Easily create and manage your online menu with photos and descriptions.",
+        "icon": "IconMenu2"
+      },
+      "staff": {
+        "title": "Team Management",
+        "description": "Organize your teams and manage schedules with ease.",
+        "icon": "IconUsers"
+      }
+    },
     "features": "Features",
     "features_description": "Discover the features that make the difference",
+    "minimal_ui": "Intuitive Interface",
+    "minimal_ui_description": "A modern and easy-to-use interface for immediate use.",
+    "pos": "Point of Sale",
+    "demo": {
+      "title": "Discover Our All-in-One Solution",
+      "subtitle": "A seamless user experience across all devices to manage your restaurant with ease",
+      "features": {
+        "desktop": {
+          "title": "Full Desktop Version",
+          "description": "Access all advanced features from your computer."
+        },
+        "tablet": {
+          "title": "Optimized Tablet Version",
+          "description": "Manage your restaurant on the go with our intuitive tablet interface."
+        },
+        "mobile": {
+          "title": "Mobile App",
+          "description": "Stay connected to your business wherever you are with our mobile app."
+        }
+      },
+      "cta": {
+        "title": "Ready to revolutionize your restaurant?",
+        "description": "Join thousands of restaurant owners who trust our solution to manage their business more efficiently.",
+        "button": "Start Free Trial"
+      }
+    },
     "pricing": "One plan, full access",
     "special_badge": "Special Offer",
     "pricing_link": "Special Offer",
+    "pricing_gift": "Promo",
     "faq": "FAQ",
     "faq_title": "Frequently Asked Questions",
     "faq_subtitle": "Find answers to the most common questions about our restaurant management solution",
@@ -713,9 +783,6 @@
     "for_your_business": "for Your Food & Beverage Business.",
     "hero_description": "Simplify service. Boost sales. RestroPRO POS streamlines your operations and unlocks your restaurant’s full potential.",
     "view_pricing": "View Pricing",
-    "minimal_ui": "Minimal UI",
-    "minimal_ui_description": "Effortless Interface, RestroPRO POS boasts a clean and intuitive design. No cluttered screens, just the essentials you need to manage your business with ease.",
-    "pos": "POS",
     "pos_description": "RestroPRO POS simplifies sales. Manage orders, categories & variants with ease. Send to kitchen instantly & accept payments securely. All-in-one for a smooth flow.",
     "live_updates": "Live Updates",
     "live_updates_description": "Kitchen in Sync, Never miss a beat. Live order updates send details directly to your kitchen, ensuring accuracy and minimizing prep time.",
@@ -737,14 +804,6 @@
     "legal_title_footer": "Legal Information",
     "rapid_link_title_footer": "Quick Links"
   },
-
-    "cta": {
-      "title": "Ready to Transform Your Restaurant?",
-      "description": "Join hundreds of restaurant owners who have already optimized their service with our solution.",
-      "button": "Get Started Now",
-      "contact": "Contact Us"
-    },
-
   "categories": {
     "title": "Categories",
     "new": "New",
