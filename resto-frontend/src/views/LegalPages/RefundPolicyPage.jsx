@@ -1,4 +1,4 @@
-import React , { useEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import Page from '../../components/Page';
 import LNavbar from '../LandingPage/LNavbar';
@@ -6,9 +6,6 @@ import LandingFooter from '../LandingPage/LandingFooter';
 
 export default function RefundPolicyPage() {
   const { t } = useTranslation();
-   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <Page className="w-full min-h-screen bg-gradient-to-b from-green-50/30 to-white pt-20 pb-0">
