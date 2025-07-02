@@ -295,11 +295,11 @@ export default function LandingPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
                 <Link
                   to="/register"
-                  className="group relative w-full sm:w-auto bg-white text-[#243922] text-base sm:text-lg font-semibold rounded-xl px-8 py-4 hover:bg-gray-50 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 min-w-[180px] shadow-lg hover:shadow-xl hover:-translate-y-1"
+                  className="group relative w-full sm:w-auto bg-[#70B56A] text-white text-base sm:text-lg font-semibold rounded-xl px-8 py-4 hover:bg-gray-50 transition-all duration-300 active:scale-95 flex items-center justify-center gap-2 min-w-[180px] shadow-lg hover:shadow-xl hover:-translate-y-1 overflow-hidden"
                 >
                   <span className="relative z-10">{t("cta.button")}</span>
-                  <IconArrowRight size={20} className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-white to-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                  <IconArrowRight size={20} className="relative z-10 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-[#70B56A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
                 </Link>
                 
                 <a
