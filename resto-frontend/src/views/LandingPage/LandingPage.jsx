@@ -183,7 +183,7 @@ export default function LandingPage() {
           </div>
 
           <div className="w-full max-w-full md:max-w-lg mx-auto px-2 md:px-4">
-            <div className="relative bg-white rounded-2xl border border-gray-200 pt-14 p-8 sm:p-10 shadow-2xl shadow-green-900/10 overflow-visible flex flex-col items-center">
+            <div className="relative bg-white rounded-2xl border border-[#70B56A]/30 pt-14 p-8 sm:p-10 shadow-2xl shadow-green-900/10 overflow-visible flex flex-col items-center">
               {/* Badge Special Offer */}
               <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/3 bg-gradient-to-r from-[#4E944F] to-[#70B56A] text-white text-xs sm:text-sm font-semibold px-5 py-2 min-w-[210px] rounded-full shadow-lg border-2 border-white uppercase tracking-wide z-10 flex items-center justify-center">
                 {t("landing_page.special_badge")}
