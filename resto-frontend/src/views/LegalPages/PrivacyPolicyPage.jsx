@@ -2,6 +2,7 @@ import React , { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Page from '../../components/Page';
 import LNavbar from '../LandingPage/LNavbar';
+import LandingFooter from '../LandingPage/LandingFooter';
 
 export default function PrivacyPolicyPage() {
   const { t } = useTranslation();
@@ -10,14 +11,14 @@ export default function PrivacyPolicyPage() {
   }, []);
 
   return (
-    <Page className="w-full min-h-screen bg-gradient-to-b from-green-50/30 to-white py-12">
+    <Page className="w-full min-h-screen bg-gradient-to-b from-green-50/30 to-white pt-20 pb-0">
       {/* navbar fixed en haut */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <LNavbar />
       </div>
 
       {/* padding top pour ne pas être caché par la navbar */}
-      <div className="pt-20 container mx-auto px-4 max-w-3xl">
+      <div className="container mx-auto px-4 max-w-3xl mt-10">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">
           {t('privacy.title') || 'Politique de confidentialité'}
         </h1>
@@ -72,6 +73,7 @@ export default function PrivacyPolicyPage() {
           </p>
         </section>
       </div>
+      <LandingFooter />
     </Page>
   );
 }
