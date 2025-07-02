@@ -28,16 +28,48 @@ export default function LandingPage() {
   const location = useLocation();
 
   useEffect(() => {
+    // Gestion du scroll fluide pour les ancres
+    const handleAnchorClick = (e) => {
+      // Vérifier si le clic est sur un lien d'ancrage
+      if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+        e.preventDefault();
+        const href = e.target.getAttribute('href');
+        const targetId = href === '#' ? 'top' : href.substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80, // Ajustement pour la hauteur de la navbar
+            behavior: 'smooth'
+          });
+          // Mettre à jour l'URL sans recharger la page
+          window.history.pushState({}, '', href);
+        }
+      }
+    };
+
+    // Ajouter l'écouteur d'événements au document
+    document.addEventListener('click', handleAnchorClick);
+
+    // Gestion du chargement initial avec une ancre dans l'URL
     if (location.hash) {
-      const element = document.querySelector(location.hash);
+      const element = document.getElementById(location.hash.substring(1));
       if (element) {
-        // Scroll smooth vers la section
-        element.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          window.scrollTo({
+            top: element.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }, 100);
       }
     } else {
-      // Scroll en haut si pas de hash
       window.scrollTo(0, 0);
     }
+
+    // Nettoyer l'écouteur d'événements
+    return () => {
+      document.removeEventListener('click', handleAnchorClick);
+    };
   }, [location]);
 
   return (

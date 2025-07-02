@@ -32,19 +32,19 @@ export default function LandingFooter() {
                 </h4>
                 <ul className="space-y-3">
                   <li>
-                    <a href="#features" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">
+                    <Link to="/#features" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">
                       {t('landing_page.features')}
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="#pricing" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">
-                      {t('landing_page.pricing')}
-                    </a>
+                    <Link to="/#pricing" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">
+                      {t('landing_page.pricing_link')}
+                    </Link>
                   </li>
                   <li>
-                    <a href="#faq" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">
+                    <Link to="/#faq" className="text-gray-500 hover:text-gray-900 text-sm transition-colors">
                       {t('landing_page.faq')}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
