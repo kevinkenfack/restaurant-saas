@@ -35,7 +35,7 @@ export default function LNavbar() {
           >
             {t("landing_page.pricing_link")}
             <span className="bg-[#70B56A]/10 text-[#70B56A] text-xs font-medium px-2 py-0.5 rounded-full border border-[#70B56A]/20">
-              {t("landing_page.special_badge")}
+              {t("landing_page.pricing_gift")}
             </span>
           </Link>
           <Link
@@ -111,7 +111,7 @@ export default function LNavbar() {
               >
                 {t("landing_page.features")}
               </Link>
- <Link
+               <Link
                 onClick={closeDrawer}
                 className="flex items-center justify-between hover:bg-gray-50 text-gray-700 hover:text-gray-900 rounded-xl px-4 py-3 transition-all duration-200 font-medium"
                 to="/#pricing"
