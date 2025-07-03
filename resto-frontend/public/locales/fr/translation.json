@@ -366,6 +366,8 @@
     "no_active_subscription_user": "Vous n'avez pas d'abonnement actif !",
     "subscribe_button": "S'abonner",
     "price_per_month": "par mois",
+    "loading_message": "Veuillez patienter...",
+    "error_message": "Erreur lors du traitement de votre demande !",
     "features": {
       "unlimited_orders": "✅ Commandes illimitées",
       "monthly_renewals": "✅ Renouvellements mensuels",

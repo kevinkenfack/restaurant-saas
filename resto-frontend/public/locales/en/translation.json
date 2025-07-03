@@ -364,6 +364,8 @@
   "inactive_subscription": {
     "no_active_subscription_admin": "You don't have any active Subscription! Get one by clicking below! If already subscribed, then signout and login again!",
     "no_active_subscription_user": "You don't have any active Subscription!",
+    "loading_message": "Please wait...",
+    "error_message": "Error processing your request, Please try later!",
     "subscribe_button": "Subscribe",
     "price_per_month": "per month",
     "features": {

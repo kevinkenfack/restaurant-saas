@@ -15,15 +15,19 @@ export default function ContactSupportPage() {
     <Page>
       <h3>{t("contact_support.title")}</h3>
 
-      <div className='mt-6 w-full lg:max-w-lg rounded-2xl px-4 py-3 flex items-center gap-8 justify-between border border-restro-border-green bg-restro-gray'>
-        <p className='text-2xl'>
+      <div className='mt-6 w-full max-w-xl mx-auto rounded-2xl px-4 py-6 flex flex-col items-center border border-restro-border-green bg-restro-gray'>
+        <p className='text-lg sm:text-xl text-center mb-6'>
           {t("contact_support.need_help")}<br/>
           <span className="text-base font-normal" dangerouslySetInnerHTML={{ __html: t("contact_support.description", { email }) }}></span>
         </p>
-
-        <button onClick={()=>{
-          document.getElementById("mailto").showModal();
-        }} className='mailtoui flex items-center gap-2 justify-center rounded-full px-4 py-3 text-white bg-restro-green hover:bg-restro-green-button-hover'><IconMail stroke={iconStroke} /> {email}</button>
+        <button
+          className='mailtoui flex items-center gap-2 justify-center rounded-full px-5 py-3 text-white bg-restro-green hover:bg-restro-green-button-hover text-base sm:text-lg font-semibold mt-2'
+          onClick={() => {
+            document.getElementById("mailto").showModal();
+          }}
+        >
+          <IconMail stroke={iconStroke} /> {email}
+        </button>
       </div>
 
       <dialog id="mailto" className="modal modal-bottom sm:modal-middle">
