@@ -165,7 +165,7 @@ export default function Navbar() {
             <Link
               key={index}
               className={clsx(
-                `w-12 h-12 flex items-center justify-center rounded-full transition`,
+                `w-12 h-12 flex items-center justify-center rounded-xl transition`,
                 {
                   "bg-restro-bg-hover-dark-mode font-medium text-white": theme === 'black' && pathname.includes(item.path),
                   "bg-restro-border-green-light font-medium text-black": theme !== 'black' && pathname.includes(item.path),
@@ -190,7 +190,7 @@ export default function Navbar() {
 
         <button
           onClick={btnToggleNavbar}
-          className="w-12 h-12 flex items-center justify-center rounded-full transitionborder border-restro-green-light hover:bg-restro-border-green text-restro-text"
+          className="w-12 h-12 flex items-center justify-center rounded-xl transitionborder border-restro-green-light hover:bg-restro-border-green text-restro-text"
         >
           <IconChevronRight stroke={iconStroke} />
         </button>
@@ -245,7 +245,7 @@ export default function Navbar() {
             key={index}
             to={item.path}
             className={clsx(
-              `w-12 h-12 md:w-full flex justify-center md:justify-normal items-center md:gap-1 md:px-4 md:py-3 rounded-full transition group`,
+              `w-12 h-12 md:w-full flex justify-center md:justify-normal items-center md:gap-1 md:px-4 md:py-3 rounded-xl transition group`,
               {
                 'bg-restro-border-green-light font-medium': theme !== 'black' && pathname.includes(item.path),
                 'bg-restro-bg-hover-dark-mode font-medium text-white': theme === 'black' && pathname.includes(item.path),
