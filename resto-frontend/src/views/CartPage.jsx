@@ -206,256 +206,229 @@ const CartPage = () => {
     };
 
   return (
-    <div className='w-full'>
-      <div className='container w-full max-w-5xl mx-auto flex justify-center items-center'>
-          <div className="w-full mx-auto max-w-5xl bg-gray-50 dark:bg-black rounded-xl p-4 h-screen border border-restro-green-light"> {/* Centered cart container */}
-          <div className="relative flex items-center justify-between p-4shadow-md">
-          {/* Back Button */}
-          <button className="absolute left-0 p-2" onClick={() => window.history.back()}>
-            <IconChevronLeft size={24} stroke={2} /> {/* Back arrow icon */}
-          </button>
-
-          {/* Centered Title */}
-          <h3 className="text-xl md:text-2xl font-bold text-center w-full">{t('cart.title')}</h3>
+    <div className='min-h-screen bg-white dark:bg-black'>
+      <div className='container w-full max-w-5xl mx-auto flex flex-col items-center px-2 md:px-0'>
+        {/* Header sticky moderne */}
+        <div className="sticky top-0 z-40 w-full bg-white/80 dark:bg-black/80 backdrop-blur border-b border-restro-border-green rounded-b-3xl shadow-md mb-4">
+          <div className="relative flex items-center justify-center py-6">
+            <button className="absolute left-4 p-2 bg-gray-100 dark:bg-restro-bg-gray rounded-full hover:bg-gray-200 dark:hover:bg-restro-button-hover transition" onClick={() => window.history.back()}>
+              <IconChevronLeft size={24} stroke={2} />
+            </button>
+            <h3 className="text-xl md:text-2xl font-bold text-center w-full">{t('cart.title')}</h3>
+          </div>
         </div>
 
-
+        {/* Bloc table/info */}
         {storeTable && (
-          <div className="flex items-center gap-2 mt-4 p-2 justify-center bg-white dark:bg-black rounded-lg shadow-sm">
-            <IconShovelPitchforks size={20} stroke={2} className="text-gray-700" />
-
-            <h3 className="text-lg font-semibold">
-              <span className="font-bold text-gray-800">{storeTable.table_title}</span>
-            </h3>
-
+          <div className="flex items-center gap-3 mt-2 mb-4 p-3 justify-center bg-white dark:bg-restro-card-bg rounded-2xl shadow border border-restro-border-green w-full max-w-md mx-auto">
+            <IconShovelPitchforks size={22} stroke={2} className="text-restro-green" />
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-white">{storeTable.table_title}</h3>
             {storeTable.floor && (
-              <p className="text-md text-gray-600">
-                <span className="font-semibold">( {storeTable.floor})</span>
-              </p>
+              <span className="text-md text-gray-600 dark:text-gray-300">( {storeTable.floor} )</span>
             )}
           </div>
         )}
 
-
         {/* Cart Items */}
-        <div className="mt-4">
+        <div className="w-full max-w-5xl mx-auto mt-2">
           {cartItems.length > 0 ? (
-            cartItems.map((item, i) => {
-              const { id, title, price, quantity, image , notes} = item;
-              const imageURL = getImageURL(image);
-
-              return (
-                <div key={i} className="w-full bg-white dark:bg-black rounded-lg p-2 mb-2 md:mb-4 flex items-center justify-between">
-                  <div className="flex items-start">
-                    <div className="w-20 h-20 md:w-28 md:h-28 bg-gray-200 dark:bg-black rounded-lg overflow-hidden mr-4 md:mr-6 object-cover flex items-center justify-center text-gray-500 flex-shrink-0">
+            <div className="space-y-4">
+              {cartItems.map((item, i) => {
+                const { id, title, price, quantity, image, notes } = item;
+                const imageURL = getImageURL(image);
+                return (
+                  <div key={i} className="w-full flex items-center bg-white dark:bg-restro-card-bg rounded-2xl shadow p-4 gap-4 border border-restro-border-green">
+                    <div className="w-20 h-20 md:w-28 md:h-28 bg-gray-200 dark:bg-restro-bg-gray rounded-xl overflow-hidden flex items-center justify-center text-gray-500 flex-shrink-0">
                       {image ? (
                         <img src={imageURL} alt={title} className="object-cover w-full h-full" />
                       ) : (
-                        <IconCarrot size={24} />
+                        <IconCarrot size={32} />
                       )}
                     </div>
-                    <div className="flex-grow">
-                      <p className="text-sm font-semibold md:text-lg line-clamp-2 text-ellipsis">{title}</p>
-                      <div className="text-xs text-gray-400 md:text-sm">
-                       {item?.variant?.title && <p>{item.variant.title}</p>}
-                        {item.addons?.length > 0 && <p>{item.addons.length} Addons</p>}
+                    <div className="flex-1 min-w-0 flex flex-col gap-1">
+                      <p className="text-base md:text-lg font-semibold line-clamp-2 text-ellipsis text-gray-800 dark:text-white">{title}</p>
+                      <div className="text-xs text-gray-400 md:text-sm flex flex-wrap gap-2">
+                        {item?.variant?.title && <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-lg">{item.variant.title}</span>}
+                        {item.addons?.length > 0 && <span className="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-lg">{item.addons.length} Addons</span>}
                       </div>
-                      <p className="text-sm md:text-lg">{currency}{(price * quantity).toFixed(2)}</p>
+                      <p className="text-restro-green font-bold text-base md:text-lg">{currency}{(price * quantity).toFixed(2)}</p>
                       {notes && <p className='text-xs text-gray-500 md:text-sm'>{t('cart.notes')}: {notes}</p>}
                     </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => minusCartItemQuantity(i, quantity)}
+                          className="btn btn-square btn-xs md:btn-sm rounded-lg bg-gray-100 dark:bg-restro-bg-gray hover:bg-gray-200 dark:hover:bg-restro-button-hover"
+                        >
+                          <IconMinus stroke={iconStroke} size={14}/>
+                        </button>
+                        <div className="text-center text-base w-8 md:text-xl rounded-lg font-bold">{quantity}</div>
+                        <button
+                          onClick={() => addCartItemQuantity(i, quantity)}
+                          className="btn btn-square btn-xs md:btn-sm rounded-lg bg-gray-100 dark:bg-restro-bg-gray hover:bg-gray-200 dark:hover:bg-restro-button-hover"
+                        >
+                          <IconPlus stroke={iconStroke} size={14} />
+                        </button>
+                        <button
+                          onClick={() => removeItemFromCart(i)}
+                          className="text-restro-red hover:text-red-700 transition ml-2 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center"
+                        >
+                          <IconTrash stroke={iconStroke} className='w-full h-full'/>
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => {btnOpenNotesModal(i, notes)}}
+                        className="text-xs md:text-sm transition active:scale-95 hover:shadow-lg px-2 py-1 flex items-center gap-1 mt-2 rounded-xl border border-restro-border-green bg-restro-card-bg hover:bg-restro-button-hover text-restro-text"
+                      >
+                        <IconNote size={16} stroke={iconStroke} />
+                        <span>{t('cart.add_notes')}</span>
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex flex-col items-center gap-2">
-                  <div className="flex items-center">
-                    <button
-                      onClick={() => minusCartItemQuantity(i, quantity)}
-                      className="btn btn-square btn-xs md:btn-sm rounded-lg"
-                    >
-                      <IconMinus stroke={iconStroke} size={14}/>
-                    </button>
-
-                    <div className="text-center text-sm w-6 md:text-xl rounded-lg">{quantity}</div>
-
-                    <button
-                      onClick={() => addCartItemQuantity(i, quantity)}
-                      className="btn btn-square btn-xs md:btn-sm rounded-lg"
-                    >
-                      <IconPlus stroke={iconStroke} size={14} />
-                    </button>
-
-                    <button
-                      onClick={() => removeItemFromCart(i)}
-                      className="text-restro-red hover:text-red-700 transition ml-4 w-4 h-4 md:w-8 md:h-8"
-                    >
-                      <IconTrash stroke={iconStroke} className='w-full h-full'/>
-                    </button>
-                  </div>
-
-                  <button
-                    onClick={() => {btnOpenNotesModal(i, notes)}}
-                    className="text-sm md:text-md transition active:scale-95 hover:shadow-lg px-2 py-1 flex md:px-4 md:py-1 items-center gap-1 mt-4 ml-auto rounded-xl border border-restro-border-green bg-restro-card-bg hover:bg-restro-button-hover text-restro-text' "
-                  >
-                    <IconNote size={18} stroke={iconStroke} />
-                    <p className='text-sm md:text-lg'>{t('cart.add_notes')}</p>
-                  </button>
-                </div>
-
-
-                </div>
-              );
-            })
+                );
+              })}
+            </div>
           ) : (
-            <div className="text-center text-gray-500 flex flex-col justify-center items-center h-[85vh] gap-4">
+            <div className="text-center text-gray-500 flex flex-col justify-center items-center h-[60vh] gap-4">
               <IconShoppingCartX size={50} />
               <p className='text-xl'>{t('cart.empty_cart')}</p>
             </div>
           )}
         </div>
 
-        {/* Order Summary Section */}
+        {/* Résumé de commande moderne */}
         {cartItems.length > 0 && (
-          <div className="join join-vertical w-full">
-            <div className="collapse collapse-arrow join-item bg-white dark:bg-black">
-              <input type="checkbox" className="peer" />
-              <div className="collapse-title text-lg md:text-xl font-bold flex justify-between">
-                <span>{t('cart.payable_total')}</span>
-                <span className='text-restro-green font-bold'>{currency}{payableTotal.toFixed(2)}</span>
-              </div>
-              <div className="collapse-content space-y-2 text-sm md:text-md">
-                <div className="flex justify-between">
-                  <span>{t('cart.items_total')}</span>
-                  <span>{currency}{itemsTotal.toFixed(2)}</span>
+          <div className="w-full max-w-5xl mx-auto mt-8">
+            <div className="bg-white dark:bg-restro-card-bg rounded-2xl shadow border border-restro-border-green">
+              <div className="collapse collapse-arrow join-item">
+                <input type="checkbox" className="peer" />
+                <div className="collapse-title text-lg md:text-xl font-bold flex justify-between">
+                  <span>{t('cart.payable_total')}</span>
+                  <span className='text-restro-green font-bold'>{currency}{payableTotal.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>{t('cart.tax_total')}</span>
-                  <span>{currency}{taxTotal.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>{t('cart.service_charge_total')}</span>
-                  <span>{currency}{serviceChargeTotal.toFixed(2)}</span>
+                <div className="collapse-content space-y-2 text-sm md:text-md">
+                  <div className="flex justify-between">
+                    <span>{t('cart.items_total')}</span>
+                    <span>{currency}{itemsTotal.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>{t('cart.tax_total')}</span>
+                    <span>{currency}{taxTotal.toFixed(2)}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>{t('cart.service_charge_total')}</span>
+                    <span>{currency}{serviceChargeTotal.toFixed(2)}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         )}
 
-      <div className="h-28"/>
+        <div className="h-32"/>
 
-        {/* Checkout Section */}
+        {/* Checkout Section (déjà stylé) */}
         {cartItems.length > 0 && (
-          <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-black shadow-lg p-4 flex justify-between items-center rounded-2xl max-w-5xl mx-auto">
+          <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-black shadow-lg p-4 flex justify-between items-center rounded-2xl max-w-5xl mx-auto z-50">
             <button
-            onClick={() => {
-              document.getElementById('modal-place-order').showModal();
-            }}
-            className="bg-restro-green text-white py-4 px-6 rounded-xl flex justify-between w-full items-center">
-              <p className="text-md font-bold md:text-lg">{t('cart.total')} {currency}{payableTotal.toFixed(2)}</p>
-              <p className="text-white text-lg md:text-xl font-bold px-2 rounded-lg flex items-center">
-                {t('cart.checkout')} <IconChevronRight size={20} stroke={3} />
-              </p>
-            </button>
-          </div>
-        )}
-      </div>
-
-
-      <dialog id="modal-place-order" className="modal modal-bottom sm:modal-middle w-full mx-auto max-w-5xl">
-        <div className='modal-box border border-restro-border-green dark:rounded-2xl'>
-
-          <div className="my-2 mx-auto w-full relative">
-            <h3 className='text-center text-xl font-semibold'>{t('cart.continue_as')}</h3>
-
-            <div className="absolute top-0 right-0 text-red-400 cursor-pointer">
-              <button onClick={() => {document.getElementById('modal-place-order').close()}}>
-                <IconX size={20} />
-              </button>
-            </div>
-
-            <div className="flex flex-col justify-around mt-4">
-              <button
-                className={`rounded-lg transition px-4 py-3 text-lg font-semibold  border-2 ${
-                  !showPhoneFields ? 'bg-white dark:bg-black border-restro-green text-restro-green shadow-sm' : 'bg-gray-100 dark:bg-black text-gray-600 hover:bg-gray-200'
-                }`}
-                onClick={() => setShowPhoneFields(false)}
-              >
-                {t('cart.guest')}
-              </button>
-
-              <div className="relative flex items-center justify-center my-6">
-                <div className="border-t border-restro-border-green w-full"></div>
-                <span className="absolute bg-white dark:bg-black px-4 text-gray-500 text-sm">{t('cart.or')}</span>
-              </div>
-
-              <button
-                className={`rounded-lg transition px-4 py-3 text-lg font-semibold  border-2 ${
-                  showPhoneFields ? 'bg-white dark:bg-black border-restro-green text-restro-green shadow-sm ' : 'bg-gray-100 dark:bg-black text-restro-text hover:bg-gray-200 border-restro-border-green'
-                }`}
-                onClick={() => setShowPhoneFields(true)}
-              >
-                {t('cart.using_phone_number')}
-              </button>
-            </div>
-
-            {showPhoneFields && (
-              <div className="mt-6">
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">{t('cart.name_label')} <span className="text-xs text-gray-400">- (Required)</span></label>
-                  <input
-                    type="text"
-                    ref={nameRef}
-                    className='text-sm w-full rounded-lg px-4 py-2 border border-restro-border-green dark:bg-black focus:outline-restro-border-green'
-                    placeholder={t('cart.name_placeholder')}
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">{t('cart.phone_label')} <span className="text-xs text-gray-400">- (Required)</span></label>
-                  <input
-                    type="tel"
-                    ref={phoneRef}
-                    className='text-sm w-full rounded-lg px-4 py-2 border border-restro-border-green dark:bg-black focus:outline-restro-border-green'
-                    placeholder={t('cart.phone_placeholder')}
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-
-          <div className="modal-action justify-center w-full">
-            <button
-              onClick={() => {btnPlaceOrder()}}
-              className="rounded-lg hover:bg-restro-green-dark transition active:scale-95 hover:shadow-lg px-4 py-4 bg-restro-green text-white w-full text-xl font-semibold"
+              onClick={() => {
+                document.getElementById('modal-place-order').showModal();
+              }}
+              className="bg-restro-green text-white py-4 px-6 rounded-xl flex justify-between w-full items-center"
             >
-              {t('cart.place_order')}
+              <span className="flex items-center gap-3">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-restro-green font-bold text-lg shadow border-2 border-restro-green">
+                  {cartItems.length}
+                </span>
+                <span className="text-md font-bold md:text-lg">{t('cart.total')} {currency}{payableTotal.toFixed(2)}</span>
+              </span>
+              <span className="text-white text-lg md:text-xl font-bold px-2 rounded-lg flex items-center">
+                {t('cart.checkout')} <IconChevronRight size={20} stroke={3} />
+              </span>
             </button>
           </div>
-        </div>
-      </dialog>
+        )}
 
-
-      {/* dialog: notes */}
-      <dialog id="modal-notes" className="modal modal-bottom sm:modal-middle">
-        <div className='modal-box border border-restro-border-green dark:rounded-2xl'>
-          <h3 className="font-bold text-lg">{t('cart.add_notes')}</h3>
-
-          <div className="my-4">
-            <input type="hidden" ref={dialogNotesIndexRef} />
-            <label htmlFor="dialogNotesText" className="mb-1 block text-gray-500 text-sm">{t('cart.notes')} <span className="text-xs text-gray-500">(100 character max.)</span></label>
-            <input ref={dialogNotesTextRef} type="text" name="dialogNotesText" id='dialogNotesText' className='text-sm w-full rounded-lg px-4 py-2 border border-restro-border-green dark:bg-black focus:outline-restro-border-green' placeholder={t('cart.notes_placeholder')} />
+        {/* Modal place order modernisé */}
+        <dialog id="modal-place-order" className="modal modal-bottom sm:modal-middle w-full mx-auto max-w-2xl">
+          <div className='modal-box border border-restro-border-green dark:rounded-2xl bg-white dark:bg-restro-card-bg'>
+            <div className="my-2 mx-auto w-full relative">
+              <h3 className='text-center text-xl font-semibold'>{t('cart.continue_as')}</h3>
+              <div className="absolute top-0 right-0 text-red-400 cursor-pointer">
+                <button onClick={() => {document.getElementById('modal-place-order').close()}}>
+                  <IconX size={20} />
+                </button>
+              </div>
+              <div className="flex flex-col justify-around mt-4">
+                <button
+                  className={`rounded-lg transition px-4 py-3 text-lg font-semibold border-2 ${!showPhoneFields ? 'bg-white dark:bg-restro-card-bg border-restro-green text-restro-green shadow-sm' : 'bg-gray-100 dark:bg-restro-bg-gray text-gray-600 hover:bg-gray-200'}`}
+                  onClick={() => setShowPhoneFields(false)}
+                >
+                  {t('cart.guest')}
+                </button>
+                <div className="relative flex items-center justify-center my-6">
+                  <div className="border-t border-restro-border-green w-full"></div>
+                  <span className="absolute bg-white dark:bg-restro-card-bg px-4 text-gray-500 text-sm">{t('cart.or')}</span>
+                </div>
+                <button
+                  className={`rounded-lg transition px-4 py-3 text-lg font-semibold border-2 ${showPhoneFields ? 'bg-white dark:bg-restro-card-bg border-restro-green text-restro-green shadow-sm ' : 'bg-gray-100 dark:bg-restro-bg-gray text-restro-text hover:bg-gray-200 border-restro-border-green'}`}
+                  onClick={() => setShowPhoneFields(true)}
+                >
+                  {t('cart.using_phone_number')}
+                </button>
+              </div>
+              {showPhoneFields && (
+                <div className="mt-6">
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{t('cart.name_label')} <span className="text-xs text-gray-400">- (Required)</span></label>
+                    <input
+                      type="text"
+                      ref={nameRef}
+                      className='text-sm w-full rounded-lg px-4 py-2 border border-restro-border-green dark:bg-restro-bg-gray focus:outline-restro-border-green'
+                      placeholder={t('cart.name_placeholder')}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">{t('cart.phone_label')} <span className="text-xs text-gray-400">- (Required)</span></label>
+                    <input
+                      type="tel"
+                      ref={phoneRef}
+                      className='text-sm w-full rounded-lg px-4 py-2 border border-restro-border-green dark:bg-restro-bg-gray focus:outline-restro-border-green'
+                      placeholder={t('cart.phone_placeholder')}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="modal-action justify-center w-full">
+              <button
+                onClick={() => {btnPlaceOrder()}}
+                className="rounded-lg hover:bg-restro-green-dark transition active:scale-95 hover:shadow-lg px-4 py-4 bg-restro-green text-white w-full text-xl font-semibold"
+              >
+                {t('cart.place_order')}
+              </button>
+            </div>
           </div>
+        </dialog>
 
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="rounded-lg transition active:scale-95 hover:shadow-lg px-4 py-3 bg-restro-gray hover:bg-restro-button-hover text-restro-text">{t('cart.close')}</button>
-              <button onClick={()=>{btnAddNotes();}} className="rounded-lg hover:bg-green-800 transition active:scale-95 hover:shadow-lg px-4 py-3 bg-restro-green text-white ml-3">{t('cart.save')}</button>
-            </form>
+        {/* dialog: notes */}
+        <dialog id="modal-notes" className="modal modal-bottom sm:modal-middle">
+          <div className='modal-box border border-restro-border-green dark:rounded-2xl bg-white dark:bg-restro-card-bg'>
+            <h3 className="font-bold text-lg">{t('cart.add_notes')}</h3>
+            <div className="my-4">
+              <input type="hidden" ref={dialogNotesIndexRef} />
+              <label htmlFor="dialogNotesText" className="mb-1 block text-gray-500 text-sm">{t('cart.notes')} <span className="text-xs text-gray-500">(100 character max.)</span></label>
+              <input ref={dialogNotesTextRef} type="text" name="dialogNotesText" id='dialogNotesText' className='text-sm w-full rounded-lg px-4 py-2 border border-restro-border-green dark:bg-restro-bg-gray focus:outline-restro-border-green' placeholder={t('cart.notes_placeholder')} />
+            </div>
+            <div className="modal-action">
+              <form method="dialog">
+                <button className="rounded-lg transition active:scale-95 hover:shadow-lg px-4 py-3 bg-restro-gray hover:bg-restro-button-hover text-restro-text">{t('cart.close')}</button>
+                <button onClick={()=>{btnAddNotes();}} className="rounded-lg hover:bg-green-800 transition active:scale-95 hover:shadow-lg px-4 py-3 bg-restro-green text-white ml-3">{t('cart.save')}</button>
+              </form>
+            </div>
           </div>
-        </div>
-      </dialog>
-      {/* dialog: notes */}
-
-
+        </dialog>
       </div>
-
     </div>
   );
 };
