@@ -346,11 +346,21 @@ export default function LandingPage() {
               
               <div className="mt-8 flex items-center justify-center space-x-4">
                 <div className="flex -space-x-2">
-                  {[1, 2, 3].map((item) => (
-                    <div key={item} className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center text-white text-xs font-bold">
-                      {item}+{item*2}
-                    </div>
-                  ))}
+                  <img
+                    src="/assets/customers/client1.png"
+                    alt="Client 1"
+                    className="w-8 h-8 rounded-full border-2 border-white/30 object-cover bg-white/20 backdrop-blur-sm"
+                  />
+                  <img
+                    src="/assets/customers/client2.png"
+                    alt="Client 2"
+                    className="w-8 h-8 rounded-full border-2 border-white/30 object-cover bg-white/20 backdrop-blur-sm"
+                  />
+                  <img
+                    src="/assets/customers/client3.png"
+                    alt="Client 3"
+                    className="w-8 h-8 rounded-full border-2 border-white/30 object-cover bg-white/20 backdrop-blur-sm"
+                  />
                 </div>
                 <p className="text-sm text-green-100">
                   {t("cta.trusted_by")} <span className="font-semibold">20+</span> {t("cta.businesses")}
