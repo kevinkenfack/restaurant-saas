@@ -234,12 +234,15 @@
   },
   "order_success": {
     "thank_you_message": "Thank you for choosing us!",
-    "order_placed_message": "Order Placed Successfully"
+    "order_placed_message": "Order Placed Successfully",
+    "preparing_message": "Your order is being prepared",
+    "estimated_time": "Order placed on"
   },
   "order_failed": {
     "oops_message": "Oops! Something went wrong",
     "order_failed_message": "Order Failed",
-    "try_again_message": "Try Again!"
+    "try_again_message": "Try Again!",
+    "failed_time_label": "Order failed on"
   },
   "orders": {
     "title": "Orders",

@@ -234,12 +234,15 @@
   },
   "order_success": {
     "thank_you_message": "Merci de nous avoir choisi !",
-    "order_placed_message": "Commande passée avec succès"
+    "order_placed_message": "Commande passée avec succès",
+    "preparing_message": "Votre commande est en cours de préparation",
+    "estimated_time": "Commande passée le"
   },
   "order_failed": {
     "oops_message": "Oups ! Quelque chose s'est mal passé",
     "order_failed_message": "Commande échouée",
-    "try_again_message": "Réessayer !"
+    "try_again_message": "Réessayer !",
+    "failed_time_label": "Commande échouée le"
   },
   "orders": {
     "title": "Commandes",
