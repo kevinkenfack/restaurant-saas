@@ -169,3 +169,14 @@
 a, button, [role="button"], input, label {
     -webkit-tap-highlight-color: initial;
   }
+
+/* Désactiver le clic droit pour les images */
+img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+    pointer-events: none;
+  }
