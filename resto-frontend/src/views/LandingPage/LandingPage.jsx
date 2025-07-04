@@ -28,10 +28,9 @@ export default function LandingPage() {
   const { t } = useTranslation();
   const location = useLocation();
 
-  useEffect(() => {
+   useEffect(() => {
     // Gestion du scroll fluide pour les ancres
     const handleAnchorClick = (e) => {
-      // Vérifier si le clic est sur un lien d'ancrage
       if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
         e.preventDefault();
         const href = e.target.getAttribute('href');
@@ -39,35 +38,50 @@ export default function LandingPage() {
         const targetElement = document.getElementById(targetId);
         
         if (targetElement) {
+          // Bloquer temporairement le scroll automatique
+          document.documentElement.style.scrollBehavior = 'auto';
+          
+          // Scroll immédiat sans animation
           window.scrollTo({
-            top: targetElement.offsetTop - 80, // Ajustement pour la hauteur de la navbar
-            behavior: 'smooth'
+            top: targetElement.offsetTop - 80,
+            behavior: 'auto'
           });
-          // Mettre à jour l'URL sans recharger la page
+          
+          // Réactiver le smooth scroll après un court délai
+          setTimeout(() => {
+            document.documentElement.style.scrollBehavior = 'smooth';
+          }, 100);
+          
+          // Mettre à jour l'URL
           window.history.pushState({}, '', href);
         }
       }
     };
 
-    // Ajouter l'écouteur d'événements au document
     document.addEventListener('click', handleAnchorClick);
 
-    // Gestion du chargement initial avec une ancre dans l'URL
+    // Gestion du chargement initial avec ancre
     if (location.hash) {
       const element = document.getElementById(location.hash.substring(1));
       if (element) {
+        // Désactiver temporairement le smooth scroll
+        document.documentElement.style.scrollBehavior = 'auto';
+        
+        // Scroll immédiat
+        window.scrollTo({
+          top: element.offsetTop - 80,
+          behavior: 'auto'
+        });
+        
+        // Réactiver le smooth scroll après
         setTimeout(() => {
-          window.scrollTo({
-            top: element.offsetTop - 80,
-            behavior: 'smooth'
-          });
+          document.documentElement.style.scrollBehavior = 'smooth';
         }, 100);
       }
     } else {
       window.scrollTo(0, 0);
     }
 
-    // Nettoyer l'écouteur d'événements
     return () => {
       document.removeEventListener('click', handleAnchorClick);
     };
