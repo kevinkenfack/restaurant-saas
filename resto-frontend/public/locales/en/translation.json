@@ -375,7 +375,13 @@
       "unlimited_orders": "Unlimited Orders",
       "monthly_renewals": "Monthly Renewals",
       "unlimited_devices": "Unlimited Devices",
-      "live_kitchen_orders": "Live Kitchen Orders"
+      "live_kitchen_orders": "Live Kitchen Orders",
+      "reservation_order": "Reservation Orders",
+      "pos_system": "POS System",
+      "inventory_stock": "Inventory Stock",
+      "real_time_reports": "Real Time Reports",
+      "etc": "etc..",
+      "employer_management": "Employer Management"
     }
   },
   "forgot_password": {
@@ -778,7 +784,9 @@
     },
     "recommended_setup": {
       "title": "Recommended Setup",
-      "description": "The recommended setup ensures a fast communication between the cash register, the printer, and the kitchen or service teams."
+      "description": "The recommended setup ensures a fast communication between the cash register, the printer, and the kitchen or service teams.",
+      "img_caption": "Recommended Setup",
+      "cta": "Discover the complete guide"
     },
     "pricing": "One plan, full access",
     "special_badge": "Special Offer",
@@ -886,6 +894,12 @@
     "monthly_renewals": "Monthly Renewals",
     "unlimited_devices": "Unlimited Devices",
     "live_kitchen_orders": "Live Kitchen Orders",
+    "reservation_order": "Reservation Orders",
+    "pos_system": "POS System",
+    "inventory_stock": "Inventory Stock",
+    "real_time_reports": "Real Time Reports",
+    "etc": "etc..",
+    "employer_management": "Employer Management",
     "have_any_queries": "Have any queries?",
     "contact_us": "Contact us",
     "privacy_policy": "Privacy Policy",

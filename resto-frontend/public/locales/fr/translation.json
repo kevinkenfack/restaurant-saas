@@ -372,10 +372,17 @@
     "loading_message": "Veuillez patienter...",
     "error_message": "Erreur lors du traitement de votre demande !",
     "features": {
-      "unlimited_orders": "✅ Commandes illimitées",
-      "monthly_renewals": "✅ Renouvellements mensuels",
-      "unlimited_devices": "✅ Appareils illimités",
-      "live_kitchen_orders": "✅ Commandes de cuisine en direct"
+      "unlimited_orders": "Commandes illimitées",
+      "monthly_renewals": "Renouvellements mensuels",
+      "unlimited_devices": "Appareils illimités",
+      "live_kitchen_orders": "Commandes de cuisine en direct",
+      "reservation_order": "Réservations illimitées",
+      "pos_system": "Système POS",
+      "inventory_stock": "Gestion du stock & inventaire illimité",
+      "real_time_reports": "100% temps réel & synchronisé sur tout les appareils",
+      "etc": "etc..",
+      "employer_management": "Gestion des employés"
+
     }
   },
   "forgot_password": {
@@ -769,7 +776,9 @@
     },
     "recommended_setup": {
       "title": "Configuration recommandée",
-      "description": "La configuration recommandée permet d’assurer une communication rapide entre la caisse, l’imprimante et les équipes de cuisine ou de service."
+      "description": "La configuration recommandée permet d’assurer une communication rapide entre la caisse, l’imprimante et les équipes de cuisine ou de service.",
+      "img_caption": "Schéma de l'installation recommandée.",
+      "cta": "Découvrir le guide complet"
     },
     "pricing": "Formule unique, accès total",
     "pricing_link": "Offre Spéciale", 
@@ -878,7 +887,13 @@
     "monthly_renewals": "Renouvellements mensuels",
     "unlimited_devices": "Appareils illimités",
     "live_kitchen_orders": "Commandes de cuisine en direct",
-    "have_any_queries": "Vous avez des questions ?",
+    "reservation_order": "Réservations illimitées",
+    "pos_system": "Système POS",
+    "inventory_stock": "Gestion du stock & inventaire illimité",
+    "employer_management": "Gestion des employés",
+    "real_time_reports": "100% temps réel & synchronisé sur tout les appareils",
+    "etc": "etc..",
+    "have_any_queries": "Vous avez des questions ?",
     "contact_us": "Contactez-nous",
     "privacy_policy": "Politique de confidentialité",
     "privacy_policy_agreement": "En vous inscrivant, vous acceptez nos",
