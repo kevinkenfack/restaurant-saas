@@ -731,6 +731,21 @@
         "title": "Team Management",
         "description": "Organize your teams and manage schedules with ease.",
         "icon": "IconUsers"
+      },
+      "announce_orders": {
+        "title": "Announce Sound",
+        "description": "Sound or visual notification when a new order arrives (useful for kitchen or bar).",
+        "icon": "IconBell"
+      },
+      "token_order": {
+        "title": "Order Token",
+        "description": "Generates an order number or ticket for customers (widely used in fast-food or self-service). 💡 E.g.: “Order #125, ready!”",
+        "icon": "IconReceipt"
+      },
+      "feedback_module": {
+        "title": "Feedback Module",
+        "description": "Easily collect feedback from your customers after each order.",
+        "icon": "IconMessage"
       }
     },
     "features": "Features",
@@ -760,6 +775,10 @@
         "description": "Join thousands of restaurant owners who trust our solution to manage their business more efficiently.",
         "button": "Start Free Trial"
       }
+    },
+    "recommended_setup": {
+      "title": "Recommended Setup",
+      "description": "The recommended setup ensures a fast communication between the cash register, the printer, and the kitchen or service teams."
     },
     "pricing": "One plan, full access",
     "special_badge": "Special Offer",
@@ -817,7 +836,9 @@
         "restaurant_1": "Le Petit Bistrot",
         "restaurant_2": "Café Central"
       },
-      "trust_title": "Join over 100 restaurants that trust us"
+      "trust_title": "Join over 100 restaurants that trust us",
+      "trust_button": "Start Now",
+      "trust_partners": "Partner Restaurant"
   },
 
   "features_blocks": {
@@ -842,6 +863,16 @@
       "analytics": {
         "title": "Statistics and reporting",
         "description": "Track your sales, your best products, your key hours",
+        "image": "/assets/features/features.jpg"
+      },
+      "reservation": {
+        "title": "Online reservations",
+        "description": "Allow your customers to book a table easily from their smartphone.",
+        "image": "/assets/features/features.jpg"
+      },
+      "kitchen": {
+        "title": "Kitchen",
+        "description": "Real-time kitchen order tracking: in progress, ready, delivered, or canceled. Smooth coordination between front and back.",
         "image": "/assets/features/features.jpg"
       }
     }

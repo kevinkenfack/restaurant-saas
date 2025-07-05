@@ -15,7 +15,10 @@ import {
   IconTable,
   IconChartBar,
   IconMenu2,
-  IconUsers
+  IconUsers,
+  IconBell,
+  IconReceipt,
+  IconMessage
 } from "@tabler/icons-react";
 import Logo from "../../assets/logo.svg";
 import { subscriptionPrice, supportEmail } from "../../config/config";
@@ -25,12 +28,13 @@ import ProductDemo from "./components/ProductDemo";
 import TestimonialsSection from "./components/TestimonialsSection";
 import FeaturesBlocks from "./components/FeaturesBlocks";
 import LandingFooter from "./LandingFooter";
+import RecommendedSetup from "./components/RecommendedSetup";
 
 export default function LandingPage() {
   const { t } = useTranslation();
   const location = useLocation();
 
-   useEffect(() => {
+  useEffect(() => {
     // Gestion du scroll fluide pour les ancres
     const handleAnchorClick = (e) => {
       if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
@@ -158,7 +162,10 @@ export default function LandingPage() {
                 IconTable: IconTable,
                 IconChartBar: IconChartBar,
                 IconMenu2: IconMenu2,
-                IconUsers: IconUsers
+                IconUsers: IconUsers,
+                IconBell: IconBell,
+                IconReceipt: IconReceipt,
+                IconMessage: IconMessage,
               }[feature.icon] || IconLayout;
 
               return (
@@ -264,6 +271,9 @@ export default function LandingPage() {
 
       {/* Product Demo Section */}
       <ProductDemo />
+
+      {/* Recommended Setup Section */}
+      <RecommendedSetup />
 
       {/* FAQ Section */}
       <section className="py-16 sm:py-24 bg-gray-50/50" id="faq">

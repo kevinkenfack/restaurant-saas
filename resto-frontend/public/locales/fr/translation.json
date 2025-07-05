@@ -722,6 +722,21 @@
         "title": "Gestion d'équipe",
         "description": "Organisez vos équipes et gérez les plannings en toute simplicité.",
         "icon": "IconUsers"
+      },
+      "announce_orders": {
+        "title": "Annonce Sonore",
+        "description": "Annonce sonore ou visuelle lorsqu’une nouvelle commande arrive (utile pour la cuisine ou le bar).",
+        "icon": "IconBell"
+      },
+      "token_order": {
+        "title": "Jeton de commande",
+        "description": "Génère un numéro ou ticket de commande pour les clients (très utilisé en fast-food ou self-service). 💡 Ex : “Commande #125, prête !”",
+        "icon": "IconReceipt"
+      },
+      "feedback_module": {
+        "title": "Module Commentaires",
+        "description": "Recueillez facilement les retours de vos clients après chaque commande.",
+        "icon": "IconMessage"
       }
     },
     "features": "Fonctionnalités",
@@ -751,6 +766,10 @@
         "description": "Rejoignez des milliers de restaurateurs qui font confiance à notre solution pour gérer leur établissement plus efficacement.",
         "button": "Commencer l'essai gratuit"
       }
+    },
+    "recommended_setup": {
+      "title": "Configuration recommandée",
+      "description": "La configuration recommandée permet d’assurer une communication rapide entre la caisse, l’imprimante et les équipes de cuisine ou de service."
     },
     "pricing": "Formule unique, accès total",
     "pricing_link": "Offre Spéciale", 
@@ -808,7 +827,10 @@
         "restaurant_1": "Le Petit Bistrot",
         "restaurant_2": "Café Central"
       },
-          "trust_title": "Rejoignez plus de 100 restaurants qui nous font confiance"
+          "trust_title": "Rejoignez plus de 100 restaurants qui nous font confiance",
+          "trust_button": "Commencer Maintenant",
+          "trust_partners": "Restaurant partenaire"
+
   },
 
   "features_blocks": {
@@ -833,6 +855,16 @@
       "analytics": {
         "title": "Statistiques et reporting",
         "description": "Suivez vos ventes, vos meilleurs produits, vos horaires clés",
+        "image": "/assets/features/features.jpg"
+      },
+      "reservation": {
+        "title": "Réservations en ligne",
+        "description": "Permettez à vos clients de réserver une table facilement depuis leur smartphone.",
+        "image": "/assets/features/features.jpg"
+      },
+      "kitchen": {
+        "title": "Cuisine",
+        "description": "Suivi centralisé des commandes en cuisine, avec statuts en temps réel : en cours, prêtes, livrées ou annulées. Fluidifie la communication entre salle et cuisine.",
         "image": "/assets/features/features.jpg"
       }
     }

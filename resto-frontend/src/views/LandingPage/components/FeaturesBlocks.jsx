@@ -11,7 +11,7 @@ export default function FeaturesBlocks() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
             {t("landing_page.features_blocks.title")}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -24,7 +24,7 @@ export default function FeaturesBlocks() {
           {Object.entries(features).map(([key, feature]) => (
             <div
               key={key}
-              className="group bg-white p-4 rounded-2xl border border-gray-100 hover:border-[#70B56A]/30 hover:shadow-lg transition-all duration-300"
+              className="group bg-white p-5 rounded-2xl border border-[#70B56A]/30 hover:border-[#70B56A]/30 hover:shadow-lg duration-300"
             >
               {/* Image */}
               <div className="mb-6">
@@ -32,7 +32,7 @@ export default function FeaturesBlocks() {
                   <img
                     src={feature.image}
                     alt={feature.title}
-                    className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover rounded-xl transition-transform duration-300"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'flex';
