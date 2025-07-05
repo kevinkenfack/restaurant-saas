@@ -22,6 +22,8 @@ import { subscriptionPrice, supportEmail } from "../../config/config";
 import LanguageChanger from "../../components/LanguageChanger";
 import { useTranslation } from "react-i18next";
 import ProductDemo from "./components/ProductDemo";
+import TestimonialsSection from "./components/TestimonialsSection";
+import FeaturesBlocks from "./components/FeaturesBlocks";
 import LandingFooter from "./LandingFooter";
 
 export default function LandingPage() {
@@ -179,6 +181,12 @@ export default function LandingPage() {
           </div>
         </div>
       </div>
+
+      {/* Features Blocks Section */}
+      <FeaturesBlocks />
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* pricing section */}
       <div className="bg-gray-50/50 py-20 sm:py-32" id="pricing">

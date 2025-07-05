@@ -690,8 +690,8 @@
     "created_at": "Créé le"
   },
   "landing_page": {
-    "features_heading": "Fonctionnalités puissantes",
-    "features_subtitle": "Découvrez comment notre solution peut transformer la gestion de votre établissement",
+    "features_heading": "Pensé pour tous les métiers de la restauration",
+    "features_subtitle": "RestroPRO centralise encaissement, commandes et suivi pour simplifier et optimiser la gestion des activités de restauration professionnelles.",
     "features_list": {
       "pos": {
         "title": "Point de vente intelligent",
@@ -779,6 +779,64 @@
     "for_your_business": "pour votre entreprise de restauration.",
     "hero_description": "Simplifiez votre service. Boostez vos ventes. RestroPRO POS optimise vos opérations et révèle le potentiel de votre restaurant.",
     "view_pricing": "Afficher les tarifs",
+
+    "testimonials": {
+      "title": "Ils nous font confiance",
+      "subtitle": "Déjà utilisé par 100+ restaurants",
+      "description": "Découvrez ce que nos clients disent de RestroPRO",
+      "testimonials_list": {
+        "testimonial_1": {
+          "name": "Marie Dubois",
+          "role": "Propriétaire, Le Petit Bistrot",
+          "content": "RestroPRO a révolutionné notre façon de travailler. L'interface est intuitive et nous avons augmenté nos ventes de 30% en seulement 3 mois.",
+          "rating": 5
+        },
+        "testimonial_2": {
+          "name": "Jean-Pierre Martin",
+          "role": "Chef, Restaurant La Belle Époque",
+          "content": "La gestion des stocks et les commandes en temps réel nous ont permis d'optimiser nos coûts et d'améliorer notre service client.",
+          "rating": 5
+        },
+        "testimonial_3": {
+          "name": "Sophie Laurent",
+          "role": "Manager, Café Central",
+          "content": "Simple, efficace et fiable. RestroPRO nous accompagne dans notre croissance depuis 2 ans maintenant.",
+          "rating": 5
+        }
+      },
+      "trust_restaurants": {
+        "restaurant_1": "Le Petit Bistrot",
+        "restaurant_2": "Café Central"
+      },
+          "trust_title": "Rejoignez plus de 100 restaurants qui nous font confiance"
+  },
+
+  "features_blocks": {
+    "title": "Tout ce dont vous avez besoin pour gérer votre entreprise de restauration",
+    "subtitle": "Une solution complète qui s'adapte à vos besoins",
+    "blocks": {
+      "qr_orders": {
+        "title": "Commande en salle & QR code",
+        "description": "Les clients scannent, commandent, vous encaissez",
+        "image": "/assets/features/features.jpg"
+      },
+      "pos": {
+        "title": "Caisse intuitive (POS)",
+        "description": "Tableau tactile simple à utiliser par vos équipes",
+        "image": "/assets/features/features.jpg"
+      },
+      "inventory": {
+        "title": "Gestion des stocks automatique",
+        "description": "Alertes de rupture, suivi des ingrédients",
+        "image": "/assets/features/features.jpg"
+      },
+      "analytics": {
+        "title": "Statistiques et reporting",
+        "description": "Suivez vos ventes, vos meilleurs produits, vos horaires clés",
+        "image": "/assets/features/features.jpg"
+      }
+    }
+  },
 
     "pos_description": "RestroPRO POS simplifie les ventes. Gérez facilement les commandes, les catégories et les variantes. Envoyez à la cuisine instantanément et acceptez les paiements en toute sécurité. Tout-en-un pour un flux fluide.",
     "live_updates": "Mises à jour en direct",

@@ -699,8 +699,8 @@
   },
 
   "landing_page": {
-    "features_heading": "Powerful Features",
-    "features_subtitle": "Discover how our solution can transform your business management",
+    "features_heading": "Designed for all types of food service businesses",
+    "features_subtitle": "RestroPRO centralises cash register, orders and tracking to simplify and optimise the management of food service businesses.",
     "features_list": {
       "pos": {
         "title": "Smart Point of Sale",
@@ -788,6 +788,65 @@
     "for_your_business": "for Your Food & Beverage Business.",
     "hero_description": "Simplify service. Boost sales. RestroPRO POS streamlines your operations and unlocks your restaurant’s full potential.",
     "view_pricing": "View Pricing",
+
+    "testimonials": {
+      "title": "They Trust Us",
+      "subtitle": "Already used by 100+ restaurants",
+      "description": "Discover what our clients say about RestroPRO",
+      "testimonials_list": {
+        "testimonial_1": {
+          "name": "Marie Dubois",
+          "role": "Owner, Le Petit Bistrot",
+          "content": "RestroPRO has revolutionized the way we work. The interface is intuitive and we increased our sales by 30% in just 3 months.",
+          "rating": 5
+        },
+        "testimonial_2": {
+          "name": "Jean-Pierre Martin",
+          "role": "Chef, Restaurant La Belle Époque",
+          "content": "Inventory management and real-time orders have allowed us to optimize our costs and improve our customer service.",
+          "rating": 5
+        },
+        "testimonial_3": {
+          "name": "Sophie Laurent",
+          "role": "Manager, Café Central",
+          "content": "Simple, efficient and reliable. RestroPRO has been supporting us in our growth for 2 years now.",
+          "rating": 5
+        }
+      },
+      "trust_restaurants": {
+        "restaurant_1": "Le Petit Bistrot",
+        "restaurant_2": "Café Central"
+      },
+      "trust_title": "Join over 100 restaurants that trust us"
+  },
+
+  "features_blocks": {
+    "title": "Everything you need to manage your food & beverage business",
+    "subtitle": "A complete solution that adapts to your needs",
+    "blocks": {
+      "qr_orders": {
+        "title": "Dining orders & QR code",
+        "description": "Customers scan, order, you cash in",
+        "image": "/assets/features/features.jpg"
+      },
+            "pos": {
+        "title": "Intuitive cash register (POS)",
+        "description": "Touch screen easy to use by your teams",
+        "image": "/assets/features/features.jpg"
+      },
+      "inventory": {
+        "title": "Automatic inventory management",
+        "description": "Stock alerts, ingredient tracking",
+        "image": "/assets/features/features.jpg"
+      },
+      "analytics": {
+        "title": "Statistics and reporting",
+        "description": "Track your sales, your best products, your key hours",
+        "image": "/assets/features/features.jpg"
+      }
+    }
+  },
+
     "pos_description": "RestroPRO POS simplifies sales. Manage orders, categories & variants with ease. Send to kitchen instantly & accept payments securely. All-in-one for a smooth flow.",
     "live_updates": "Live Updates",
     "live_updates_description": "Kitchen in Sync, Never miss a beat. Live order updates send details directly to your kitchen, ensuring accuracy and minimizing prep time.",
