@@ -24,7 +24,7 @@ export default function FeaturesBlocks() {
           {Object.entries(features).map(([key, feature]) => (
             <div
               key={key}
-              className="group bg-white p-6 rounded-2xl border border-gray-100 hover:border-[#70B56A]/30 hover:shadow-lg transition-all duration-300"
+              className="group bg-white p-3 rounded-2xl border border-gray-100 hover:border-[#70B56A]/30 hover:shadow-lg transition-all duration-300"
             >
               {/* Image */}
               <div className="mb-6">
@@ -56,7 +56,7 @@ export default function FeaturesBlocks() {
               </div>
 
               {/* Content */}
-              <div className="text-center">
+              <div className="text-left">
                 <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#70B56A] transition-colors duration-300">
                   {feature.title}
                 </h3>
