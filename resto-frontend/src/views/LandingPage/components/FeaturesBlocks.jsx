@@ -24,7 +24,7 @@ export default function FeaturesBlocks() {
           {Object.entries(features).map(([key, feature]) => (
             <div
               key={key}
-              className="group bg-white p-3 rounded-2xl border border-gray-100 hover:border-[#70B56A]/30 hover:shadow-lg transition-all duration-300"
+              className="group bg-white p-4 rounded-2xl border border-gray-100 hover:border-[#70B56A]/30 hover:shadow-lg transition-all duration-300"
             >
               {/* Image */}
               <div className="mb-6">
