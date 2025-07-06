@@ -28,7 +28,7 @@ export default function RecommendedSetup() {
           <img
             src="/assets/setup-recommended.png"
             alt={t("landing_page.recommended_setup", "Diagramme de l'installation recommandée pour le logiciel de gestion de restaurant.")}
-            className="w-full max-w-2xl h-auto rounded-2xl border-4 border-[#70B56A] shadow-lg transition-transform duration-300 hover:scale-105 bg-white"
+            className="w-full max-w-2xl h-auto rounded-2xl border-2 border-[#70B56A] shadow-lg transition-transform duration-300 hover:scale-105 bg-white"
             loading="lazy"
           />
           <figcaption className="text-[#243922] text-sm mt-2 text-center">

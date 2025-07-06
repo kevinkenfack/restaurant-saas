@@ -130,7 +130,6 @@ export default function InActiveSubscriptionPage() {
                 </div>
                 <span className="text-gray-700 dark:text-gray-200 text-base font-medium">{t("inactive_subscription.features.employer_management")}</span>
               </li>
-              
               <li className="flex items-center gap-3">
                 <div className="w-7 h-7 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
                   <IconCheck size={18} className="text-[#70B56A] dark:text-green-300" />
