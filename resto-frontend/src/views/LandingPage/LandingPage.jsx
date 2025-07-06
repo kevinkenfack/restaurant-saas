@@ -288,7 +288,7 @@ export default function LandingPage() {
                   <div className="w-7 h-7 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
                     <IconCheck size={18} className="text-[#70B56A]" />
                   </div>
-                  <span className="text-gray-700 text-base font-medium">{t("landing_page.etc")}</span>
+                  <span className="text-gray-700 text-base font-medium">{t("landing_page.priority_support")}</span>
                 </li>
               </ul>
 

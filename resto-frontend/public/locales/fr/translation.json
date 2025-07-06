@@ -381,7 +381,8 @@
       "inventory_stock": "Gestion du stock & inventaire illimité",
       "real_time_reports": "100% temps réel & synchronisé sur tout les appareils",
       "etc": "etc..",
-      "employer_management": "Gestion des employés"
+      "employer_management": "Gestion des employés",
+      "priority_support": "Assistance prioritaire"
 
     }
   },
@@ -891,6 +892,7 @@
     "pos_system": "Système POS",
     "inventory_stock": "Gestion du stock & inventaire illimité",
     "employer_management": "Gestion des employés",
+    "priority_support": "Assistance prioritaire",
     "real_time_reports": "100% temps réel & synchronisé sur tout les appareils",
     "etc": "etc..",
     "have_any_queries": "Vous avez des questions ?",

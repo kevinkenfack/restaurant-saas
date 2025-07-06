@@ -381,6 +381,7 @@
       "inventory_stock": "Inventory Stock",
       "real_time_reports": "Real Time Reports",
       "etc": "etc..",
+      "priority_support": "Priority Support",
       "employer_management": "Employer Management"
     }
   },
@@ -899,6 +900,7 @@
     "inventory_stock": "Inventory Stock",
     "real_time_reports": "Real Time Reports",
     "etc": "etc..",
+    "priority_support": "Priority Support",
     "employer_management": "Employer Management",
     "have_any_queries": "Have any queries?",
     "contact_us": "Contact us",
