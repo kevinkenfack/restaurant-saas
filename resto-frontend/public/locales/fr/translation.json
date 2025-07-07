@@ -699,7 +699,7 @@
   },
   "landing_page": {
     "features_heading": "Pensé pour tous les métiers de la restauration",
-    "features_subtitle": "RestroPRO centralise encaissement, commandes et suivi pour simplifier et optimiser la gestion des activités de restauration professionnelles.",
+    "features_subtitle": "Menufy centralise encaissement, commandes et suivi pour simplifier et optimiser la gestion des activités de restauration professionnelles.",
     "features_list": {
       "pos": {
         "title": "Point de vente intelligent",
@@ -806,18 +806,18 @@
     "get_started": "Commencer",
     "all_in_one_pos": "PDV tout-en-un",
     "for_your_business": "pour votre entreprise de restauration.",
-    "hero_description": "Simplifiez votre service. Boostez vos ventes. RestroPRO POS optimise vos opérations et révèle le potentiel de votre restaurant.",
+    "hero_description": "Simplifiez votre service. Boostez vos ventes. Menufy POS optimise vos opérations et révèle le potentiel de votre restaurant.",
     "view_pricing": "Afficher les tarifs",
 
     "testimonials": {
       "title": "Ils nous font confiance",
       "subtitle": "Déjà utilisé par 100+ restaurants",
-      "description": "Découvrez ce que nos clients disent de RestroPRO",
+      "description": "Découvrez ce que nos clients disent de Menufy",
       "testimonials_list": {
         "testimonial_1": {
           "name": "Marie Dubois",
           "role": "Propriétaire, Le Petit Bistrot",
-          "content": "RestroPRO a révolutionné notre façon de travailler. L'interface est intuitive et nous avons augmenté nos ventes de 30% en seulement 3 mois.",
+          "content": "Menufy a révolutionné notre façon de travailler. L'interface est intuitive et nous avons augmenté nos ventes de 30% en seulement 3 mois.",
           "rating": 5
         },
         "testimonial_2": {
@@ -829,7 +829,7 @@
         "testimonial_3": {
           "name": "Sophie Laurent",
           "role": "Manager, Café Central",
-          "content": "Simple, efficace et fiable. RestroPRO nous accompagne dans notre croissance depuis 2 ans maintenant.",
+          "content": "Simple, efficace et fiable. Menufy nous accompagne dans notre croissance depuis 2 ans maintenant.",
           "rating": 5
         }
       },
@@ -880,7 +880,7 @@
     }
   },
 
-    "pos_description": "RestroPRO POS simplifie les ventes. Gérez facilement les commandes, les catégories et les variantes. Envoyez à la cuisine instantanément et acceptez les paiements en toute sécurité. Tout-en-un pour un flux fluide.",
+    "pos_description": "Menufy POS simplifie les ventes. Gérez facilement les commandes, les catégories et les variantes. Envoyez à la cuisine instantanément et acceptez les paiements en toute sécurité. Tout-en-un pour un flux fluide.",
     "live_updates": "Mises à jour en direct",
     "live_updates_description": "Cuisine synchronisée, ne manquez jamais rien. Les mises à jour des commandes en direct envoient les détails directement à votre cuisine, garantissant la précision et minimisant le temps de préparation.",
     "per_month": "par mois",

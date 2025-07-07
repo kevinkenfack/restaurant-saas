@@ -18,7 +18,7 @@ export default function LNavbar() {
       <div className="flex items-center justify-between gap-4 container mx-auto px-6 lg:px-12 py-4">
         {/* Logo */}
         <Link to="/">
-          <img src={Logo} alt="logo" className="h-10" />
+          <img src={Logo} alt="logo" className="h-12" />
         </Link>
 
         {/* Desktop Navigation */}
