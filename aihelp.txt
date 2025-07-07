@@ -1,60 +1,62 @@
-const location = useLocation();
+import React from "react";
+import { useTranslation } from "react-i18next";
 
-  useEffect(() => {
-    // Gestion du scroll fluide pour les ancres
-    const handleAnchorClick = (e) => {
-      if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
-        e.preventDefault();
-        const href = e.target.getAttribute('href');
-        const targetId = href === '#' ? 'top' : href.substring(1);
-        const targetElement = document.getElementById(targetId);
-        
-        if (targetElement) {
-          // Bloquer temporairement le scroll automatique
-          document.documentElement.style.scrollBehavior = 'auto';
-          
-          // Scroll immédiat sans animation
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'auto'
-          });
-          
-          // Réactiver le smooth scroll après un court délai
-          setTimeout(() => {
-            document.documentElement.style.scrollBehavior = 'smooth';
-          }, 100);
-          
-          // Mettre à jour l'URL
-          window.history.pushState({}, '', href);
-        }
-      }
-    };
+export default function FeaturesBlocks() {
+  const { t } = useTranslation();
 
-    document.addEventListener('click', handleAnchorClick);
+  const features = t("landing_page.features_blocks.blocks", { returnObjects: true });
 
-    // Gestion du chargement initial avec ancre
-    if (location.hash) {
-      const element = document.getElementById(location.hash.substring(1));
-      if (element) {
-        // Désactiver temporairement le smooth scroll
-        document.documentElement.style.scrollBehavior = 'auto';
-        
-        // Scroll immédiat
-        window.scrollTo({
-          top: element.offsetTop - 80,
-          behavior: 'smooth'
-        });
-        
-        // Réactiver le smooth scroll après
-        setTimeout(() => {
-          document.documentElement.style.scrollBehavior = 'smooth';
-        }, 100);
-      }
-    } else {
-      window.scrollTo(0, 0);
-    }
+  return (
+    <section className="py-20 bg-white" id="features-blocks">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            {t("landing_page.features_blocks.title")}
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            {t("landing_page.features_blocks.subtitle")}
+          </p>
+        </div>
 
-    return () => {
-      document.removeEventListener('click', handleAnchorClick);
-    };
-  }, [location]);
+        {/* Features Grid */}
+        <div className="flex flex-col gap-10 max-w-6xl mx-auto">
+          {Object.entries(features).map(([key, feature], idx) => (
+            <div
+              key={key}
+              className="flex flex-col md:flex-row items-center bg-white rounded-3xl shadow-lg p-8 md:p-12 gap-8 md:gap-12 border border-[#F3F3F3]"
+            >
+              {/* Texte à gauche */}
+              <div className="flex-1 md:pr-8 text-left w-full">
+                <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
+                  {feature.title}
+                </h3>
+                <p className="text-base md:text-lg text-gray-600 mb-6">
+                  {feature.description}
+                </p>
+                {feature.cta && (
+                  <a
+                    href={feature.cta.url || '#'}
+                    className="inline-flex items-center px-5 py-3 rounded-lg border border-gray-200 bg-white text-gray-900 font-semibold shadow-sm hover:bg-gray-100 transition group"
+                  >
+                    {feature.cta.label || 'En savoir plus'}
+                    <span className="ml-2 text-xl group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                )}
+              </div>
+              {/* Image à droite, sans fond ni padding */}
+              <div className="flex-1 flex justify-center items-stretch w-full h-full">
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-full object-cover rounded-2xl"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

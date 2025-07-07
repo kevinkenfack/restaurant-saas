@@ -20,49 +20,41 @@ export default function FeaturesBlocks() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {Object.entries(features).map(([key, feature]) => (
+        <div className="flex flex-col gap-10 max-w-6xl mx-auto">
+          {Object.entries(features).map(([key, feature], idx) => (
             <div
               key={key}
-              className="group bg-white p-5 rounded-2xl border border-[#70B56A]/30 hover:border-[#70B56A]/30 hover:shadow-lg duration-300"
+              className="group flex flex-col md:flex-row items-center relative overflow-hidden rounded-2xl border-2 border-[#70B56A]/30 p-5 md:p-12 gap-8 md:gap-12 shadow-lg"
             >
-              {/* Image */}
-              <div className="mb-6">
-                <div className="relative overflow-hidden rounded-xl min-h-64">
-                  <img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-full object-cover rounded-xl transition-transform duration-300"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
-                  {/* Fallback placeholder */}
-                  <div 
-                    className="hidden w-full h-full bg-gradient-to-br from-[#70B56A]/20 to-[#4E944F]/20 rounded-xl items-center justify-center"
-                    style={{ display: 'none' }}
-                  >
-                    <div className="text-center">
-                      <div className="w-12 h-12 bg-[#70B56A] rounded-full mx-auto mb-3 flex items-center justify-center">
-                        <span className="text-white font-bold text-lg">
-                          {feature.title.charAt(0)}
-                        </span>
-                      </div>
-                      <p className="text-[#70B56A] font-semibold text-sm">{feature.title}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="text-left">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#70B56A] transition-colors duration-300">
+              {/* Background overlays */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#70B56A]/10 via-[#70B56A]/10 to-[#70B56A]/10 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(112,181,106,0.10),transparent_50%)] pointer-events-none"></div>
+              {/* Contenu principal */}
+              <div className="relative z-10 flex-1 md:pr-8 text-left w-full md:self-start mt-4 md:mt-15">
+                <h3 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 md:mb-10 leading-tight">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-base md:text-xl text-gray-600 mb-6">
                   {feature.description}
                 </p>
+                {feature.cta && (
+                  <a
+                    href={feature.cta.url || '#'}
+                    className="inline-flex items-center px-5 py-3 rounded-lg border border-gray-200 bg-white text-gray-900 font-semibold shadow-sm hover:bg-gray-100 transition group"
+                  >
+                    {feature.cta.label || 'En savoir plus'}
+                    <span className="ml-2 text-xl group-hover:translate-x-1 transition-transform">→</span>
+                  </a>
+                )}
+              </div>
+              {/* Image à droite, sans fond ni padding */}
+              <div className="relative z-10 flex-1 flex justify-center items-stretch w-full h-full">
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-full object-cover rounded-2xl"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
               </div>
             </div>
           ))}
@@ -70,4 +62,4 @@ export default function FeaturesBlocks() {
       </div>
     </section>
   );
-} 
+}

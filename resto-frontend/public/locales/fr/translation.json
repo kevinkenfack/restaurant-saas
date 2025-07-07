@@ -849,32 +849,32 @@
     "blocks": {
       "qr_orders": {
         "title": "Commande en salle & QR code",
-        "description": "Les clients scannent, commandent, vous encaissez",
+        "description": "Les clients scannent le QR code sur leur téléphone, commandent en ligne, et vous recevez la commande directement sur votre PDV. Aucune erreur de commande, pas de perte de temps, et vous pouvez vous concentrer sur ce qui importe : servir vos clients. Facile, rapide et sécurisé.",
         "image": "/assets/features/features.jpg"
       },
       "pos": {
-        "title": "Caisse intuitive (POS)",
-        "description": "Tableau tactile simple à utiliser par vos équipes",
+        "title": "Caisse intuitive et point de vente",
+        "description": "Simple, intuitif et fiable. Notre PDV vous permet de vous concentrer sur votre métier : servir vos clients. Gérez vos commandes, vos produits, vos tables, vos clients, vos employés, vos ventes, vos stocks, vos promotions, vos statistiques et bien plus encore, tout en un seul endroit.",
         "image": "/assets/features/features.jpg"
       },
       "inventory": {
         "title": "Gestion des stocks automatique",
-        "description": "Alertes de rupture, suivi des ingrédients",
+        "description": "Gestion des stocks, alertes de rupture, suivi des ingrédients et des plats, par exemple : 5 burgers (pain, fromage, tomate, ...), 3 pizzas (pâte, fromage, jambon, ...), 2 bières (Pils, IPA, ...), etc.",
         "image": "/assets/features/features.jpg"
       },
       "analytics": {
-        "title": "Statistiques et reporting",
-        "description": "Suivez vos ventes, vos meilleurs produits, vos horaires clés",
+        "title": "Statistiques et reporting complet",
+        "description": "Aperçu complet de votre activité sur un tableau de bord : ventes, chiffre d'affaires, marges, meilleurs produits, horaires clés, etc.",
         "image": "/assets/features/features.jpg"
       },
       "reservation": {
-        "title": "Réservations en ligne",
-        "description": "Permettez à vos clients de réserver une table facilement depuis leur smartphone.",
+        "title": "Réservations en ligne ultra complete",
+        "description": "Permettez à vos clients de réserver une table facilement depuis leur smartphone, avec une interface conviviale et intuitive. Ils pourront choisir leur heure d'arrivée, le nombre de couverts, et même laisser un commentaire pour spécifier leurs besoins (anniversaire, fête, etc.).",
         "image": "/assets/features/features.jpg"
       },
       "kitchen": {
-        "title": "Cuisine",
-        "description": "Suivi centralisé des commandes en cuisine, avec statuts en temps réel : en cours, prêtes, livrées ou annulées. Fluidifie la communication entre salle et cuisine.",
+        "title": "Suivi centralisé des commandes en cuisine",
+        "description": "Centralisez les commandes en cuisine, avec des mises à jour en temps réel sur leur statut : en cours, prêtes, livrées ou annulées. Améliorez la communication entre la salle et la cuisine.",
         "image": "/assets/features/features.jpg"
       }
     }
