@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from "../../components/Page";
-import ImgGirlSmiling from "../../assets/girl-smiling.webp"
-import ImgUiflowLogo from "../../assets/uiflow-logo.svg"
+import ImgMeSmiling from "../../assets/me-smiling.jpg"
+import ImgUiroomLogo from "../../assets/uiroom-logo.png"
 import { Link } from 'react-router-dom';
 import { IconArrowRight, IconInfoCircleFilled } from '@tabler/icons-react';
 import { appVersion, iconStroke, subscriptionAmount } from '../../config/config';
@@ -41,12 +41,12 @@ export default function SuperAdminDashboardPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-6">
 
-        <div className='md:row-span-3 bg-restro-superadmin-widget-bg rounded-[42px]'>
+        <div className='md:row-span-3 bg-black rounded-[42px]'>
           <p className='text-restro-superadmin-text-green font-bold text-center mt-4'>{t('superadmin_dashboard.active_tenants')}</p>
           <p className='text-white font-black text-7xl text-center'>{Number(activeTenants).toLocaleString("en", {
             notation: "compact"
           })}</p>
-          <img src={ImgGirlSmiling} alt="img" className='block h-96 mx-auto mt-10' />
+          <img src={ImgMeSmiling} alt="img" className='block h-96 mx-auto mt-10' />
         </div>
 
         <div className='rounded-[42px] border px-8 py-5 flex flex-col justify-center border-restro-border-green'>
@@ -81,12 +81,21 @@ export default function SuperAdminDashboardPage() {
 
       </div>
 
-      <a href='https://uiflow.in' target='_blank' className="mt-16 flex flex-col md:flex-row items-center justify-center gap-4 text-[#A5A5A5]">
-        <img src={ImgUiflowLogo} alt="logo" className='block shadow w-16 h-16 rounded-2xl' />
-        <div>
-          <p>
-            Developed by UIFLOW<sup>TM</sup><br/>
-            Version {appVersion}
+      <a
+        href="https://uiroom.pro"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-16 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 px-4 py-3 rounded-2xl transition-all duration-200 max-w-xl mx-auto"
+      >
+        <img
+          src={ImgUiroomLogo}
+          alt="Uiroom logo"
+          className="block shadow w-10 h-10 md:w-12 md:h-12 transition-all duration-200"
+        />
+        <div className="text-center md:text-left">
+          <p className="text-sm md:text-base text-[#243922] font-semibold">
+            Developed by <span className="text-[#70B56A] font-bold">Uiroom<sup>LLC</sup></span><br />
+            <span className="text-xs text-[#A5A5A5]">Version {appVersion}</span>
           </p>
         </div>
       </a>
