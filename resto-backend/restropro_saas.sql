@@ -496,6 +496,7 @@ DROP TABLE IF EXISTS `store_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `store_details` (
+  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `store_name` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
