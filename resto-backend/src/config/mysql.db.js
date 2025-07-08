@@ -1,26 +1,9 @@
-const { CONFIG } = require("./index");
-const mysql = require("mysql2/promise");
-const url = require("url");
+const { CONFIG } = require("./index")
 
-// Parse l'URL pour extraire host, user, password, database
-const dbUrl = new URL(CONFIG.DATABASE_URL);
+const mySqlPromise = require("mysql2/promise");
 
-const pool = mysql.createPool({
-  host: dbUrl.hostname,
-  port: dbUrl.port,
-  user: dbUrl.username,
-  password: dbUrl.password,
-  database: dbUrl.pathname.replace(/^\//, ""), // enlever le slash
-  ssl: {
-    rejectUnauthorized: false, // ou true si tu as le certificat
-  },
-  multipleStatements: true,
-  dateStrings: false,
-  waitForConnections: true,
-  connectionLimit: 99,
-  enableKeepAlive: true,
-  keepAliveInitialDelay: 10000,
-});
+const pool = 
+mySqlPromise.createPool(`${CONFIG.DATABASE_URL}?ssl={"rejectUnauthorized":false}&multipleStatements=true&dateStrings=false&waitForConnections=true&connectionLimit=99&enableKeepAlive=true&keepAliveInitialDelay=10000`);
 
 console.log(`DB Pool Created.`);
 
