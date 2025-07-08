@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "NODE_ENV=production node index.js", 
-    "postinstall": "pnpm rebuild bcrypt"
+    "postinstall": "cd node_modules/bcrypt && node-pre-gyp install --fallback-to-build"
   },
   "keywords": [],
   "author": "",
