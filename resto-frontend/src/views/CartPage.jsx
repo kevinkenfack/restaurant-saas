@@ -329,20 +329,23 @@ const CartPage = () => {
 
         {/* Checkout Section (déjà stylé) */}
         {cartItems.length > 0 && (
-          <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-black shadow-lg p-4 flex justify-between items-center rounded-2xl max-w-5xl mx-auto z-50">
+          <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-black shadow-lg p-2 sm:p-4 flex justify-between items-center rounded-2xl mx-auto z-50 w-full max-w-full overflow-x-auto">
             <button
               onClick={() => {
                 document.getElementById('modal-place-order').showModal();
               }}
-              className="bg-restro-green text-white py-4 px-6 rounded-xl flex justify-between w-full items-center"
+              className="bg-restro-green text-white py-3 px-2 sm:px-6 rounded-xl flex flex-wrap justify-between w-full items-center gap-2 sm:gap-4 max-w-full overflow-hidden"
+              style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}
             >
-              <span className="flex items-center gap-3">
-                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-restro-green font-bold text-lg shadow border-2 border-restro-green">
+              <span className="flex items-center gap-2 sm:gap-3 min-w-0">
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white text-restro-green font-bold text-lg shadow border-2 border-restro-green flex-shrink-0">
                   {cartItems.length}
                 </span>
-                <span className="text-md font-bold md:text-lg">{t('cart.total')} {currency}{payableTotal.toFixed(2)}</span>
+                <span className="text-md font-bold md:text-lg break-words whitespace-normal block min-w-0 max-w-full">
+                  {t('cart.total')} {currency}{payableTotal.toFixed(2)}
+                </span>
               </span>
-              <span className="text-white text-lg md:text-xl font-bold px-2 rounded-lg flex items-center">
+              <span className="text-white text-lg md:text-xl font-bold px-2 rounded-lg flex items-center break-words whitespace-normal min-w-0 max-w-full">
                 {t('cart.checkout')} <IconChevronRight size={20} stroke={3} />
               </span>
             </button>
