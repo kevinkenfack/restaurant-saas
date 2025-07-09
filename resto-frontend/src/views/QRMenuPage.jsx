@@ -461,122 +461,110 @@ export default function QRMenuPage() {
                 const imageURL = getImageURL(image);
                 const hasVariantOrAddon = variants?.length > 0 || addons?.length > 0;
                 return (
-                  <div
-                    key={id}
-                    className="group bg-white dark:bg-restro-card-bg rounded-3xl p-4 md:p-6 shadow-xl border border-restro-border-green hover:shadow-2xl transition-all duration-500 flex flex-col md:flex-row gap-4 md:gap-6 md:items-center"
-                  >
-                    {/* Image en haut sur mobile, à gauche sur desktop */}
-                    <div className="flex-shrink-0 w-full md:w-auto flex flex-col items-center">
-                      <div className="relative w-full md:w-32 md:h-32">
-                        <div className="w-full h-40 md:w-32 md:h-32 rounded-2xl overflow-hidden bg-gray-100 dark:bg-restro-bg-gray shadow-lg mx-auto">
-                          {image ? (
-                            <img
-                              src={imageURL}
-                              alt={title}
-                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center">
-                              <IconCarrot className="text-gray-400 dark:text-gray-500" size={48} />
-                            </div>
-                          )}
-                        </div>
-                        {/* Bouton Ajouter (si QR order enabled) */}
-                        {is_qr_order_enabled && (
-                          <button
-                            className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-restro-green text-white px-6 py-2 rounded-2xl font-bold shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 text-xs md:text-sm"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (hasVariantOrAddon) {
-                                btnOpenMenuItemDetail(
-                                  addons,
-                                  variants,
-                                  category_id,
-                                  category_title,
-                                  id,
-                                  image,
-                                  price,
-                                  tax_id,
-                                  tax_rate,
-                                  tax_title,
-                                  tax_type,
-                                  title
-                                );
-                              } else {
-                                addItemToCart(item);
-                              }
-                            }}
-                          >
-                            {t("qr_menu.add")}
-                          </button>
-                        )}
-                      </div>
-                      {/* Badge customisable */}
-                      {is_qr_order_enabled && hasVariantOrAddon && (
-                        <div className="text-center mt-4">
-                          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-200 text-xs font-medium">
-                            {t("qr_menu.customisable")}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    {/* Infos */}
-                    <div className="flex-1 min-w-0 flex flex-col justify-between">
-                      <div>
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                          <h3 className="text-lg md:text-2xl font-bold text-gray-800 dark:text-white mb-1 line-clamp-2">
-                            {title}
-                          </h3>
-                          {/* Catégorie */}
-                          {category_id && (
-                            <span className="px-3 py-1 bg-gray-100 dark:bg-restro-bg-gray text-gray-600 dark:text-gray-300 rounded-full text-xs font-medium w-fit md:ml-2">
-                              {category_title}
-                            </span>
-                          )}
-                        </div>
-                        {/* Prix */}
-                        <div className="flex items-center gap-2 mt-2 mb-2">
-                          <span className="text-xl md:text-2xl font-bold text-restro-green">
-                            {currency}{price}
-                          </span>
-                        </div>
-                        {/* Description courte */}
-                        {description && (
-                          <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base line-clamp-2 mb-2">
-                            {description}
-                          </p>
-                        )}
-                        {/* Variantes/Addons */}
-                        {(variants.length > 0 || addons.length > 0) && (
-                          <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
-                            {variants.length > 0 && (
-                              <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
-                                {variants.length} {t("qr_menu.variants_available")}
-                              </span>
+                  <React.Fragment key={id}>
+                    <div
+                      className="group bg-white dark:bg-restro-card-bg rounded-3xl p-4 md:p-6 shadow-xl border border-restro-border-green hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row gap-4 md:gap-6 md:items-center"
+                    >
+                      {/* Image carrée, large sur mobile, à gauche sur desktop */}
+                      <div className="flex-shrink-0 w-full md:w-auto flex flex-col items-center md:items-start">
+                        <div className="relative w-full md:w-[160px] md:h-[160px]">
+                          <div className="w-full aspect-square md:w-[160px] md:h-[160px] rounded-2xl overflow-hidden bg-gray-100 dark:bg-restro-bg-gray shadow-lg mx-auto max-w-xs md:max-w-none">
+                            {image ? (
+                              <img
+                                src={imageURL}
+                                alt={title}
+                                className="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center">
+                                <IconCarrot className="text-gray-400 dark:text-gray-500" size={64} />
+                              </div>
                             )}
-                            {addons.length > 0 && (
-                              <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
-                                {addons.length} {t("qr_menu.addons_available")}
+                          </div>
+                        </div>
+                      </div>
+                      {/* Infos */}
+                      <div className="flex-1 min-w-0 flex flex-col justify-between">
+                        <div>
+                          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                            <h3 className="text-lg md:text-2xl font-bold text-gray-800 dark:text-white mb-1 line-clamp-2">
+                              {title}
+                            </h3>
+                            {category_id && (
+                              <span className="px-3 py-1 bg-gray-100 dark:bg-restro-bg-gray text-gray-600 dark:text-gray-300 rounded-full text-xs font-medium w-fit md:ml-2">
+                                {category_title}
                               </span>
                             )}
                           </div>
-                        )}
-                      </div>
-                      {/* Bouton Voir plus */}
-                      <div className="flex justify-end mt-2">
-                        <button
-                          className="text-restro-green hover:underline text-sm font-medium px-3 py-1 rounded-lg bg-restro-green/10 hover:bg-restro-green/20 transition-all"
-                          onClick={() => {
-                            setState({
-                              ...state,
-                              currentItem: item,
-                              currentItemId: id,
-                            });
-                            document.getElementById(`modal_item_detail_${id}`).showModal();
-                          }}
-                        >
-                          {t("qr_menu.see_more")}
-                        </button>
+                          <div className="flex items-center gap-2 mt-2 mb-2">
+                            <span className="text-xl md:text-2xl font-bold text-restro-green">
+                              {currency}{price}
+                            </span>
+                          </div>
+                          {description && (
+                            <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base line-clamp-2 mb-2">
+                              {description}
+                            </p>
+                          )}
+                          {(variants.length > 0 || addons.length > 0) && (
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
+                              {variants.length > 0 && (
+                                <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
+                                  {variants.length} {t("qr_menu.variants_available")}
+                                </span>
+                              )}
+                              {addons.length > 0 && (
+                                <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
+                                  {addons.length} {t("qr_menu.addons_available")}
+                                </span>
+                              )}
+                            </div>
+                          )}
+                          {/* Boutons premium, côte à côte (desktop) ou l'un sous l'autre (mobile) */}
+                          <div className="flex flex-col sm:flex-row gap-2 w-full mt-4 justify-center md:justify-end">
+                            <button
+                              className="w-full sm:w-auto text-restro-green border border-restro-green hover:bg-restro-green hover:text-white text-sm font-medium px-4 py-2 rounded-lg transition-all shadow-sm"
+                              onClick={() => {
+                                setState({
+                                  ...state,
+                                  currentItem: item,
+                                  currentItemId: id,
+                                });
+                                document.getElementById(`modal_item_detail_${id}`).showModal();
+                              }}
+                            >
+                              {t("qr_menu.see_more")}
+                            </button>
+                            {is_qr_order_enabled && (
+                              <button
+                                className="w-full sm:w-auto bg-restro-green text-white px-4 py-2 rounded-lg font-bold shadow-lg hover:shadow-xl active:scale-95 transition-all duration-300 text-sm"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  if (hasVariantOrAddon) {
+                                    btnOpenMenuItemDetail(
+                                      addons,
+                                      variants,
+                                      category_id,
+                                      category_title,
+                                      id,
+                                      image,
+                                      price,
+                                      tax_id,
+                                      tax_rate,
+                                      tax_title,
+                                      tax_type,
+                                      title
+                                    );
+                                  } else {
+                                    addItemToCart(item);
+                                  }
+                                }}
+                              >
+                                {t("qr_menu.add")}
+                              </button>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </div>
                     {/* Modal détail plat moderne */}
@@ -685,7 +673,7 @@ export default function QRMenuPage() {
                         )}
                       </div>
                     </dialog>
-                  </div>
+                  </React.Fragment>
                 );
               })}
           </div>

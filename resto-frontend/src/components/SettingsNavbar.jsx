@@ -72,7 +72,7 @@ export default function SettingsNavbar() {
             to={item.path}
             key={index}
             className={clsx(
-              "w-12 h-12 md:w-full md:h-auto md:min-w-fit flex items-center justify-center md:justify-normal gap-1 md:px-4 md:py-3 rounded-full transition group",
+              "w-12 h-12 md:w-full md:h-auto md:min-w-fit flex items-center justify-center md:justify-normal gap-1 md:px-4 md:py-3 rounded-xl transition group",
               isActive
                 ? theme === "black"
                   ? "bg-[#353535] text-white font-medium"
