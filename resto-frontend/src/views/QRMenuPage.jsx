@@ -784,6 +784,10 @@ export default function QRMenuPage() {
         </dialog>
         {/* Modal détail plat moderne - FIN */}
       </div>
+      {/* Footer copyright */}
+      <footer className="w-full text-center text-xs text-gray-400 py-6 mt-8">
+        &copy; {new Date().getFullYear()} {storeName ? storeName + ' - ' : ''} {t('qr_menu.copyright', { defaultValue: 'Tous droits réservés.' })}
+      </footer>
     </div>
   );
 }
