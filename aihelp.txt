@@ -60,3 +60,12 @@ export default function FeaturesBlocks() {
     </section>
   );
 }
+
+
+INSERT INTO `superadmins`
+VALUES
+(
+  'kenfackjoelkevin@yahoo.com',
+  '$2a$10$cBDqMRXoLb8AKeycJIIuJ.57HrIW7QXuBiaE3KyC1aLBRKOxgwI4y',
+  'Kevin Kenfack'
+);
