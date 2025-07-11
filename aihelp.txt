@@ -1,71 +1,252 @@
-import React from "react";
+import React from 'react';
+import { getDetailsForReceiptPrint } from '../helpers/ReceiptHelper';
+import { getImageURL } from "../helpers/ImageHelper";
 import { useTranslation } from "react-i18next";
 
-export default function FeaturesBlocks() {
+export default function PrintReceiptPage() {
   const { t } = useTranslation();
+  const receiptDetails = getDetailsForReceiptPrint();
 
-  const features = t("landing_page.features_blocks.blocks", { returnObjects: true });
+  const {
+    cartItems,
+    deliveryType,
+    customerType,
+    customer,
+    tableId,
+    currency,
+    storeSettings,
+    printSettings,
+    itemsTotal,
+    taxTotal,
+    serviceChargeTotal,
+    payableTotal,
+    tokenNo,
+    orderId,
+    paymentMethod
+  } = receiptDetails;
 
-  return (
-    <section className="py-20 bg-white" id="features-blocks">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            {t("landing_page.features_blocks.title")}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {t("landing_page.features_blocks.subtitle")}
-          </p>
+  const {
+    store_name,
+    address,
+    phone,
+    email,
+    store_image: storeImage,
+  } = storeSettings;
+
+  const {
+    page_format,
+    header,
+    footer,
+    show_notes,
+    show_store_details,
+    show_customer_details,
+    print_token,
+  } = printSettings;
+
+  // En-tête restaurant
+  const RestaurantHeader = () => {
+    if (!show_store_details) return null;
+
+    return (
+      <div className="text-center mb-6">
+        {storeImage && (
+          <img
+            src={getImageURL(storeImage)}
+            className="w-16 h-16 mx-auto mb-3 rounded-full"
+            alt="Logo"
+          />
+        )}
+        
+        <h1 className="text-xl font-bold mb-2">{store_name}</h1>
+        
+        <div className="text-sm mb-3">
+          <p>{address}</p>
+          <p>{t("print_receipt.phone")}: {phone} | {t("print_receipt.email")}: {email}</p>
+        </div>
+        
+        <div className="border-b-2 border-black w-full"></div>
+      </div>
+    );
+  };
+
+  // Bannière personnalisée
+  const CustomHeader = () => {
+    if (!header) return null;
+
+    return (
+      <div className="text-center mb-4">
+        <p className="font-medium text-sm">{header}</p>
+        <div className="border-b border-dashed border-black w-full mt-2"></div>
+      </div>
+    );
+  };
+
+  // Informations de commande
+  const OrderInfo = () => (
+    <div className="mb-6">
+      <div className="flex justify-between mb-2">
+        <span className="font-medium">{t("print_receipt.receipt_no")}:</span>
+        <span>{tokenNo}-{new Date().toISOString().substring(0, 10)}</span>
+      </div>
+      
+      <div className="flex justify-between mb-2">
+        <span className="font-medium">{t("print_receipt.date_time")}:</span>
+        <span>{new Date().toLocaleString()}</span>
+      </div>
+
+      {show_customer_details && (
+        <>
+          <div className="flex justify-between mb-2">
+            <span className="font-medium">{t("print_receipt.customer")}:</span>
+            <span>{customerType}{customer && `, ${customer?.name}`}</span>
+          </div>
+          <div className="flex justify-between mb-2">
+            <span className="font-medium">{t("print_receipt.order_type")}:</span>
+            <span>{deliveryType}</span>
+          </div>
+        </>
+      )}
+
+      {paymentMethod && (
+        <div className="flex justify-between mb-2">
+          <span className="font-medium">{t("print_receipt.payment_method")}:</span>
+          <span>{paymentMethod}</span>
+        </div>
+      )}
+      
+      <div className="border-b-2 border-black w-full mt-3"></div>
+    </div>
+  );
+
+  // Article de commande
+  const OrderItem = ({ cartItem, index }) => {
+    const { title, quantity, notes, price, addons, addons_ids, variant } = cartItem;
+
+    return (
+      <div className="mb-4">
+        {/* Nom du plat */}
+        <div className="flex justify-between items-start mb-1">
+          <div className="flex-1">
+            <span className="font-medium">
+              {title}
+              {variant && ` - ${variant.title}`}
+            </span>
+          </div>
+          <div className="text-right ml-4">
+            <span className="font-medium">{currency}{Number(quantity * price).toFixed(2)}</span>
+          </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="flex flex-col gap-10 max-w-6xl mx-auto">
-          {Object.entries(features).map(([key, feature], idx) => (
-            <div
-              key={key}
-              className="flex flex-col md:flex-row items-center bg-white rounded-3xl shadow-lg p-8 md:p-12 gap-8 md:gap-12 border border-[#F3F3F3]"
-            >
-              {/* Texte à gauche */}
-              <div className="flex-1 md:pr-8 text-left w-full">
-                <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
-                  {feature.title}
-                </h3>
-                <p className="text-base md:text-lg text-gray-600 mb-6">
-                  {feature.description}
-                </p>
-                {feature.cta && (
-                  <a
-                    href={feature.cta.url || '#'}
-                    className="inline-flex items-center px-5 py-3 rounded-lg border border-gray-200 bg-white text-gray-900 font-semibold shadow-sm hover:bg-gray-100 transition group"
-                  >
-                    {feature.cta.label || 'En savoir plus'}
-                    <span className="ml-2 text-xl group-hover:translate-x-1 transition-transform">→</span>
-                  </a>
-                )}
-              </div>
-              {/* Image à droite, sans fond ni padding */}
-              <div className="flex-1 flex justify-center items-stretch w-full h-full">
-                <img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-full h-full object-cover rounded-2xl"
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-              </div>
-            </div>
-          ))}
+        {/* Détails quantité et prix */}
+        <div className="flex justify-between text-sm mb-2">
+          <span>{quantity} x {currency}{Number(price).toFixed(2)}</span>
+        </div>
+
+        {/* Accompagnements */}
+        {addons_ids?.length > 0 && (
+          <div className="text-xs ml-4 mb-1">
+            + {addons_ids.map((addonId) => {
+              const addon = addons.find((a) => a.id === addonId);
+              return addon?.title;
+            }).filter(Boolean).join(", ")}
+          </div>
+        )}
+
+        {/* Notes */}
+        {show_notes && notes && (
+          <div className="text-xs ml-4 italic">
+            {t("print_receipt.notes")}: {notes}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // Section des plats
+  const ItemsSection = () => (
+    <div className="mb-6">
+      <h3 className="font-bold text-center mb-4">{t("print_receipt.order_items")}</h3>
+      
+      {cartItems.map((cartItem, index) => (
+        <OrderItem key={index} cartItem={cartItem} index={index} />
+      ))}
+      
+      <div className="border-b-2 border-black w-full"></div>
+    </div>
+  );
+
+  // Totaux
+  const TotalSection = () => (
+    <div className="mb-6">
+      <div className="space-y-2">
+        <div className="flex justify-between">
+          <span>{t("print_receipt.subtotal")}:</span>
+          <span>{currency}{Number(itemsTotal).toFixed(2)}</span>
+        </div>
+        
+        <div className="flex justify-between">
+          <span>{t("print_receipt.tax")}:</span>
+          <span>{currency}{Number(taxTotal).toFixed(2)}</span>
+        </div>
+        
+        <div className="flex justify-between">
+          <span>{t("print_receipt.service_charge")}:</span>
+          <span>{currency}{Number(serviceChargeTotal).toFixed(2)}</span>
+        </div>
+        
+        <div className="border-t-2 border-black pt-2 mt-3">
+          <div className="flex justify-between font-bold text-lg">
+            <span>{t("print_receipt.total")}:</span>
+            <span>{currency}{Number(payableTotal).toFixed(2)}</span>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  );
+
+  // Pied de page
+  const Footer = () => {
+    if (!footer) return null;
+
+    return (
+      <div className="text-center mb-6">
+        <div className="border-t border-dashed border-black w-full mb-3"></div>
+        <p className="text-sm italic">{footer}</p>
+      </div>
+    );
+  };
+
+  // Token - bien placé et simple
+  const TokenSection = () => {
+    if (!print_token || !tokenNo) return null;
+
+    return (
+      <div className="text-center mt-8">
+        <div className="border-t-2 border-black pt-6">
+          <p className="font-bold mb-4">{t("print_receipt.token_no")}</p>
+          <div className="border-4 border-black rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl font-bold">{tokenNo}</span>
+          </div>
+          <p className="text-sm">{t("print_receipt.present_token")}</p>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className={`w-[${page_format}mm] font-sans bg-white text-black p-4 mx-auto`}>
+      <RestaurantHeader />
+      <CustomHeader />
+      <OrderInfo />
+      <ItemsSection />
+      <TotalSection />
+      <Footer />
+      <TokenSection />
+      
+      {/* Mention finale */}
+      <div className="text-center mt-6 text-xs">
+        <p>{t("print_receipt.thank_you")}</p>
+      </div>
+    </div>
   );
 }
-
-
-INSERT INTO `superadmins`
-VALUES
-(
-  'kenfackjoelkevin@yahoo.com',
-  '$2a$10$cBDqMRXoLb8AKeycJIIuJ.57HrIW7QXuBiaE3KyC1aLBRKOxgwI4y',
-  'Kevin Kenfack'
-);

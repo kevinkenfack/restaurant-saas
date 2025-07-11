@@ -1,5 +1,5 @@
-import React from 'react'
-import { getDetailsForReceiptPrint } from '../helpers/ReceiptHelper'
+import React from 'react';
+import { getDetailsForReceiptPrint } from '../helpers/ReceiptHelper';
 import { getImageURL } from "../helpers/ImageHelper";
 import { useTranslation } from "react-i18next";
 
@@ -7,130 +7,234 @@ export default function PrintReceiptPage() {
   const { t } = useTranslation();
   const receiptDetails = getDetailsForReceiptPrint();
 
-  const { cartItems, deliveryType, customerType, customer, tableId, currency, storeSettings, printSettings,
-    itemsTotal,
-    taxTotal,
-    serviceChargeTotal,
-    payableTotal,
-    tokenNo,
-    orderId,
-    paymentMethod
+  if (!receiptDetails) return <div>{t("print_receipt.no_data_available")}</div>;
+
+  const {
+    cartItems = [],
+    deliveryType = '',
+    customerType = '',
+    customer = null,
+    tableId = '',
+    currency = '',
+    storeSettings = {},
+    printSettings = {},
+    itemsTotal = 0,
+    taxTotal = 0,
+    serviceChargeTotal = 0,
+    payableTotal = 0,
+    tokenNo = '',
+    orderId = '',
+    paymentMethod = ''
   } = receiptDetails;
 
   const {
-    store_name,
-    address,
-    phone,
-    email,
-    store_image : storeImage,
-  } = storeSettings;
+    store_name = '',
+    address = '',
+    phone = '',
+    email = '',
+    store_image: storeImage = '',
+  } = storeSettings || {};
 
   const {
-    page_format,
-    header,
-    footer,
-    show_notes,
-    show_store_details,
-    show_customer_details,
-    print_token,
-  } = printSettings;
+    page_format = '80',
+    header = '',
+    footer = '',
+    show_notes = false,
+    show_store_details = false,
+    show_customer_details = false,
+    print_token = false,
+  } = printSettings || {};
 
-  return (
-    <div className={`w-[${page_format}mm] font-sans px-2 bg-white text-black`}>
+  const RestaurantHeader = () => {
+    if (!show_store_details) return null;
 
-      {show_store_details == 1 ? <>
-
+    return (
+      <div className="text-center mb-6">
         {storeImage && (
           <img
             src={getImageURL(storeImage)}
-            className='w-12 h-12 mx-auto filter grayscale mt-2 rounded-xl'
-            alt="Store Image"
+            className="w-16 h-16 mx-auto mb-3 rounded-full"
+            alt="Logo"
           />
         )}
-        <p className="text-center mt-2">
-          {store_name}<br/>
-          {address}<br/>
-          {t("print_receipt.phone")}: {phone}, {t("print_receipt.email")}: {email}<br/>
-        </p>
-      </>:<></>}
+        {store_name && <h1 className="text-xl font-bold mb-2">{store_name}</h1>}
+        {(address || phone || email) && (
+          <div className="text-sm mb-3">
+            {address && <p>{address}</p>}
+            {(phone || email) && (
+              <p>
+                {phone && `${t("print_receipt.phone")}: ${phone}`}
+                {(phone && email) && ' | '}
+                {email && `${t("print_receipt.email")}: ${email}`}
+              </p>
+            )}
+          </div>
+        )}
+        <div className="border-b-2 border-black w-full"></div>
+      </div>
+    );
+  };
 
-      {header && <div className=''>
-        <div className="border-b border-dashed"></div>
-        <p className='my-2 text-center'>{header}</p>
-      </div>}
+  const CustomHeader = () => {
+    if (!header) return null;
+    return (
+      <div className="text-center mb-4">
+        <p className="font-medium text-sm">{header}</p>
+        <div className="border-b border-dashed border-black w-full mt-2"></div>
+      </div>
+    );
+  };
 
-      {
-        show_customer_details == 1 ? <>
-          <div className="border-b border-dashed"></div>
-          <p className='text-center'>{customerType}{customer&&<span>, {customer?.name}</span>}</p>
-          <p className='mt-1'>{t("print_receipt.order_type")}: {deliveryType}</p>
-        </>:<></>
-      }
+  const OrderInfo = () => (
+    <div className="mb-6">
+      <div className="flex justify-between mb-2">
+        <span className="font-medium">{t("print_receipt.receipt_no")}:</span>
+        <span>{tokenNo}-{new Date().toISOString().substring(0, 10)}</span>
+      </div>
+      <div className="flex justify-between mb-2">
+        <span className="font-medium">{t("print_receipt.date_time")}:</span>
+        <span>{new Date().toLocaleString()}</span>
+      </div>
+      {(customerType || customer?.name) && show_customer_details && (
+        <div className="flex justify-between mb-2">
+          <span className="font-medium">{t("print_receipt.customer")}:</span>
+          <span>{customerType}{customer?.name ? `, ${customer.name}` : ""}</span>
+        </div>
+      )}
+      {deliveryType && show_customer_details && (
+        <div className="flex justify-between mb-2">
+          <span className="font-medium">{t("print_receipt.order_type")}:</span>
+          <span>{deliveryType}</span>
+        </div>
+      )}
+      {paymentMethod && (
+        <div className="flex justify-between mb-2">
+          <span className="font-medium">{t("print_receipt.payment_method")}:</span>
+          <span>{paymentMethod}</span>
+        </div>
+      )}
+      <div className="border-b-2 border-black w-full mt-3"></div>
+    </div>
+  );
 
-      {
-        paymentMethod && <>
-          <div className="border-b border-dashed"></div>
-          <p className='mt-1'>{t("print_receipt.payment_method")}: {paymentMethod}</p>
-        </>
-      }
+  const OrderItem = ({ cartItem, index }) => {
+    const {
+      title = '',
+      quantity = 0,
+      notes = '',
+      price = 0,
+      addons = [],
+      addons_ids = [],
+      variant = null
+    } = cartItem;
 
-      <div className="border-b border-dashed mt-2"></div>
-      <p>{t("print_receipt.receipt_no")}: {tokenNo}-{new Date().toISOString().substring(0,10)}</p>
-      <p>{new Date().toLocaleString()}</p>
-
-      <div className="border-b border-dashed mt-2"></div>
-      {cartItems.map((cartItem, index)=>{
-
-        const {title, quantity, notes, price, tax_rate, tax_type, tax_title, addons, addons_ids, variant } = cartItem;
-
-        return <div key={index} className='w-full my-1'>
-          <p>{title} {variant && <span>- {variant.title}</span>}</p>
-          {addons_ids?.length > 0 && <p className='text-xs'>{t("print_receipt.addons")}:
-          {addons_ids.map((addonId, index)=>{
-            const addon = addons.find((a)=>a.id==addonId);
-            return addon.title;
-          })?.join(", ")}
-          </p>}
-          {(show_notes == 1 && notes) ? <p className='mb-2 text-xs'>{t("print_receipt.notes")}: {notes}</p>:<></>}
-          <div className='flex justify-between w-full'>
-            <p className='text-sm'>{quantity}x {currency}{Number(price).toFixed(2)}</p>
-            <p className='text-end'>{currency}{Number(quantity*price).toFixed(2)}</p>
+    return (
+      <div className="mb-4">
+        <div className="flex justify-between items-start mb-1">
+          <div className="flex-1">
+            <span className="font-medium">
+              {title}
+              {variant?.title && ` - ${variant.title}`}
+            </span>
+          </div>
+          <div className="text-right ml-4">
+            <span className="font-medium">
+              {currency}{Number(quantity * price).toFixed(2)}
+            </span>
           </div>
         </div>
-      })}
-      <div className="border-b border-dashed mt-2"></div>
-
-      <div className="flex justify-between">
-        <p>{t("print_receipt.subtotal")}: </p>
-        <p>{currency}{Number(itemsTotal).toFixed(2)}</p>
-      </div>
-      <div className="flex justify-between">
-        <p>{t("print_receipt.tax")}: </p>
-        <p>{currency}{Number(taxTotal).toFixed(2)}</p>
-      </div>
-      <div className="flex justify-between">
-        <p>{t("print_receipt.service_charge")}: </p>
-        <p>{currency}{Number(serviceChargeTotal).toFixed(2)}</p>
-      </div>
-      <div className="flex justify-between text-xl font-bold">
-        <p>{t("print_receipt.total")}: </p>
-        <p>{currency}{Number(payableTotal).toFixed(2)}</p>
-      </div>
-
-      <div className="border-b border-dashed mt-2"></div>
-
-      {footer && <div className='my-2'>
-        <p className='my-2 text-center'>{footer}</p>
-      </div>}
-
-
-      {print_token == 1 && tokenNo ? <div className='border-t border-dashed mt-4 py-12 text-center bg-white'>
-        {t("print_receipt.token_no")}
-        <div className="w-28 h-28 mx-auto border-black border-2 text-black flex items-center justify-center font-bold text-4xl rounded-full">
-          {tokenNo}
+        <div className="flex justify-between text-sm mb-2">
+          <span>{quantity} x {currency}{Number(price).toFixed(2)}</span>
         </div>
-      </div>:<></>}
+        {Array.isArray(addons_ids) && addons_ids.length > 0 && (
+          <div className="text-xs ml-4 mb-1">
+            + {addons_ids.map((addonId) => {
+              const addon = addons.find((a) => a.id === addonId);
+              return addon?.title;
+            }).filter(Boolean).join(", ")}
+          </div>
+        )}
+        {show_notes && notes && (
+          <div className="text-xs ml-4 italic">
+            {t("print_receipt.notes")}: {notes}
+          </div>
+        )}
+      </div>
+    );
+  };
 
+  const ItemsSection = () => (
+    <div className="mb-6">
+      {cartItems.length > 0 && <h3 className="font-bold text-center mb-4">{t("print_receipt.order_items")}</h3>}
+      {cartItems.map((cartItem, index) => (
+        <OrderItem key={index} cartItem={cartItem} index={index} />
+      ))}
+      <div className="border-b-2 border-black w-full"></div>
     </div>
-  )
+  );
+
+  const TotalSection = () => (
+    <div className="mb-6">
+      <div className="space-y-2">
+        <div className="flex justify-between">
+          <span>{t("print_receipt.subtotal")}:</span>
+          <span>{currency}{Number(itemsTotal).toFixed(2)}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>{t("print_receipt.tax")}:</span>
+          <span>{currency}{Number(taxTotal).toFixed(2)}</span>
+        </div>
+        <div className="flex justify-between">
+          <span>{t("print_receipt.service_charge")}:</span>
+          <span>{currency}{Number(serviceChargeTotal).toFixed(2)}</span>
+        </div>
+        <div className="border-t-2 border-black pt-2 mt-3">
+          <div className="flex justify-between font-bold text-lg">
+            <span>{t("print_receipt.total")}:</span>
+            <span>{currency}{Number(payableTotal).toFixed(2)}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const Footer = () => {
+    if (!footer) return null;
+    return (
+      <div className="text-center mb-6">
+        <div className="border-t border-dashed border-black w-full mb-3"></div>
+        <p className="text-sm italic">{footer}</p>
+      </div>
+    );
+  };
+
+  const TokenSection = () => {
+    if (!print_token || !tokenNo) return null;
+    return (
+      <div className="text-center mt-8">
+        <div className="border-t-2 border-black pt-6">
+          <p className="font-bold mb-4">{t("print_receipt.token_no")}</p>
+          <div className="border-4 border-black rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl font-bold">{tokenNo}</span>
+          </div>
+          <p className="text-sm">{t("print_receipt.present_token")}</p>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className={`w-[${page_format}mm] font-sans bg-white text-black p-4 mx-auto`}>
+      <RestaurantHeader />
+      <CustomHeader />
+      <OrderInfo />
+      <ItemsSection />
+      <TotalSection />
+      <Footer />
+      <TokenSection />
+      <div className="text-center mt-6 text-xs">
+        <p>{t("print_receipt.thank_you")}</p>
+      </div>
+    </div>
+  );
 }

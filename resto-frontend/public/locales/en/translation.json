@@ -210,18 +210,24 @@
     "token_no": "Token No."
   },
   "print_receipt": {
-    "phone": "Phone",
-    "email": "Email",
+    "receipt_no": "Receipt No",
+    "date_time": "Date & Time",
+    "customer": "Customer",
     "order_type": "Order Type",
     "payment_method": "Payment Method",
-    "receipt_no": "Receipt No.",
-    "addons": "Addons",
-    "notes": "Notes",
-    "subtotal": "Subtotal (excl. tax)",
+    "phone": "Phone",
+    "email": "Email",
+    "order_items": "ORDER",
+    "notes": "Note",
+    "addons": "Add-ons",
+    "subtotal": "Subtotal",
     "tax": "Tax",
     "service_charge": "Service Charge",
-    "total": "Total",
-    "token_no": "Token No."
+    "total": "TOTAL",
+    "token_no": "ORDER NUMBER",
+    "present_token": "Present this number",
+    "thank_you": "Thank you for your visit",
+    "no_data_available": "No data available!"
   },
   "payment_success": {
     "title": "Success!",

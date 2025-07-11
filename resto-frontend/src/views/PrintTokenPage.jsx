@@ -7,51 +7,34 @@ export default function PrintTokenPage() {
   const receiptDetails = getDetailsForReceiptPrint();
 
   const {
-    // cartItems,
-    // deliveryType,
-    // customerType,
-    // customer,
-    // tableId,
-    // currency,
-    storeSettings,
-    printSettings,
-    // itemsTotal,
-    // taxTotal,
-    // payableTotal,
-    tokenNo,
-    // orderId,
-  } = receiptDetails;
-
-  // const {
-  //   store_name,
-  //   address,
-  //   phone,
-  //   email,
-  //   image: storeImage,
-  // } = storeSettings;
-
-  // const {
-  //   page_format,
-  //   header,
-  //   footer,
-  //   show_notes,
-  //   show_store_details,
-  //   show_customer_details,
-  //   print_token,
-  // } = printSettings;
+    storeSettings = {},
+    printSettings = {},
+    tokenNo = ''
+  } = receiptDetails || {};
 
   const page_format = printSettings?.page_format || 80;
 
+  if (!tokenNo) return null;
+
   return (
-    <div className={`w-[${page_format}mm] font-sans px-2 bg-white text-black`}>
-      <div className="mt-4 py-8 text-center">
-        {t("print_token.token_no")}
-        <div className="w-28 h-28 mx-auto border-black border-2 text-black flex items-center justify-center font-bold text-4xl rounded-full">
-          {tokenNo}
+    <div className={`w-[${page_format}mm] font-sans bg-white text-black p-4 mx-auto`}>
+      <div className="text-center mt-8">
+        <div className="border-t-2 border-black pt-6">
+          <p className="font-bold mb-4">{t("print_receipt.token_no")}</p>
+          <div className="border-4 border-black rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl font-bold">{tokenNo}</span>
+          </div>
+          <p className="text-sm">{t("print_receipt.present_token")}</p>
         </div>
       </div>
 
-      <p className="mt-2 text-center">{new Date().toLocaleString('en-US', {hour12: true, dateStyle: "long", timeStyle: "short"})}</p>
+      <p className="mt-6 text-center text-xs text-gray-700">
+        {new Date().toLocaleString('en-US', {
+          hour12: true,
+          dateStyle: "long",
+          timeStyle: "short"
+        })}
+      </p>
     </div>
   );
 }
