@@ -487,17 +487,17 @@ export default function MenuItemViewPage() {
     const qty = parseFloat(quantityRef.current?.value);
 
     if (!selectedRecipeData.ingredient) {
-      toast.error("Please select an ingredient.");
+      toast.error(t('menu_item.please_select_ingredient'));
       return;
     }
 
     if (isNaN(qty) || qty <= 0) {
-      toast.error("Please enter a valid quantity.");
+      toast.error(t('menu_item.please_enter_valid_qty'));
       return;
     }
 
     if ((activeAddRecipeItemTab === "variant" || activeAddRecipeItemTab === "addon") && !selectedRecipeData.selectedBase) {
-      toast.error("Please select a variant or addon.");
+      toast.error(t('menu_item.please_select_variant_or_addon'));
       return;
     }
 
@@ -887,7 +887,7 @@ export default function MenuItemViewPage() {
           <div className={`collapse collapse-arrow mt-6 border dark:rounded-lg ${theme === 'black' ? 'border-restro-border-dark-mode' : 'bg-gray-50 border-restro-green-light'}`}>
             <input type="checkbox" />
             <div className="collapse-title font-medium">
-              Recipe Items
+              {t('menu_item.show_recipe')}
             </div>
             <div className="collapse-content flex flex-col">
               {
@@ -946,7 +946,7 @@ export default function MenuItemViewPage() {
                   </div>
                 })
               }
-              <button onClick={()=>document.getElementById('modal-add-recipe-item').showModal()} className="btn btn-sm mt-4 rounded-xl bg-restro-bg-gray hover:bg-restro-button-hover">Add Item</button>
+              <button onClick={()=>document.getElementById('modal-add-recipe-item').showModal()} className="btn btn-sm mt-4 rounded-xl bg-restro-bg-gray hover:bg-restro-button-hover">{t('menu_item.add_recipe')}</button>
             </div>
           </div>
           {/* recipe / inventory */}
@@ -1073,11 +1073,12 @@ export default function MenuItemViewPage() {
         id="modal-add-recipe-item"
         className="modal modal-bottom sm:modal-middle">
         <div className='modal-box border border-restro-border-green dark:rounded-2xl'>
-          <h3 className="font-bold text-lg">Add New Recipe Item</h3>
+          <h3 className="font-bold text-lg">{t('menu_item.add_new_recipe_item')}</h3>
 
           {/* Tabs */}
           <div role="tablist" className="tabs my-4">
             {["item", "variant", "addon"].map((tab) => (
+              
               <a
                 key={tab}
                 role="tab"
@@ -1098,7 +1099,7 @@ export default function MenuItemViewPage() {
                   setActiveAddRecipeItemTab(tab);
                 }}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+               {t(`menu_item.tab_${tab}`) || tab.charAt(0).toUpperCase() + tab.slice(1)}
               </a>
             ))}
           </div>
@@ -1106,8 +1107,8 @@ export default function MenuItemViewPage() {
           {/* Note */}
           {activeAddRecipeItemTab !== "item" && (
             <p className="text-xs text-gray-500 mb-4">
-              <strong>Note:</strong> Add only those extra inventory items that are{" "}
-              <em>not included</em> in the base item recipe.
+              <strong>{t('menu_item.note')}:</strong> {t('menu_item.add_only_extra_inventory_items')}{" "}
+              <em>{t('menu_item.not_included')}</em> {t('menu_item.in_base_item_recipe')}
             </p>
           )}
 
@@ -1119,8 +1120,8 @@ export default function MenuItemViewPage() {
                 className="mb-1 block text-gray-500 text-sm"
               >
                 {activeAddRecipeItemTab === "variant"
-                  ? "Select Variant"
-                  : "Select Addon"}
+                  ? t('menu_item.select_variant')
+                  : t('menu_item.select_addon')}
               </label>
               <AsyncSelect
                 key={`base-${activeAddRecipeItemTab}`}
@@ -1133,7 +1134,7 @@ export default function MenuItemViewPage() {
                   )
                 }
                 isClearable
-                placeholder="Type to search..."
+                placeholder={t('menu_item.type_to_search')}
                 onChange={(v) => {
                   setSelectedRecipeData((prev) => ({
                     ...prev,
@@ -1141,7 +1142,7 @@ export default function MenuItemViewPage() {
                   }));
                 }}
                 value={selectedRecipeData.selectedBase}
-                noOptionsMessage={() => "No results found"}
+                noOptionsMessage={() => t('menu_item.no_results_found')}
                 styles={{
               control: (base) => ({
                 ...base,
@@ -1195,7 +1196,7 @@ export default function MenuItemViewPage() {
               htmlFor="inventorySelect"
               className="mb-1 block text-gray-500 text-sm"
             >
-              Select Inventory Item
+              {t('menu_item.select_inventory_item')}
             </label>
             <AsyncSelect
               key={`inventory-${activeAddRecipeItemTab}`}
@@ -1208,12 +1209,12 @@ export default function MenuItemViewPage() {
                 )
               }
               isClearable
-              placeholder="Type to search..."
+              placeholder={t('menu_item.type_to_search')}
               onChange={(v) =>
                 setSelectedRecipeData((prev) => ({ ...prev, ingredient: v }))
               }
               value={selectedRecipeData?.ingredient}
-              noOptionsMessage={() => "No results found"}
+              noOptionsMessage={() => t('menu_item.no_results_found')}
               className="overflow-visible "
               styles={{
               control: (base) => ({
@@ -1267,7 +1268,7 @@ export default function MenuItemViewPage() {
               htmlFor="recipe_item_qty"
               className="mb-1 block text-gray-500 text-sm"
             >
-              Qty.
+              {t('menu_item.qty')}
               {selectedRecipeData?.ingredient?.unit != null && (
                 <span> (in {selectedRecipeData.ingredient.unit})</span>
               )}
@@ -1276,7 +1277,7 @@ export default function MenuItemViewPage() {
               type="number"
               ref={quantityRef}
               className='text-sm w-full rounded-lg px-4 py-2 border border-restro-border-green dark:bg-black focus:outline-restro-border-green bg-restro-gray'
-              placeholder="Enter Qty."
+              placeholder={t('menu_item.enter_qty')}
               step="any"
               min="0"
             />
@@ -1286,14 +1287,14 @@ export default function MenuItemViewPage() {
           <div className="modal-action">
             <form method="dialog">
               <button className='btn transition active:scale-95 hover:shadow-lg px-4 py-3 flex-1 items-center justify-center align-center rounded-xl border border-restro-border-green bg-restro-card-bg hover:bg-restro-button-hover text-restro-text'>
-                Close
+                {t('menu_item.close')}
               </button>
               <button
                 type="button"
                 onClick={btnAddRecipeItem}
                 className='rounded-xl transition active:scale-95 hover:shadow-lg px-4 py-3 text-white ml-3 border border-restro-border-green bg-restro-green hover:bg-restro-green-button-hover'
               >
-                Save
+                {t('menu_item.save')}
               </button>
             </form>
           </div>
@@ -1304,7 +1305,7 @@ export default function MenuItemViewPage() {
       {/* recipe edit dialog */}
       <dialog id="modal-edit-recipe-item" className="modal modal-bottom sm:modal-middle">
         <div className='modal-box border border-restro-border-green dark:rounded-2xl'>
-          <h3 className="font-bold text-lg">Edit Recipe Item</h3>
+          <h3 className="font-bold text-lg">{t('menu_item.edit_recipe_item')}</h3>
 
           {/* Base Type Tabs */}
           <div role="tablist" className="tabs my-4">
@@ -1335,8 +1336,8 @@ export default function MenuItemViewPage() {
           {/* Note */}
           {editRecipeData.baseType !== "item" && (
             <p className="text-xs text-gray-500 mb-4">
-              <strong>Note:</strong> Add only those extra inventory items that are{" "}
-              <em>not included</em> in the base item recipe.
+              <strong>{t('menu_item.note')}:</strong> {t('menu_item.add_only_extra_inventory_items')}{" "}
+              <em>{t('menu_item.not_included')}</em> {t('menu_item.in_base_item_recipe')}
             </p>
           )}
 
@@ -1344,7 +1345,7 @@ export default function MenuItemViewPage() {
           {(editRecipeData.baseType === "variant" || editRecipeData.baseType === "addon") && (
             <div className="mb-4">
               <label className="mb-1 block text-gray-500 text-sm">
-                {editRecipeData.baseType === "variant" ? "Select Variant" : "Select Addon"}
+                {editRecipeData.baseType === t('menu_item.variant') ? t('menu_item.select_variant') : t('menu_item.select_addon')}
               </label>
               <AsyncSelect
                 defaultOptions={getBaseIdOptions()}
@@ -1357,7 +1358,7 @@ export default function MenuItemViewPage() {
                 }
 
                 isClearable
-                placeholder="Type to search..."
+                placeholder={t('menu_item.type_to_search')}
                 onChange={(v) => {
                   setEditRecipeData((prev) => ({
                     ...prev,
@@ -1365,7 +1366,7 @@ export default function MenuItemViewPage() {
                   }));
                 }}
                 value={editRecipeData.selectedBase}
-                noOptionsMessage={() => "No results found"}
+                noOptionsMessage={() => t('menu_item.no_results_found')}
                 styles={{
               control: (base) => ({
                 ...base,
@@ -1415,7 +1416,7 @@ export default function MenuItemViewPage() {
 
           {/* Ingredient Selector */}
           <div className="mb-4">
-            <label className="mb-1 block text-gray-500 text-sm">Select Inventory Item</label>
+            <label className="mb-1 block text-gray-500 text-sm">{t('menu_item.select_inventory_item')}</label>
             <AsyncSelect
               defaultOptions={getIngredientsOptions()}
               loadOptions={(inputValue, callback) =>
@@ -1426,12 +1427,12 @@ export default function MenuItemViewPage() {
                 )
               }
               isClearable
-              placeholder="Type to search..."
+              placeholder={t('menu_item.type_to_search')}
               onChange={(v) =>
                 setEditRecipeData((prev) => ({ ...prev, ingredient: v }))
               }
               value={editRecipeData.ingredient}
-              noOptionsMessage={() => "No results found"}
+              noOptionsMessage={() => t('menu_item.no_results_found')}
               styles={{
               control: (base) => ({
                 ...base,
@@ -1481,7 +1482,7 @@ export default function MenuItemViewPage() {
           {/* Quantity Field */}
           <div className="mb-4">
             <label className="mb-1 block text-gray-500 text-sm">
-              Qty.
+              {t('menu_item.qty')}
               {editRecipeData?.ingredient?.unit != null && (
                 <span> (in {editRecipeData.ingredient.unit})</span>
               )}
@@ -1490,7 +1491,7 @@ export default function MenuItemViewPage() {
               type="number"
               ref={quantityEditRef}
               className="text-sm w-full border bg-restro-gray rounded-lg px-4 py-2 dark:bg-black border-restro-bg-gray outline-restro-green-light"
-              placeholder="Enter Qty."
+              placeholder={t('menu_item.enter_qty')}
               step="any"
               min="0"
               defaultValue={editRecipeData.quantity}
@@ -1501,14 +1502,14 @@ export default function MenuItemViewPage() {
           <div className="modal-action">
             <form method="dialog">
               <button className='btn transition active:scale-95 hover:shadow-lg px-4 py-3 items-center justify-center align-center rounded-xl border border-restro-border-green bg-restro-card-bg hover:bg-restro-button-hover text-restro-text'>
-                Close
+                {t('menu_item.close')}
               </button>
               <button
                 type="button"
                 onClick={btnUpdateRecipeItem}
                 className='rounded-xl transition active:scale-95 hover:shadow-lg px-4 py-3 text-white ml-3 border border-restro-border-green bg-restro-green hover:bg-restro-green-button-hover'
               >
-                Update
+                {t('menu_item.update')}
               </button>
             </form>
           </div>
