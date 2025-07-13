@@ -125,15 +125,15 @@
     background: #989898;
 }
 
-/* Masquer la scrollbar sur tous les navigateurs modernes
+/* Masquer la scrollbar sur tous les navigateurs moderne
 body, * {
-  scrollbar-width: none;         
-  -ms-overflow-style: none;      
-}
-body::-webkit-scrollbar, *::-webkit-scrollbar {
-  display: none;
-}
-  */
+    scrollbar-width: none;
+    -ms-overflow-style: none;       
+  }
+  body::-webkit-scrollbar, ::-webkit-scrollbar {
+    display: none;
+  }
+*/
 
 /* Left Gradient Overlay */
 .custom-scroll-wrapper {
