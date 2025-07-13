@@ -64,7 +64,7 @@ export default {
       }
     },
   },
-  plugins: [require('tailwind-scrollbar'),],
+  plugins: [require("daisyui"), require('tailwind-scrollbar'),],
   daisyui: {
     themes: ["light", "black"],
     darkTheme: "black",
