@@ -200,6 +200,9 @@
     "addons": "Suppléments",
     "all_rights_reserved": "Tous droits reservés",
     "add_to_cart": "AJOUTER AU PANIER",
+    "no_items_in_category": "Aucun menu dans cette catégorie !",
+    "no_items_found": "Aucun article trouvé !",
+    "category_empty": "Cette catégorie est vide ! Veuillez la consulter ultérieurement.",
     "price_disclaimer": "Les prix affichés peuvent inclure/exclure les taxes applicables ; veuillez consulter la facture finale pour le montant du paiement."
   },
   "profile": {

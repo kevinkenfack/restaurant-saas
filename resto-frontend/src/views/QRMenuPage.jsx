@@ -424,170 +424,203 @@ export default function QRMenuPage() {
         {/* categories */}
 
         {/* menu items */}
-        <div className="p-2 w-full max-w-5xl mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-          {menuItems
-          .filter((menuItem) => menuItem.is_enabled)
-            .filter((item) => {
-              const { category_id } = item;
-              if (currentCategory == "all") {
-                return !category_id || categories.find(category => category.id === category_id && category.is_enabled);
-              }
-              if (currentCategory == category_id) {
-                return true;
-              }
-              return false;
-            })
-            .filter((menuItem) => {
-              if (!searchQuery) {
-                return true;
-              }
-              return new String(menuItem.title)
-                .trim()
-                .toLowerCase()
-                .includes(searchQuery.trim().toLowerCase());
-            })
-            .map((item, i) => {
-              const {
-                addons,
-                variants,
-                category_id,
-                category_title,
-                id,
-                image,
-                price,
-                tax_id,
-                tax_rate,
-                tax_title,
-                tax_type,
-                title,
-                description,
-              } = item;
-              // addon {id, item_id, title, price}
-              // variant {id, item_id, title, price}
+        <div className="p-2 w-full max-w-5xl mx-auto mt-4">
+          {(() => {
+            const filteredItems = menuItems
+              .filter((menuItem) => menuItem.is_enabled)
+              .filter((item) => {
+                const { category_id } = item;
+                if (currentCategory == "all") {
+                  return !category_id || categories.find(category => category.id === category_id && category.is_enabled);
+                }
+                if (currentCategory == category_id) {
+                  return true;
+                }
+                return false;
+              })
+              .filter((menuItem) => {
+                if (!searchQuery) {
+                  return true;
+                }
+                return new String(menuItem.title)
+                  .trim()
+                  .toLowerCase()
+                  .includes(searchQuery.trim().toLowerCase());
+              });
 
-              const imageURL = getImageURL(image);
-              const hasVariantOrAddon =
-                variants?.length > 0 || addons?.length > 0;
-
+            if (filteredItems.length === 0) {
               return (
-                <div
-                  key={id}
-                  className={`group bg-white dark:bg-restro-card-bg rounded-2xl shadow-xl border border-restro-border-green hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-stretch p-3 md:p-4 ${!is_qr_order_enabled ? "hover:bg-gray-100 dark:hover:bg-restro-button-hover cursor-pointer" : ""}`}
-                  onClick={
-                    !is_qr_order_enabled
-                      ? () =>
-                          btnOpenMenuItemDetail(
-                            addons,
-                            variants,
-                            category_id,
-                            category_title,
-                            id,
-                            image,
-                            price,
-                            tax_id,
-                            tax_rate,
-                            tax_title,
-                            tax_type,
-                            title
-                          )
-                      : undefined
-                  }
-                >
-                  {/* Image en haut, bien large, carré, coins arrondis */}
-                  <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-gray-100 dark:bg-restro-bg-gray shadow mb-3 flex items-center justify-center">
-                    {image ? (
-                      <img
-                        src={imageURL}
-                        alt={title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <IconCarrot className="text-gray-400 dark:text-gray-500" size={48} />
-                    )}
-                    {/* Badge customisable */}
-                    {is_qr_order_enabled && (variants.length > 0 || addons.length > 0) && (
-                      <div className="absolute top-2 right-2 bg-restro-green text-white text-xs px-2 py-1 rounded-full shadow font-bold">
-                        {t("qr_menu.customisable")}
-                      </div>
-                    )}
+                <div className="flex flex-col items-center justify-center py-12 px-4">
+                  <div className="w-24 h-24 bg-gray-100 dark:bg-restro-bg-gray rounded-full flex items-center justify-center mb-4">
+                    <IconCarrot className="text-gray-400 dark:text-gray-500" size={48} />
                   </div>
-                  {/* Infos sous l'image */}
-                  <div className="flex-1 min-w-0 flex flex-col justify-between px-1 pb-1">
-                    <div className="flex items-center justify-between mb-1">
-                      <h3 className="text-base md:text-lg font-bold text-gray-800 dark:text-white line-clamp-2">
-                        {title}
-                      </h3>
-                      <button
-                        type="button"
-                        className="ml-2 bg-gray-100/80 dark:bg-black/60 rounded-full p-1 shadow text-restro-green dark:text-white hover:bg-restro-green hover:text-white transition"
-                        onClick={e => {
-                          e.stopPropagation();
-                          setInfoMenuItem(item);
-                          setTimeout(() => {
-                            if (infoMenuModalRef.current) infoMenuModalRef.current.showModal();
-                          }, 0);
-                        }}
-                        title={t('qr_menu.see_more')}
-                        aria-label={t('qr_menu.see_more')}
-                      >
-                        <IconInfoCircle size={18} className="text-inherit" />
-                      </button>
-                    </div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-lg font-bold text-restro-green">
-                        {currency}{price}
-                      </span>
-                      {category_id && (
-                        <span className="px-2 py-1 bg-gray-100 dark:bg-restro-bg-gray text-gray-600 dark:text-gray-300 rounded-full text-xs font-medium ml-2">
-                          {category_title}
-                        </span>
-                      )}
-                    </div>
-                    {description && (
-                      <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm line-clamp-2 mb-2">
-                        {description}
-                      </p>
-                    )}
-                    {(variants.length > 0 || addons.length > 0) && (
-                      <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
-                        {variants.length > 0 && (
-                          <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
-                            {variants.length} {t("qr_menu.variants_available")}
-                          </span>
-                        )}
-                        {addons.length > 0 && (
-                          <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
-                            {addons.length} {t("qr_menu.addons_available")}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    {is_qr_order_enabled && (
-                      <div className="pt-1 pb-1">
-                        <button
-                          className="w-full bg-restro-green text-white px-3 py-2 rounded-lg font-bold shadow hover:shadow-lg active:scale-95 transition-all duration-300 text-xs md:text-sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (hasVariantOrAddon) {
-                              setState({
-                                ...state,
-                                currentItem: item,
-                                currentItemId: id,
-                              });
-                              document.getElementById("modal_item_detail").showModal();
-                            } else {
-                              addItemToCart(item);
-                            }
-                          }}
-                        >
-                          {t("qr_menu.add")}
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                  <h3 className="text-lg md:text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    {searchQuery 
+                      ? t("qr_menu.no_items_found") 
+                      : currentCategory === "all" 
+                        ? t("qr_menu.no_menu_available") 
+                        : t("qr_menu.no_items_in_category")
+                    }
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm text-center max-w-md">
+                    {searchQuery 
+                      ? t("qr_menu.try_different_search") 
+                      : currentCategory === "all" 
+                        ? t("qr_menu.menu_coming_soon") 
+                        : t("qr_menu.category_empty")
+                    }
+                  </p>
                 </div>
               );
-            })}
+            }
+
+            return (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {filteredItems.map((item, i) => {
+                  const {
+                    addons,
+                    variants,
+                    category_id,
+                    category_title,
+                    id,
+                    image,
+                    price,
+                    tax_id,
+                    tax_rate,
+                    tax_title,
+                    tax_type,
+                    title,
+                    description,
+                  } = item;
+                  // addon {id, item_id, title, price}
+                  // variant {id, item_id, title, price}
+
+                  const imageURL = getImageURL(image);
+                  const hasVariantOrAddon =
+                    variants?.length > 0 || addons?.length > 0;
+
+                  return (
+                    <div
+                      key={id}
+                      className={`group bg-white dark:bg-restro-card-bg rounded-2xl shadow-xl border border-restro-border-green hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-stretch p-3 md:p-4 ${!is_qr_order_enabled ? "hover:bg-gray-100 dark:hover:bg-restro-button-hover cursor-pointer" : ""}`}
+                      onClick={
+                        !is_qr_order_enabled
+                          ? () =>
+                              btnOpenMenuItemDetail(
+                                addons,
+                                variants,
+                                category_id,
+                                category_title,
+                                id,
+                                image,
+                                price,
+                                tax_id,
+                                tax_rate,
+                                tax_title,
+                                tax_type,
+                                title
+                              )
+                          : undefined
+                      }
+                    >
+                      {/* Image en haut, bien large, carré, coins arrondis */}
+                      <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-gray-100 dark:bg-restro-bg-gray shadow mb-3 flex items-center justify-center">
+                        {image ? (
+                          <img
+                            src={imageURL}
+                            alt={title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <IconCarrot className="text-gray-400 dark:text-gray-500" size={48} />
+                        )}
+                        {/* Badge customisable */}
+                        {is_qr_order_enabled && (variants.length > 0 || addons.length > 0) && (
+                          <div className="absolute top-2 right-2 bg-restro-green text-white text-xs px-2 py-1 rounded-full shadow font-bold">
+                            {t("qr_menu.customisable")}
+                          </div>
+                        )}
+                      </div>
+                      {/* Infos sous l'image */}
+                      <div className="flex-1 min-w-0 flex flex-col justify-between px-1 pb-1">
+                        <div className="flex items-center justify-between mb-1">
+                          <h3 className="text-base md:text-lg font-bold text-gray-800 dark:text-white line-clamp-2">
+                            {title}
+                          </h3>
+                          <button
+                            type="button"
+                            className="ml-2 bg-gray-100/80 dark:bg-black/60 rounded-full p-1 shadow text-restro-green dark:text-white hover:bg-restro-green hover:text-white transition"
+                            onClick={e => {
+                              e.stopPropagation();
+                              setInfoMenuItem(item);
+                              setTimeout(() => {
+                                if (infoMenuModalRef.current) infoMenuModalRef.current.showModal();
+                              }, 0);
+                            }}
+                            title={t('qr_menu.see_more')}
+                            aria-label={t('qr_menu.see_more')}
+                          >
+                            <IconInfoCircle size={18} className="text-inherit" />
+                          </button>
+                        </div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-lg font-bold text-restro-green">
+                            {currency}{price}
+                          </span>
+                          {category_id && (
+                            <span className="px-2 py-1 bg-gray-100 dark:bg-restro-bg-gray text-gray-600 dark:text-gray-300 rounded-full text-xs font-medium ml-2">
+                              {category_title}
+                            </span>
+                          )}
+                        </div>
+                        {description && (
+                          <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm line-clamp-2 mb-2">
+                            {description}
+                          </p>
+                        )}
+                        {(variants.length > 0 || addons.length > 0) && (
+                          <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
+                            {variants.length > 0 && (
+                              <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
+                                {variants.length} {t("qr_menu.variants_available")}
+                              </span>
+                            )}
+                            {addons.length > 0 && (
+                              <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
+                                {addons.length} {t("qr_menu.addons_available")}
+                              </span>
+                            )}
+                          </div>
+                        )}
+                        {is_qr_order_enabled && (
+                          <div className="pt-1 pb-1">
+                            <button
+                              className="w-full bg-restro-green text-white px-3 py-2 rounded-lg font-bold shadow hover:shadow-lg active:scale-95 transition-all duration-300 text-xs md:text-sm"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                if (hasVariantOrAddon) {
+                                  setState({
+                                    ...state,
+                                    currentItem: item,
+                                    currentItemId: id,
+                                  });
+                                  document.getElementById("modal_item_detail").showModal();
+                                } else {
+                                  addItemToCart(item);
+                                }
+                              }}
+                            >
+                              {t("qr_menu.add")}
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })()}
         </div>
         {/* menu items */}
 
