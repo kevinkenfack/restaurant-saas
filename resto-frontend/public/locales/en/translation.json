@@ -199,7 +199,8 @@
     "variants": "Variants",
     "addons": "Addons",
     "add_to_cart": "ADD TO CART",
-    "price_disclaimer": "Shown prices might be inclusive/exclusive of applicable taxes; refer to the final bill for payment amount."
+    "price_disclaimer": "Shown prices might be inclusive/exclusive of applicable taxes; refer to the final bill for payment amount.",
+    "all_rights_reserved": "All rights reserved"
   },
   "profile": {
     "title": "My Profile",

@@ -775,7 +775,3 @@ export default function QRMenuPage() {
     </div>
   );
 }
-
-<div className="overflow-x-auto scrollbar scrollbar-thin scrollbar-thumb-restro-green scrollbar-track-gray-200">
-  {/* ... */}
-</div>

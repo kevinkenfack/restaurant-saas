@@ -591,7 +591,16 @@ export default function QRMenuPage() {
         </div>
         {/* menu items */}
 
-        {is_qr_order_enabled && <div className="h-28" />}
+        {is_qr_order_enabled && <div className="h-10" />}
+
+        {/* Copyright en bas de page */}
+        <div className="w-full max-w-5xl mx-auto px-4 py-8">
+          <div className="text-center">
+            <p className="text-gray-500 dark:text-gray-400 text-sm">
+              © {new Date().getFullYear()} {storeName}. {t("qr_menu.all_rights_reserved")}
+            </p>
+          </div>
+        </div>
 
         {is_qr_order_enabled && cartItems.length > 0 && (
           <div
