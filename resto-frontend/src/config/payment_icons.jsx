@@ -14,5 +14,5 @@ export const PAYMENT_ICONS = {
     'bank': <IconBuildingBank stroke={iconStroke} />,
     'discount': <IconDiscount stroke={iconStroke} />,
     'Orange Money': <img src={OrangeMoney} alt="Orange Money" style={{ height: '30px'}} />,
-    'Mobile Money': <img src={MobileMoney} alt="Mobile Money" style={{ height: '25px'}} />,
+    'Mobile Money': <img src={MobileMoney} alt="Mobile Money" style={{ height: '30px'}} />,
 }
