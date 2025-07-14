@@ -8,6 +8,7 @@ import {
   IconShare,
   IconX,
   IconInfoCircle,
+  IconCopy,
 } from "@tabler/icons-react";
 import React, { useEffect, useState, useRef } from "react";
 import { iconStroke } from "../config/config";
@@ -138,8 +139,8 @@ export default function QRMenuPage() {
 
   const btnShare = async () => {
     const shareData = {
-      title: t("qr_menu.menu"),
-      text: t("qr_menu.menu"),
+      title: `${t("qr_menu.menu")} - ${storeName}`,
+      text: `${t("qr_menu.menu_of", { name: storeName })}`,
       url: QR_MENU_LINK,
     };
 
@@ -368,7 +369,7 @@ export default function QRMenuPage() {
 
         {/* categories */}
         <div className="w-full max-w-5xl mx-auto mt-2 pb-2">
-          <div className="flex gap-2 overflow-x-auto px-2 py-2 bg-white/80 dark:bg-black/80 backdrop-blur rounded-2xl border border-restro-border-green shadow">
+          <div className="flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-restro-green scrollbar-track-gray-100 px-2 py-2 bg-white/80 dark:bg-black/80 backdrop-blur rounded-2xl border border-restro-border-green shadow">
             <label className="min-w-fit">
               <input
                 onChange={(e) => {
@@ -670,6 +671,18 @@ export default function QRMenuPage() {
               <div className="flex gap-3">
                 <button className="btn btn-circle bg-restro-green text-white border-0 hover:shadow-lg" onClick={btnShare}>
                   <IconShare stroke={iconStroke} />
+                </button>
+                <button
+                  className="btn btn-circle bg-gray-100 dark:bg-restro-bg-gray border-0 hover:bg-gray-200 dark:hover:bg-restro-button-hover"
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    await navigator.clipboard.writeText(QR_MENU_LINK);
+                    toast.success(t("qr_menu.menu_link_copied"));
+                  }}
+                  title={t("qr_menu.copy_link")}
+                  aria-label={t("qr_menu.copy_link")}
+                >
+                  <IconCopy stroke={iconStroke} size={20} />
                 </button>
                 <form method="dialog">
                   <button className="btn btn-circle bg-gray-100 dark:bg-restro-bg-gray border-0 hover:bg-gray-200 dark:hover:bg-restro-button-hover">

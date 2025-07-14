@@ -187,6 +187,8 @@
     "menu": "Menu",
     "see_more": "Fiche du menu",
     "menu_link_copied": "Lien du menu copié !",
+    "copy_link": "Copier le lien",
+    "menu_of": "Menu de {{name}}",
     "search_placeholder": "Rechercher dans le menu...",
     "all": "Tout",
     "add": "AJOUTER",

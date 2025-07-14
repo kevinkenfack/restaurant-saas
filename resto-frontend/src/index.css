@@ -125,7 +125,7 @@
     background: #989898;
 }
 
-/* Masquer la scrollbar sur tous les navigateurs moderne
+/* Masquer la scrollbar sur tous les navigateurs moderne */
 body, * {
     scrollbar-width: none;
     -ms-overflow-style: none;       
@@ -133,7 +133,27 @@ body, * {
   body::-webkit-scrollbar, ::-webkit-scrollbar {
     display: none;
   }
-*/
+
+/* Scrollbar custom pour la barre des catégories (horizontale) */
+.scrollbar-thin::-webkit-scrollbar {
+    height: 3px;
+    background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #88888888;
+    border-radius: 100px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+    border: 1px solid #e5e7eb; /* gris clair Tailwind gray-200 */
+    border-radius: 100px;
+}
+
+/* Pour Firefox */
+.scrollbar-thin {
+    scrollbar-color: #88888888 transparent;
+    scrollbar-width: thin;
+}
 
 /* Left Gradient Overlay */
 .custom-scroll-wrapper {

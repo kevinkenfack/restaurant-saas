@@ -187,6 +187,8 @@
     "menu": "Menu",
     "see_more": "See menu details",
     "menu_link_copied": "Menu Link Copied!",
+    "copy_link": "Copy Link",
+    "menu_of": "Menu of {{storeName}}",
     "search_placeholder": "Search Menu...",
     "all": "All",
     "add": "ADD",
