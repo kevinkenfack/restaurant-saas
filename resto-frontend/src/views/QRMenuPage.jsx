@@ -21,6 +21,7 @@ import { getQRMenuLink } from "../helpers/QRMenuHelper";
 import { useTranslation } from "react-i18next";
 import LanguageChanger from "../components/LanguageChanger";
 import { useTheme } from "../contexts/ThemeContext";
+import { useEffect as useReactEffect } from "react";
 
 export default function QRMenuPage() {
   const { t } = useTranslation();
@@ -104,6 +105,13 @@ export default function QRMenuPage() {
   const storeImage = storeSettings?.store_image || "";
   const is_qr_menu_enabled = storeSettings?.is_qr_menu_enabled || false;
   const is_qr_order_enabled = storeSettings?.is_qr_order_enabled || false;
+
+  // Met à jour le titre de la page avec le nom du restaurant
+  useReactEffect(() => {
+    if (storeName) {
+      document.title = storeName;
+    }
+  }, [storeName]);
 
   if (isLoading) {
     return (
