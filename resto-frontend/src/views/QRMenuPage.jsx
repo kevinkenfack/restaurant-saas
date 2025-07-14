@@ -667,10 +667,10 @@ export default function QRMenuPage() {
         >
           <div className='modal-box bg-white dark:bg-restro-card-bg border border-restro-border-green rounded-t-3xl sm:rounded-3xl shadow-2xl p-6 max-w-md mx-auto'>
             <div className="flex justify-between items-center mb-6">
-              <LanguageChanger className="rounded-2xl px-4 py-3 bg-gray-100 dark:bg-restro-bg-gray border border-restro-border-green focus:border-restro-green transition-all" />
-              <div className="flex gap-3">
+              <LanguageChanger className="rounded-2xl px-3 py-2 bg-gray-100 dark:bg-restro-bg-gray border border-restro-border-green focus:border-restro-green transition-all" />
+              <div className="flex gap-2 sm:gap-3 ml-2 sm:ml-4">
                 <button className="btn btn-circle bg-restro-green text-white border-0 hover:shadow-lg" onClick={btnShare}>
-                  <IconShare stroke={iconStroke} />
+                  <IconShare stroke={iconStroke} size={20} />
                 </button>
                 <button
                   className="btn btn-circle bg-gray-100 dark:bg-restro-bg-gray border-0 hover:bg-gray-200 dark:hover:bg-restro-button-hover"
@@ -752,7 +752,7 @@ export default function QRMenuPage() {
           id="modal_item_detail"
           className="modal modal-bottom sm:modal-middle"
         >
-          <div className='bg-white dark:bg-black border border-restro-border-green px-4 py-4 m-2 rounded-2xl'>
+          <div className='bg-white dark:bg-black border border-restro-border-green px-4 py-4 m-2 rounded-2xl max-h-[80vh] overflow-y-auto'>
             <div className="absolute top-4 right-4">
               <form method="dialog">
                 <button className="btn btn-circle">
