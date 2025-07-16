@@ -186,7 +186,7 @@ export default function MenuItemsSettingsPage() {
                       : {
                           'hover:bg-restro-button-hover': theme === 'light',
                           'text-white': theme === 'black',
-                        }
+                    }
                   )}
                 >
                   {is_enabled ? (

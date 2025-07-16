@@ -14,15 +14,12 @@ exports.CONFIG = {
     SMTP_PORT: process.env.SMTP_PORT,
     SMTP_EMAIL: process.env.SMTP_EMAIL,
     SMTP_PASSWORD: process.env.SMTP_PASSWORD,
-    ENCRYPTION_KEY: process.env.ENCRYPTION_KEY
+    ENCRYPTION_KEY: process.env.ENCRYPTION_KEY,
+    SMTP_FROM: process.env.SMTP_FROM || '',
+    SMTP_USERNAME: process.env.SMTP_USERNAME || process.env.SMTP_EMAIL,
 };
 
 exports.LANGUAGES = [
-    'ar',
     'en',
-    'es',
-    'fr',
-    'hi',
-    'ja',
-    'ko'
+    'fr'
 ]

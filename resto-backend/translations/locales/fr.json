@@ -122,5 +122,14 @@
   "failed_to_fetch_dashboard_data": "Échec de l'abandon des données du tableau de bord.",
   "inventory_item_not_found_message": "Article d'inventaire introuvable",
   "invalid_movement_type_message": "Type de mouvement invalide",
-  "insufficient_inventory_quantity_message": "Quantité de stock insuffisante"
+  "insufficient_inventory_quantity_message": "Quantité de stock insuffisante",
+  "subject": "Réinitialiser votre mot de passe",
+  "email_message": "Voici le lien pour réinitialiser votre mot de passe, ouvrez ce lien pour configurer un nouveau mot de passe. Le lien n'est valide que pendant 20 minutes, ne partagez pas ce lien avec qui que ce soit.",
+  "reset_button": "Changer le mot de passe",
+  "app_name": "Menufy App",
+  "all_rights_reserved": "Tous droits réservés",
+  "email_subject": "Réinitialiser votre mot de passe",
+  "welcome": "Bienvenue",
+  "test": "Test en français",
+  "login": "Se connecter"
 }

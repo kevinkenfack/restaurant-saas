@@ -122,5 +122,14 @@
     "failed_to_fetch_dashboard_data": "Failed to fetch dashboard data.",
     "inventory_item_not_found_message":"Inventory item not found",
     "invalid_movement_type_message":"Invalid movement type",
-    "insufficient_inventory_quantity_message":"Insufficient inventory quantity"
+    "insufficient_inventory_quantity_message":"Insufficient inventory quantity",
+    "subject": "Reset Your Password",
+    "email_message": "Here is link to reset your profile password, open link to setup new password. The link is only valid till next 20 minutes, don't share this link with anyone.",
+    "reset_button": "Reset Password",
+    "app_name": "Menufy App",
+    "all_rights_reserved": "All rights reserved",
+    "email_subject": "Reset Your Password",
+    "welcome": "welcome to Menufy",
+    "test": "T  est in English",
+    "login": "Login"
 }

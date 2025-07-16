@@ -343,8 +343,46 @@ exports.forgotPassword = async (req, res) => {
 
             await mailTransport({
                 to: username,
-                subject: "Reset Your Password",
-                html: `Here is link to reset your profile password, open link to setup new password. the link is only valid till next 20 minutes, don't share this link with anyone.<br/><br/>${resetPasswordURL}`
+                subject: req.__("email_subject"), // Translate subject
+                html: `
+                <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            </head>
+            <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #ECF1EB;">
+                <div style="max-width: 500px; margin: 50px auto; background-color: #ffffff; border-radius: 12px; padding: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    
+                    <p style="color: #333333; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
+                        ${req.__("email_message")}
+                    </p>
+                    
+                    <div style="text-align: center; margin: 30px 0;">
+                        <a href="${resetPasswordURL}" 
+                        style="display: inline-block; 
+                                background-color: #70B56A; 
+                                color: #ffffff; 
+                                text-decoration: none; 
+                                padding: 12px 24px; 
+                                border-radius: 12px; 
+                                font-weight: 600; 
+                                font-size: 16px;">
+                            ${req.__("reset_button")}
+                        </a>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                        <p style="color: #6b7280; font-size: 14px; margin: 0;">
+                            © 2025 ${req.__("app_name")} - ${req.__("all_rights_reserved")}
+                        </p>
+                    </div>
+                    
+                </div>
+            </body>
+            </html>
+
+                `
             });
         }
 

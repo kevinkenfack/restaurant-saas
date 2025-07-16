@@ -282,30 +282,30 @@ export default function QRMenuPage() {
             <span className="text-gray-400">
               <IconCarrot size={20} stroke={iconStroke} />
             </span>
-            <input
-              type="search"
-              name="search"
-              id="search"
+                <input
+                  type="search"
+                  name="search"
+                  id="search"
               className="flex-1 bg-transparent outline-none px-2 py-2 text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400"
-              placeholder={t("qr_menu.search_placeholder")}
-              value={searchQuery}
-              onChange={(e) => {
-                setState({
-                  ...state,
-                  searchQuery: e.target.value,
-                });
-              }}
-            />
-            <button
+                  placeholder={t("qr_menu.search_placeholder")}
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setState({
+                      ...state,
+                      searchQuery: e.target.value,
+                    });
+                  }}
+                />
+              <button
               className="bg-gray-100 dark:bg-restro-bg-gray rounded-xl p-2 ml-2 hover:bg-restro-green/10 transition"
               onClick={() =>
                 document.getElementById("modal_store_details").showModal()
               }
-            >
-              <IconMenu stroke={iconStroke} size={20}/>
-            </button>
+              >
+                <IconMenu stroke={iconStroke} size={20}/>
+              </button>
+            </div>
           </div>
-        </div>
         {/* appbar */}
 
         {/* store details: name, phone, address, email, share menu link */}
@@ -378,58 +378,58 @@ export default function QRMenuPage() {
         {/* categories */}
         <div className="w-full max-w-5xl mx-auto mt-2 pb-2">
           <div className="flex gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-restro-green scrollbar-track-gray-100 px-2 py-2 bg-white/80 dark:bg-black/80 backdrop-blur rounded-2xl border border-restro-border-green shadow">
-            <label className="min-w-fit">
-              <input
-                onChange={(e) => {
-                  setState({
-                    ...state,
-                    currentCategory: e.target.value,
-                  });
-                }}
-                type="radio"
-                name="category"
-                id={"all"}
-                value={"all"}
-                className="peer hidden"
-                defaultChecked
-              />
+              <label className="min-w-fit">
+                <input
+                  onChange={(e) => {
+                    setState({
+                      ...state,
+                      currentCategory: e.target.value,
+                    });
+                  }}
+                  type="radio"
+                  name="category"
+                  id={"all"}
+                  value={"all"}
+                  className="peer hidden"
+                  defaultChecked
+                />
               <span
-                htmlFor={"all"}
+                  htmlFor={"all"}
                 className="cursor-pointer rounded-full px-5 py-2 bg-gray-100 dark:bg-restro-bg-gray border border-restro-border-green hover:bg-restro-green hover:text-white transition-all duration-200 text-gray-700 dark:text-gray-200 peer-checked:bg-restro-green peer-checked:text-white peer-checked:shadow-lg flex items-center font-medium text-sm"
                 style={{ minWidth: 'max-content' }}
-              >
+                >
                 {t("qr_menu.all")}
               </span>
-            </label>
-            {categories.filter(category => category.is_enabled).map((category, index) => {
-              const { id, title } = category;
-              return (
+              </label>
+              {categories.filter(category => category.is_enabled).map((category, index) => {
+                const { id, title } = category;
+                return (
                 <label key={index} className="min-w-fit">
-                  <input
-                    onChange={(e) => {
-                      setState({
-                        ...state,
-                        currentCategory: e.target.value,
-                      });
-                    }}
-                    type="radio"
-                    name="category"
-                    id={id}
-                    value={id}
-                    className="peer hidden"
-                  />
+                    <input
+                      onChange={(e) => {
+                        setState({
+                          ...state,
+                          currentCategory: e.target.value,
+                        });
+                      }}
+                      type="radio"
+                      name="category"
+                      id={id}
+                      value={id}
+                      className="peer hidden"
+                    />
                   <span
-                    htmlFor={id}
+                      htmlFor={id}
                     className="cursor-pointer rounded-full px-5 py-2 bg-gray-100 dark:bg-restro-bg-gray border border-restro-border-green hover:bg-restro-green hover:text-white transition-all duration-200 text-gray-700 dark:text-gray-200 peer-checked:bg-restro-green peer-checked:text-white peer-checked:shadow-lg flex items-center font-medium text-sm"
                     style={{ minWidth: 'max-content' }}
-                  >
+                    >
                     {title}
                   </span>
-                </label>
-              );
-            })}
+                    </label>
+                );
+              })}
+            </div>
           </div>
-        </div>
         {/* categories */}
 
         {/* menu items */}
@@ -486,69 +486,69 @@ export default function QRMenuPage() {
             return (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filteredItems.map((item, i) => {
-                  const {
-                    addons,
-                    variants,
-                    category_id,
-                    category_title,
-                    id,
-                    image,
-                    price,
-                    tax_id,
-                    tax_rate,
-                    tax_title,
-                    tax_type,
-                    title,
-                    description,
-                  } = item;
+                const {
+                  addons,
+                  variants,
+                  category_id,
+                  category_title,
+                  id,
+                  image,
+                  price,
+                  tax_id,
+                  tax_rate,
+                  tax_title,
+                  tax_type,
+                  title,
+                  description,
+                } = item;
                   // addon {id, item_id, title, price}
                   // variant {id, item_id, title, price}
 
-                  const imageURL = getImageURL(image);
+                const imageURL = getImageURL(image);
                   const hasVariantOrAddon =
                     variants?.length > 0 || addons?.length > 0;
 
-                  return (
+                return (
                     <div
                       key={id}
                       className={`group bg-white dark:bg-restro-card-bg rounded-2xl shadow-xl border border-restro-border-green hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-stretch p-3 md:p-4 ${!is_qr_order_enabled ? "hover:bg-gray-100 dark:hover:bg-restro-button-hover cursor-pointer" : ""}`}
                       onClick={
                         !is_qr_order_enabled
                           ? () =>
-                              btnOpenMenuItemDetail(
-                                addons,
-                                variants,
-                                category_id,
-                                category_title,
-                                id,
-                                image,
-                                price,
-                                tax_id,
-                                tax_rate,
-                                tax_title,
-                                tax_type,
-                                title
+                                    btnOpenMenuItemDetail(
+                                      addons,
+                                      variants,
+                                      category_id,
+                                      category_title,
+                                      id,
+                                      image,
+                                      price,
+                                      tax_id,
+                                      tax_rate,
+                                      tax_title,
+                                      tax_type,
+                                      title
                               )
                           : undefined
                       }
                     >
                       {/* Image en haut, bien large, carré, coins arrondis */}
                       <div className="relative w-full aspect-square rounded-xl overflow-hidden bg-gray-100 dark:bg-restro-bg-gray shadow mb-3 flex items-center justify-center">
-                        {image ? (
-                          <img
-                            src={imageURL}
-                            alt={title}
+                          {image ? (
+                            <img
+                              src={imageURL}
+                              alt={title}
                             className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <IconCarrot className="text-gray-400 dark:text-gray-500" size={48} />
+                            />
+                          ) : (
+                              <IconCarrot className="text-gray-400 dark:text-gray-500" size={48} />
                         )}
                         {/* Badge customisable */}
                         {is_qr_order_enabled && (variants.length > 0 || addons.length > 0) && (
                           <div className="absolute top-2 right-2 bg-restro-green text-white text-xs px-2 py-1 rounded-full shadow font-bold">
                             {t("qr_menu.customisable")}
-                          </div>
-                        )}
+                            </div>
+                          )}
                       </div>
                       {/* Infos sous l'image */}
                       <div className="flex-1 min-w-0 flex flex-col justify-between px-1 pb-1">
@@ -584,50 +584,50 @@ export default function QRMenuPage() {
                         </div>
                         {description && (
                           <p className="text-gray-600 dark:text-gray-300 text-xs md:text-sm line-clamp-2 mb-2">
-                            {description}
-                          </p>
+                              {description}
+                            </p>
                         )}
                         {(variants.length > 0 || addons.length > 0) && (
                           <div className="flex flex-wrap gap-2 text-xs text-gray-500 dark:text-gray-400 mb-2">
                             {variants.length > 0 && (
                               <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
                                 {variants.length} {t("qr_menu.variants_available")}
-                              </span>
+                                </span>
                             )}
                             {addons.length > 0 && (
                               <span className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-lg">
                                 {addons.length} {t("qr_menu.addons_available")}
-                              </span>
+                                </span>
                             )}
                           </div>
                         )}
                         {is_qr_order_enabled && (
                           <div className="pt-1 pb-1">
-                            <button
+                          <button
                               className="w-full bg-restro-green text-white px-3 py-2 rounded-lg font-bold shadow hover:shadow-lg active:scale-95 transition-all duration-300 text-xs md:text-sm"
-                              onClick={(e) => {
+                            onClick={(e) => {
                                 e.stopPropagation();
-                                if (hasVariantOrAddon) {
+                              if (hasVariantOrAddon) {
                                   setState({
                                     ...state,
                                     currentItem: item,
                                     currentItemId: id,
                                   });
                                   document.getElementById("modal_item_detail").showModal();
-                                } else {
-                                  addItemToCart(item);
-                                }
-                              }}
-                            >
-                              {t("qr_menu.add")}
-                            </button>
+                              } else {
+                                addItemToCart(item);
+                              }
+                            }}
+                          >
+                            {t("qr_menu.add")}
+                          </button>
                           </div>
                         )}
                       </div>
                     </div>
-                  );
-                })}
-              </div>
+                );
+              })}
+          </div>
             );
           })()}
         </div>
@@ -702,21 +702,21 @@ export default function QRMenuPage() {
             <div className="flex flex-col items-center mb-6">
               <div className="relative mb-2">
                 {storeImage ? (
-                  <img
-                    src={getImageURL(storeImage)}
+                    <img
+                      src={getImageURL(storeImage)}
                     className="w-28 h-28 md:w-32 md:h-32 rounded-3xl shadow-2xl object-cover border-4 border-restro-green/20"
-                    alt={`${storeName} Logo`}
-                  />
+                      alt={`${storeName} Logo`}
+                    />
                 ) : (
                   <div className="w-28 h-28 md:w-32 md:h-32 rounded-3xl bg-restro-green flex items-center justify-center shadow-2xl">
                     <IconCarrot className="text-white" size={48} />
                   </div>
                 )}
                 {/* Badge Premium rond en bas à droite */}
-                <div className="absolute -bottom-2 -right-2 bg-restro-green flex items-center justify-center w-8 h-8 rounded-full shadow-lg border-2 border-white dark:border-restro-card-bg">
-                  <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='white' viewBox='0 0 20 20'><path d='M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z'/></svg>
-                </div>
-              </div>
+                    <div className="absolute -bottom-2 -right-2 bg-restro-green flex items-center justify-center w-8 h-8 rounded-full shadow-lg border-2 border-white dark:border-restro-card-bg">
+                      <svg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='white' viewBox='0 0 20 20'><path d='M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z'/></svg>
+                    </div>
+                  </div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-2 text-center">{storeName}</h2>
             </div>
             <div className="space-y-4">
@@ -767,7 +767,7 @@ export default function QRMenuPage() {
                   <IconX stroke={iconStroke} />
                 </button>
               </form>
-            </div>
+      </div>
 
             <div className="w-full flex gap-4">
               <div className="rounded-2xl w-32 h-32 object-cover relative bg-gray-200 flex items-center justify-center text-gray-500 ">

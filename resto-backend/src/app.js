@@ -68,17 +68,84 @@ var corsOptions = {
   },
 };
 
+// Configuration i18n améliorée
 i18n.configure({
   locales: LANGUAGES,
-  directory: path.join(__dirname, '../translations' , 'locales'),
+  directory: path.join(__dirname, '../translations', 'locales'),
   defaultLocale: 'en',
   cookie: 'lang',
   queryParameter: 'lang',
+  autoReload: true,
+  updateFiles: false,
+  syncFiles: true,
+  api: {
+    '__': '__',
+    '__n': '__n'
+  },
+  register: global
 });
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(i18n.init);
+
+// MIDDLEWARE PERSONNALISÉ POUR FORCER LA DÉTECTION DE LANGUE
+app.use((req, res, next) => {
+  console.log('=== DÉTECTION LANGUE ===');
+  console.log('URL:', req.originalUrl);
+  console.log('Query lang:', req.query.lang);
+  console.log('Cookie lang:', req.cookies.lang);
+  console.log('Accept-Language:', req.headers['accept-language']);
+  console.log('Locale initiale:', req.getLocale());
+  
+  let targetLang = null;
+  
+  // Priorité 1: Paramètre URL (?lang=fr)
+  if (req.query.lang && LANGUAGES.includes(req.query.lang)) {
+    targetLang = req.query.lang;
+    console.log('✅ Langue détectée via URL:', targetLang);
+  }
+  // Priorité 2: Cookie
+  else if (req.cookies.lang && LANGUAGES.includes(req.cookies.lang)) {
+    targetLang = req.cookies.lang;
+    console.log('✅ Langue détectée via Cookie:', targetLang);
+  }
+  // Priorité 3: Header Accept-Language
+  else if (req.headers['accept-language']) {
+    const acceptedLangs = req.headers['accept-language'].split(',');
+    for (let lang of acceptedLangs) {
+      const langCode = lang.split(';')[0].trim().substring(0, 2);
+      if (LANGUAGES.includes(langCode)) {
+        targetLang = langCode;
+        console.log('✅ Langue détectée via Header:', targetLang);
+        break;
+      }
+    }
+  }
+  
+  // Appliquer la langue détectée
+  if (targetLang) {
+    req.setLocale(targetLang);
+    res.setLocale(targetLang);
+    
+    // Synchroniser le cookie
+    res.cookie('lang', targetLang, { 
+      maxAge: 365 * 24 * 60 * 60 * 1000, // 1 an
+      httpOnly: false,
+      sameSite: 'lax',
+      secure: false // Changez à true en production HTTPS
+    });
+    
+    console.log('✅ Langue appliquée:', targetLang);
+  }
+  
+  console.log('🎯 Locale finale:', req.getLocale());
+  console.log('📝 Test traduction welcome:', res.__('welcome'));
+  console.log('========================');
+  
+  next();
+});
+
 app.use(userAgent.express());
 app.use('/api/v1/auth/stripe-webhook', express.raw({ type: 'application/json' }));
 app.use(express.json());
@@ -96,6 +163,54 @@ app.use(morgan("tiny"));
  * Middlewares
  * */
 
+// Route de test pour vérifier la langue
+app.get('/test-lang', (req, res) => {
+  res.json({
+    success: true,
+    currentLocale: req.getLocale(),
+    availableLocales: res.getLocales(),
+    cookieLang: req.cookies.lang,
+    queryLang: req.query.lang,
+    acceptLanguage: req.headers['accept-language'],
+    translations: {
+      welcome: res.__('welcome'),
+      test: res.__('test'),
+      login: res.__('login')
+    },
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Route pour changer la langue via POST
+app.post('/api/v1/change-language', (req, res) => {
+  const { lang } = req.body;
+  
+  if (!lang || !LANGUAGES.includes(lang)) {
+    return res.status(400).json({ 
+      error: 'Langue non supportée',
+      supportedLanguages: LANGUAGES 
+    });
+  }
+  
+  // Forcer la langue
+  req.setLocale(lang);
+  res.setLocale(lang);
+  
+  // Définir le cookie
+  res.cookie('lang', lang, { 
+    maxAge: 365 * 24 * 60 * 60 * 1000,
+    httpOnly: false,
+    sameSite: 'lax',
+    secure: false
+  });
+  
+  res.json({
+    success: true,
+    message: res.__('language_changed') || 'Langue changée',
+    newLocale: lang,
+    timestamp: new Date().toISOString()
+  });
+});
 
 // routes
 app.use("/api/v1/auth", authRoutes);
