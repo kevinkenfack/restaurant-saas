@@ -1,15 +1,22 @@
 import React from "react";
 import Logo from "../assets/logo.svg";
+import LogoDark from "../assets/LogoDark.svg"
 import { toast } from "react-hot-toast";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { resetPassword } from "../controllers/auth.controller";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "../contexts/ThemeContext";
+import { getPasswordStrength } from "../utils/strongPasswordValidation";
 
 export default function ResetPasswordPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const token = searchParams.get("token");
+  const { theme } = useTheme();
+
+  const [passwordStrength, setPasswordStrength] = React.useState({ score: 0, level: "faible" });
+  const [password, setPassword] = React.useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +31,13 @@ export default function ResetPasswordPage() {
     if (!password) {
       e.target.password.focus();
       toast.error(t("reset_password.new_password_error"));
+      return;
+    }
+
+    // Vérifie la force du mot de passe
+    const strength = getPasswordStrength(password);
+    if (strength.score < 2) {
+      toast.error(t("register.password_too_weak"));
       return;
     }
 
@@ -60,7 +74,7 @@ export default function ResetPasswordPage() {
               {t("reset_password.title")}
             </div>
             <div>
-              <img src={Logo} className="h-16" />
+            <img src={theme === "black" ? LogoDark : Logo} className="h-16" />
             </div>
           </div>
 
@@ -76,7 +90,24 @@ export default function ResetPasswordPage() {
                 required
                 placeholder={t("reset_password.new_password_placeholder")}
                 className="mt-2 block w-full bg-gray-100 px-4 py-3 rounded-xl text-base md:text-lg"
+                value={password}
+                onChange={e => {
+                  setPassword(e.target.value);
+                  setPasswordStrength(getPasswordStrength(e.target.value));
+                }}
               />
+              {password && (
+                <div className="mt-2">
+                  <span className={`text-xs font-semibold 
+                    ${passwordStrength.level === 'faible' ? 'text-red-500' : ''}
+                    ${passwordStrength.level === 'moyen' ? 'text-yellow-500' : ''}
+                    ${passwordStrength.level === 'fort' ? 'text-green-600' : ''}
+                    ${passwordStrength.level === 'très fort' ? 'text-green-800' : ''}
+                  `}>
+                    {t('register.password_strength')}: {t(`register.strength_${passwordStrength.level.replace(' ', '_')}`)}
+                  </span>
+                </div>
+              )}
             </div>
 
             <button

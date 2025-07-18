@@ -8,11 +8,15 @@ import { signUp } from "../controllers/auth.controller";
 import { validateEmail } from "../utils/emailValidator";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
+import { getPasswordStrength } from "../utils/strongPasswordValidation";
 
 export default function RegistrationPage() {
   const { t } = useTranslation();
   const {theme} = useTheme();
   const navigate = useNavigate();
+
+  const [passwordStrength, setPasswordStrength] = React.useState({ score: 0, level: "faible" });
+  const [password, setPassword] = React.useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,6 +46,13 @@ export default function RegistrationPage() {
 
     if (!validateEmail(email)) {
       toast.error(t("register.valid_email_error"));
+      return;
+    }
+
+    // Vérifie la force du mot de passe
+    const strength = getPasswordStrength(password);
+    if (strength.score < 2) {
+      toast.error(t("register.password_too_weak"));
       return;
     }
 
@@ -156,7 +167,24 @@ export default function RegistrationPage() {
               required
               placeholder={t("register.password_placeholder")}
               className='mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray  focus-visible:ring-restro-ring text-base md:text-lg'
+              value={password}
+              onChange={e => {
+                setPassword(e.target.value);
+                setPasswordStrength(getPasswordStrength(e.target.value));
+              }}
             />
+            {password && (
+              <div className="mt-2">
+                <span className={`text-xs font-semibold 
+                  ${passwordStrength.level === 'faible' ? 'text-red-500' : ''}
+                  ${passwordStrength.level === 'moyen' ? 'text-yellow-500' : ''}
+                  ${passwordStrength.level === 'fort' ? 'text-green-600' : ''}
+                  ${passwordStrength.level === 'très fort' ? 'text-green-800' : ''}
+                `}>
+                  {t('register.password_strength')}: {t(`register.strength_${passwordStrength.level.replace(' ', '_')}`)}
+                </span>
+              </div>
+            )}
           </div>
 
           <button

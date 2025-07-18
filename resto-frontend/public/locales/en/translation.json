@@ -37,7 +37,13 @@
     "valid_email_error": "Please provide valid email!",
     "error_message": "We're getting issues while processing the request, try later!",
     "signup_today": "Signup Today &",
-    "increase_productivity": "Increase Productivity"
+    "increase_productivity": "Increase Productivity",
+    "password_strength": "Niveau de sécurité",
+    "strength_faible": "Faible",
+    "strength_moyen": "Moyen",
+    "strength_fort": "Fort",
+    "strength_très_fort": "Très fort",
+    "password_too_weak": "Your password is too weak."
   },
   "users": {
     "loading": "Loading...",

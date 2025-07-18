@@ -1,10 +1,11 @@
 import React from "react";
 import Logo from "../assets/logo.svg";
+import { useTheme } from "../contexts/ThemeContext";
+import LogoDark from "../assets/LogoDark.svg"
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { forgotPassword } from "../controllers/auth.controller";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../contexts/ThemeContext";
 
 export default function ForgotPasswordPage() {
   const { t } = useTranslation();
@@ -55,7 +56,7 @@ export default function ForgotPasswordPage() {
               {t("reset_password.title")}
             </div>
             <div>
-              <img src={Logo} className="h-16" />
+            <img src={theme === "black" ? LogoDark : Logo} className="h-16" />
             </div>
           </div>
 
