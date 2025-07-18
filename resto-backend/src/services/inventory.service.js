@@ -136,6 +136,12 @@ exports.updateInventoryItemDB = async (
 ) => {
   const conn = await getMySqlPromiseConnection();
   try {
+    // Récupère la quantité actuelle
+    const [rows] = await conn.query(
+      `SELECT quantity FROM inventory_items WHERE id = ? AND tenant_id = ?`,
+      [itemId, tenantId]
+    );
+    const quantity = rows.length > 0 ? parseFloat(rows[0].quantity) : 0;
 
     let status = 'out';
     if (quantity > 0 && quantity <= minQuantityThreshold) {
@@ -146,7 +152,7 @@ exports.updateInventoryItemDB = async (
 
     const sql = `
       UPDATE inventory_items
-      SET title = ?, unit = ?, min_quantity_threshold = ?, status = ?,
+      SET title = ?, unit = ?, min_quantity_threshold = ?, status = ?
       WHERE id = ? AND tenant_id = ?
     `;
     await conn.query(sql, [
