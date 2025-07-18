@@ -2,11 +2,12 @@ import React from "react";
 import { IconCircleXFilled } from '@tabler/icons-react';
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 function OrderFailedPage() {
   const { t, i18n } = useTranslation();
   const { theme } = useTheme();
-
+  const navigate = useNavigate();
   // Obtenir la date et l'heure actuelle selon la langue
   const getCurrentDateTime = () => {
     const now = new Date();
@@ -50,6 +51,16 @@ function OrderFailedPage() {
               {t("order_failed.failed_time_label")} {time} - {date}
             </span>
           </div>
+        </div>
+        {/* Bouton retour au menu : double retour dans l'historique */}
+        <div className="flex justify-center mt-8">
+          <button
+            type="button"
+            onClick={() => navigate(-2)}
+            className="inline-block py-3 px-6 rounded-lg font-bold bg-red-500 text-white hover:bg-red-600 transition text-center"
+          >
+            {t("order_failed.back_to_menu") || "Retour au menu"}
+          </button>
         </div>
       </div>
     </div>

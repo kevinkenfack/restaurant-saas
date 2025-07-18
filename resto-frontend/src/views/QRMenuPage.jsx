@@ -113,6 +113,94 @@ export default function QRMenuPage() {
     }
   }, [storeName]);
 
+  // Met à jour dynamiquement le favicon avec le logo du resto
+  useEffect(() => {
+    if (storeImage) {
+      const favicon = document.querySelector("link[rel~='icon']");
+      const logoUrl = getImageURL(storeImage);
+      let oldFaviconHref = null;
+      if (favicon) {
+        oldFaviconHref = favicon.href;
+        favicon.href = logoUrl;
+      } else {
+        const link = document.createElement("link");
+        link.rel = "icon";
+        link.href = logoUrl;
+        document.head.appendChild(link);
+      }
+      // Restaure le favicon par défaut à la sortie
+      return () => {
+        if (favicon && oldFaviconHref) {
+          favicon.href = oldFaviconHref;
+        }
+      };
+    }
+  }, [storeImage]);
+
+  // Fonction pour créer les confettis (copiée de OrderSuccessPage.jsx)
+  const createConfetti = () => {
+    const colors = ['#70B56A', '#4CAF50', '#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#9C27B0'];
+    const shapes = ['circle', 'square', 'triangle'];
+    const confettiCount = 60;
+    for (let i = 0; i < confettiCount; i++) {
+      const confetti = document.createElement('div');
+      const shape = shapes[Math.floor(Math.random() * shapes.length)];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      confetti.style.position = 'fixed';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.top = '-10px';
+      confetti.style.width = (Math.random() * 8 + 6) + 'px';
+      confetti.style.height = (Math.random() * 8 + 6) + 'px';
+      confetti.style.backgroundColor = color;
+      confetti.style.pointerEvents = 'none';
+      confetti.style.zIndex = '9999';
+      // Formes différentes
+      if (shape === 'circle') {
+        confetti.style.borderRadius = '50%';
+      } else if (shape === 'triangle') {
+        confetti.style.width = '0';
+        confetti.style.height = '0';
+        confetti.style.backgroundColor = 'transparent';
+        confetti.style.borderLeft = '6px solid transparent';
+        confetti.style.borderRight = '6px solid transparent';
+        confetti.style.borderBottom = `12px solid ${color}`;
+      }
+      confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+      // Animation
+      confetti.animate([
+        {
+          transform: `translateY(-10px) rotate(0deg)`,
+          opacity: 1
+        },
+        {
+          transform: `translateY(100vh) rotate(${Math.random() * 720 + 360}deg)`,
+          opacity: 0
+        }
+      ], {
+        duration: Math.random() * 3000 + 2000,
+        easing: 'cubic-bezier(0.5, 0, 0.5, 1)',
+        fill: 'forwards'
+      });
+      document.body.appendChild(confetti);
+      // Supprimer l'élément après l'animation
+      setTimeout(() => {
+        if (confetti.parentNode) {
+          confetti.parentNode.removeChild(confetti);
+        }
+      }, 5000);
+    }
+  };
+
+  // Déclencher les confettis au montage (quand le menu est chargé)
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => {
+        createConfetti();
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
+
   if (isLoading) {
     return (
       <div className="w-full">

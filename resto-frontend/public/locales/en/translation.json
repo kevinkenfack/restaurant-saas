@@ -257,13 +257,15 @@
     "thank_you_message": "Thank you for choosing us!",
     "order_placed_message": "Order Placed Successfully",
     "preparing_message": "Your order is being prepared",
-    "estimated_time": "Order placed on"
+    "estimated_time": "Order placed on",
+    "back_to_menu": "Back to Menu"
   },
   "order_failed": {
     "oops_message": "Oops! Something went wrong",
     "order_failed_message": "Order Failed",
     "try_again_message": "Try Again!",
-    "failed_time_label": "Order failed on"
+    "failed_time_label": "Order failed on",
+    "back_to_menu" : "Back to Menu"
   },
   "orders": {
     "title": "Orders",
