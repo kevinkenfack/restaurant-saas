@@ -231,7 +231,7 @@ export default function AppBar() {
       </div>
 
       <dialog id="search-modal" className="modal">
-        <div className="modal-box max-h-96 relative rounded-2xl">
+        <div className="modal-box max-h-96 relative rounded-2xl bg-restro-green-light">
           <div className= "flex items-center justify-between gap-4 sticky top-0 text-restro-text">
             <input type="search" className="input input-bordered w-full rounded-2xl outline-none focus:ring-0" placeholder={t('appbar.search_placeholder')} autoFocus value={search} onChange={e=>setSearch(e.target.value)} />
 
@@ -263,7 +263,7 @@ export default function AppBar() {
                 return <button
                   onClick={()=>navigate(item.link)}
                   key={index}
-                  className="flex items-center w-full gap-2 px-4 py-3 mb-2 transition active:scale-90 rounded-2xl justify-between hover:bg-restro-button-hover"
+                  className="flex items-center w-full gap-2 px-4 py-3 mb-2 transition active:scale-90 rounded-2xl justify-between text-gray-900 dark:text-white hover:bg-restro-border-green-light dark:hover:bg-restro-bg-hover-dark-mode"
                 >
                   <div className="flex items-center w-full transition-colors">
                     <div className="mr-2">
@@ -271,7 +271,7 @@ export default function AppBar() {
                     </div>
                     <div className="flex-1 text-start">
                       <p className="transition-colors">{item.title}</p>
-                      <p className="text-xs">{item.description}</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-300">{item.description}</p>
                     </div>
                     <div>
                       <IconChevronRight stroke={iconStroke} />
