@@ -33,6 +33,10 @@ const CartPage = () => {
   const dialogNotesIndexRef = useRef();
   const dialogNotesTextRef = useRef();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Pour gérer l'ouverture/fermeture des détails d'un item sur mobile
   // Nous n'avons plus besoin de openItemIndex pour chaque élément individuel
   // car DaisyUI gérera l'état via le checkbox.
