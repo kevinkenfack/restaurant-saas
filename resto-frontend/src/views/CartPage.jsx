@@ -1,4 +1,5 @@
 import React, { useState, useEffect , useRef, useContext} from 'react';
+// IconChevronDown n'est plus nécessaire car DaisyUI gère l'icône
 import { IconChevronRight, IconCarrot, IconTrash, IconMinus, IconPlus, IconShoppingCartX, IconMoodEmptyFilled, IconChevronLeft, IconCheck, IconX, IconTable, IconShovelPitchforks, IconDoor, IconNote } from '@tabler/icons-react';
 import { createOrderFromQrMenu, getCart, setCart } from '../controllers/qrmenu.controller';
 import { getImageURL } from '../helpers/ImageHelper';
@@ -32,6 +33,12 @@ const CartPage = () => {
   const dialogNotesIndexRef = useRef();
   const dialogNotesTextRef = useRef();
 
+  // Pour gérer l'ouverture/fermeture des détails d'un item sur mobile
+  // Nous n'avons plus besoin de openItemIndex pour chaque élément individuel
+  // car DaisyUI gérera l'état via le checkbox.
+  // Cependant, nous pouvons l'utiliser si nous voulons forcer l'ouverture du premier item.
+  const [openInitialItem, setOpenInitialItem] = useState(true); // Pour contrôler l'ouverture initiale du premier item
+
   useEffect(() => {
     const storedCart = getCart() || [];
     const { itemsTotal, taxTotal, serviceChargeTotal, payableTotal } = calculateOrderSummary(storedCart);
@@ -43,6 +50,16 @@ const CartPage = () => {
       payableTotal,
       cartItems: storedCart
     }));
+
+    // Si nous voulons que le premier élément du panier soit ouvert par défaut,
+    // nous pouvons laisser cet état. Sinon, on peut le retirer.
+    // Pour l'exemple, je le laisse pour le premier élément.
+    if (storedCart.length > 0) {
+      setOpenInitialItem(true);
+    } else {
+      setOpenInitialItem(false);
+    }
+
   }, []);
 
   const { cartItems, itemsTotal, taxTotal, serviceChargeTotal, payableTotal } = state;
@@ -229,7 +246,7 @@ const CartPage = () => {
           </div>
         )}
 
-        {/* Cart Items */}
+        {/* Cart Items - améliorations responsivité avec collapse DaisyUI */}
         <div className="w-full max-w-5xl mx-auto mt-2">
           {cartItems.length > 0 ? (
             <div className="space-y-4">
@@ -237,52 +254,154 @@ const CartPage = () => {
                 const { id, title, price, quantity, image, notes } = item;
                 const imageURL = getImageURL(image);
                 return (
-                  <div key={i} className="w-full flex items-center bg-white dark:bg-restro-card-bg rounded-2xl shadow p-4 gap-4 border border-restro-border-green">
-                    <div className="w-20 h-20 md:w-28 md:h-28 bg-gray-200 dark:bg-restro-bg-gray rounded-xl overflow-hidden flex items-center justify-center text-gray-500 flex-shrink-0">
-                      {image ? (
-                        <img src={imageURL} alt={title} className="object-cover w-full h-full" />
-                      ) : (
-                        <IconCarrot size={32} />
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0 flex flex-col gap-1">
-                      <p className="text-base md:text-lg font-semibold line-clamp-2 text-ellipsis text-gray-800 dark:text-white">{title}</p>
-                      <div className="text-xs text-gray-400 md:text-sm flex flex-wrap gap-2">
-                        {item?.variant?.title && <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-lg">{item.variant.title}</span>}
-                        {item.addons?.length > 0 && <span className="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-lg">{item.addons.length} Addons</span>}
+                  <div key={i} className="w-full">
+                    {/* Mobile: version compacte et déroulante avec collapse DaisyUI */}
+                    <div
+                      className="sm:hidden collapse collapse-arrow bg-white dark:bg-restro-card-bg rounded-2xl shadow border border-restro-border-green"
+                    >
+                      {/* Input checkbox pour contrôler le collapse */}
+                      {/* Le premier item sera defaultChecked, les autres non */}
+                      <input type="checkbox" className="peer" defaultChecked={i === 0 && openInitialItem} />
+
+                      {/* En-tête de l'item (collapse-title) */}
+                      <div className="collapse-title flex items-center gap-3 p-3 min-h-0"> {/* min-h-0 pour réduire la hauteur par défaut de collapse-title */}
+                        <div className="w-16 h-16 bg-gray-200 dark:bg-restro-bg-gray rounded-xl overflow-hidden flex items-center justify-center text-gray-500 flex-shrink-0">
+                          {image ? (
+                            <img src={imageURL} alt={title} className="object-cover w-full h-full" />
+                          ) : (
+                            <IconCarrot size={32} />
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0 flex flex-col gap-1">
+                          <p className="text-sm font-semibold line-clamp-2 text-ellipsis text-gray-800 dark:text-white">{title}</p>
+                          <p className="text-restro-green font-bold text-base">{currency}{(price * quantity).toFixed(2)}</p>
+                        </div>
+                        {/* L'icône de chevron est gérée automatiquement par collapse-arrow */}
                       </div>
-                      <p className="text-restro-green font-bold text-base md:text-lg">{currency}{(price * quantity).toFixed(2)}</p>
-                      {notes && <p className='text-xs text-gray-500 md:text-sm'>{t('cart.notes')}: {notes}</p>}
-                    </div>
-                    <div className="flex flex-col items-center gap-2">
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => minusCartItemQuantity(i, quantity)}
-                          className="btn btn-square btn-xs md:btn-sm rounded-lg bg-gray-100 dark:bg-restro-bg-gray hover:bg-gray-200 dark:hover:bg-restro-button-hover"
-                        >
-                          <IconMinus stroke={iconStroke} size={14}/>
-                        </button>
-                        <div className="text-center text-base w-8 md:text-xl rounded-lg font-bold">{quantity}</div>
-                        <button
-                          onClick={() => addCartItemQuantity(i, quantity)}
-                          className="btn btn-square btn-xs md:btn-sm rounded-lg bg-gray-100 dark:bg-restro-bg-gray hover:bg-gray-200 dark:hover:bg-restro-button-hover"
-                        >
-                          <IconPlus stroke={iconStroke} size={14} />
-                        </button>
-                        <button
-                          onClick={() => removeItemFromCart(i)}
-                          className="text-restro-red hover:text-red-700 transition ml-2 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center"
-                        >
-                          <IconTrash stroke={iconStroke} className='w-full h-full'/>
-                        </button>
+
+                      {/* Contenu déroulant (collapse-content) */}
+                      <div className="collapse-content px-3 pb-3">
+                        <div className="flex flex-col gap-3 pt-2 border-t border-restro-border-green">
+                          {/* Variantes et Addons */}
+                          <div className="text-xs text-gray-400 flex flex-wrap gap-2">
+                            {item?.variant?.title && <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-2 py-1 rounded-lg">{item.variant.title}</span>}
+                            {item.addons?.length > 0 && <span className="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-2 py-1 rounded-lg">{item.addons.length}  {t('cart.addons')}</span>}
+                          </div>
+                          {item.addons?.length > 0 && (
+                            <div className="text-xs text-gray-500 flex flex-wrap gap-1">
+                              {item.addons.map((addon, idx) => (
+                                <span key={idx} className="inline-block bg-gray-50 dark:bg-restro-bg-gray border border-gray-200 dark:border-restro-border-green rounded px-2 py-1">{addon.title}</span>
+                              ))}
+                            </div>
+                          )}
+                          {/* Notes */}
+                          {notes && (
+                            <div className="text-xs italic text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-restro-bg-gray border border-gray-200 dark:border-restro-border-green rounded-lg px-3 py-2 w-fit">
+                              {t('cart.notes')}: {notes}
+                            </div>
+                          )}
+
+                          {/* Contrôles (quantité, notes, supprimer) */}
+                          <div className="flex items-center justify-between gap-2 mt-2">
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => minusCartItemQuantity(i, quantity)}
+                                className="btn btn-square btn-xs rounded-lg bg-gray-100 dark:bg-restro-bg-gray hover:bg-gray-200 dark:hover:bg-restro-button-hover"
+                              >
+                                <IconMinus stroke={iconStroke} size={14}/>
+                              </button>
+                              <div className="text-center text-base w-8 rounded-lg font-bold">{quantity}</div>
+                              <button
+                                onClick={() => addCartItemQuantity(i, quantity)}
+                                className="btn btn-square btn-xs rounded-lg bg-gray-100 dark:bg-restro-bg-gray hover:bg-gray-200 dark:hover:bg-restro-button-hover"
+                              >
+                                <IconPlus stroke={iconStroke} size={14} />
+                              </button>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <button
+                                onClick={() => {btnOpenNotesModal(i, notes)}}
+                                className="text-xs transition active:scale-95 hover:shadow-lg px-2 py-1 flex items-center gap-1 rounded-xl border border-restro-border-green bg-restro-card-bg hover:bg-restro-button-hover text-restro-text"
+                              >
+                                <IconNote size={16} stroke={iconStroke} />
+                                <span>{t('cart.add_notes')}</span>
+                              </button>
+                              <button
+                                onClick={() => removeItemFromCart(i)}
+                                className="text-restro-red hover:text-red-700 transition w-6 h-6 flex items-center justify-center"
+                              >
+                                <IconTrash stroke={iconStroke} className='w-full h-full'/>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <button
-                        onClick={() => {btnOpenNotesModal(i, notes)}}
-                        className="text-xs md:text-sm transition active:scale-95 hover:shadow-lg px-2 py-1 flex items-center gap-1 mt-2 rounded-xl border border-restro-border-green bg-restro-card-bg hover:bg-restro-button-hover text-restro-text"
-                      >
-                        <IconNote size={16} stroke={iconStroke} />
-                        <span>{t('cart.add_notes')}</span>
-                      </button>
+                    </div>
+
+                    {/* Desktop: carte large, disposition horizontale (aucune modification ici) */}
+                    <div className="hidden sm:flex flex-row items-center bg-white dark:bg-restro-card-bg rounded-2xl shadow p-6 gap-6 border border-restro-border-green mb-4 max-w-5xl mx-auto w-full">
+                      {/* Image à gauche */}
+                      <div className="w-32 h-32 bg-gray-200 dark:bg-restro-bg-gray rounded-xl overflow-hidden flex items-center justify-center text-gray-500 flex-shrink-0">
+                        {image ? (
+                          <img src={imageURL} alt={title} className="object-cover w-full h-full" />
+                        ) : (
+                          <IconCarrot size={48} />
+                        )}
+                      </div>
+                      {/* Colonne centrale */}
+                      <div className="flex-1 min-w-0 flex flex-col gap-2">
+                        <p className="text-lg lg:text-2xl font-semibold text-gray-800 dark:text-white">{title}</p>
+                        <div className="flex flex-wrap gap-2 mt-1">
+                          {item?.variant?.title && <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-3 py-1 rounded-lg text-base">{item.variant.title}</span>}
+                          {item.addons?.length > 0 && <span className="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 px-3 py-1 rounded-lg text-base">{item.addons.length}  {t('cart.addons')}</span>}
+                        </div>
+                        {item.addons?.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-1">
+                            {item.addons.map((addon, idx) => (
+                              <span key={idx} className="inline-block bg-gray-50 dark:bg-restro-bg-gray border border-gray-200 dark:border-restro-border-green rounded px-2 py-1 text-sm text-gray-700 dark:text-gray-200">{addon.title}</span>
+                            ))}
+                          </div>
+                        )}
+                        {notes && (
+                          <div className="text-sm italic text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-restro-bg-gray border border-gray-200 dark:border-restro-border-green rounded-lg px-4 py-2 mt-2 max-w-lg w-fit">
+                            {t('cart.notes')}: {notes}
+                          </div>
+                        )}
+                      </div>
+                      {/* Colonne droite */}
+                      <div className="flex flex-col items-end justify-between h-full gap-4 min-w-[140px]">
+                        <div className="flex flex-row items-center gap-2">
+                          <button
+                            onClick={() => minusCartItemQuantity(i, quantity)}
+                            className="btn btn-square btn-sm rounded-lg bg-gray-100 dark:bg-restro-bg-gray hover:bg-gray-200 dark:hover:bg-restro-button-hover"
+                          >
+                            <IconMinus stroke={iconStroke} size={18}/>
+                          </button>
+                          <div className="text-center text-lg w-10 rounded-lg font-bold">{quantity}</div>
+                          <button
+                            onClick={() => addCartItemQuantity(i, quantity)}
+                            className="btn btn-square btn-sm rounded-lg bg-gray-100 dark:bg-restro-bg-gray hover:bg-gray-200 dark:hover:bg-restro-button-hover"
+                          >
+                            <IconPlus stroke={iconStroke} size={18} />
+                          </button>
+                        </div>
+                        <div className="flex flex-row items-center gap-2">
+                          <button
+                            onClick={() => removeItemFromCart(i)}
+                            className="text-restro-red hover:text-red-700 transition w-8 h-8 flex items-center justify-center"
+                          >
+                            <IconTrash stroke={iconStroke} className='w-full h-full'/>
+                          </button>
+                          <button
+                            onClick={() => {btnOpenNotesModal(i, notes)}}
+                            className="text-sm transition active:scale-95 hover:shadow-lg px-3 py-1 flex items-center gap-1 rounded-xl border border-restro-border-green bg-restro-card-bg hover:bg-restro-button-hover text-restro-text"
+                          >
+                            <IconNote size={18} stroke={iconStroke} />
+                            <span className="hidden sm:inline">{t('cart.add_notes')}</span>
+                          </button>
+                        </div>
+                        <span className="text-restro-green font-bold text-xl lg:text-2xl mt-2">{currency}{(price * quantity).toFixed(2)}</span>
+                      </div>
                     </div>
                   </div>
                 );
@@ -301,7 +420,8 @@ const CartPage = () => {
           <div className="w-full max-w-5xl mx-auto mt-8">
             <div className="bg-white dark:bg-restro-card-bg rounded-2xl shadow border border-restro-border-green">
               <div className="collapse collapse-arrow join-item">
-                <input type="checkbox" className="peer" />
+                {/* Ajouter defaultChecked pour que le résumé soit ouvert par défaut */}
+                <input type="checkbox" className="peer" defaultChecked />
                 <div className="collapse-title text-lg md:text-xl font-bold flex justify-between">
                   <span>{t('cart.payable_total')}</span>
                   <span className='text-restro-green font-bold'>{currency}{payableTotal.toFixed(2)}</span>
@@ -327,7 +447,7 @@ const CartPage = () => {
 
         <div className="h-32"/>
 
-        {/* Checkout Section (déjà stylé) */}
+        {/* Checkout Section - VOTRE BOUTON STICKY ORIGINAL INTACT */}
         {cartItems.length > 0 && (
           <div className="fixed bottom-0 left-0 right-0 bg-white dark:bg-black shadow-lg p-2 sm:p-4 flex justify-between items-center rounded-2xl mx-auto z-50 w-full max-w-full overflow-x-auto">
             <button

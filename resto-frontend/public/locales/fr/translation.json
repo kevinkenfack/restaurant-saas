@@ -605,7 +605,8 @@
     "order_failed": "Commande échouée !",
     "notes_placeholder": "Saisissez vos remarques ici...",
     "close": "Fermer",
-    "save": "Enregistrer"
+    "save": "Enregistrer",
+    "addons": "Suppléments"
   },
   "appbar": {
     "search_placeholder": "Rechercher",
