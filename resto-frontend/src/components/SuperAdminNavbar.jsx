@@ -77,7 +77,7 @@ export default function SuperAdminNavbar() {
             <Link
               key={index}
               className={clsx(
-                              `w-12 h-12 flex items-center justify-center rounded-full transition`,
+                              `w-12 h-12 flex items-center justify-center rounded-xl transition`,
                               {
                                 "bg-restro-bg-hover-dark-mode font-medium text-restro-green": theme === 'black' && pathname.includes(item.path),
                                 "bg-restro-border-green-light font-medium text-restro-green": theme !== 'black' && pathname.includes(item.path),
@@ -135,7 +135,7 @@ export default function SuperAdminNavbar() {
             <Link
               key={index}
               className={clsx(
-                "w-12 h-12 md:w-full flex justify-center md:justify-normal items-center md:gap-1 md:px-4 md:py-3 rounded-full transition",
+                "w-12 h-12 md:w-full flex justify-center md:justify-normal items-center md:gap-1 md:px-4 md:py-3 rounded-xl transition",
                 {
                                 "bg-restro-bg-hover-dark-mode font-medium text-restro-green": theme === 'black' && pathname.includes(item.path),
                                 "bg-restro-border-green-light font-medium text-restro-green": theme !== 'black' && pathname.includes(item.path),

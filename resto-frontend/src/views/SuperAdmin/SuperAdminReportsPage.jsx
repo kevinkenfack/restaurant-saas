@@ -82,7 +82,7 @@ export default function SuperAdminReportsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-6">
 
-        <div className='md:row-span-3 h-[28rem] bg-black rounded-[42px] overflow-hidden'>
+        <div className='md:row-span-3 h-[28rem] bg-black rounded-[42px] overflow-hidden border border-restro-border-green'>
           <p className='text-restro-superadmin-text-green font-bold text-center mt-4'>{t("superadmin_reports.active_tenants")}</p>
           <p className='text-white font-black text-7xl text-center'>{Number(activeTenants).toLocaleString("en", {
             notation: "compact"
@@ -91,7 +91,7 @@ export default function SuperAdminReportsPage() {
         </div>
 
         <div className = 'md:row-span-3 h-[28rem] rounded-[42px] overflow-y-auto scrollbar-none border border-restro-border-green text-black dark:text-white'>
-          <div className = 'py-6 px-8 rounded-t-[42px] sticky top-0 border-t border-restro-green-light'>
+          <div className = 'py-6 px-8 rounded-t-3xl sticky top-0 border-t backdrop-blur border-restro-green-light'>
             <h3 className='font-bold'>{t("superadmin_reports.top_selling_items")}</h3>
           </div>
           {topSellingItems?.length == 0 && 
