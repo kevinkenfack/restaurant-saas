@@ -41,7 +41,7 @@ export default function SuperAdminDashboardPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-6">
 
-        <div className='md:row-span-3 bg-black rounded-[42px] border border-restro-border-green'>
+        <div className='md:row-span-3 bg-black rounded-[42px] border border-restro-border-green overflow-hidden'>
           <p className='text-restro-superadmin-text-green font-bold text-center mt-4'>{t('superadmin_dashboard.active_tenants')}</p>
           <p className='text-white font-black text-7xl text-center'>{Number(activeTenants).toLocaleString("en", {
             notation: "compact"
