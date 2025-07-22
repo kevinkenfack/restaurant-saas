@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { hasRefreshToken, isAuthenticated, isLoggedIn, isSuperAdmin } = require("../middlewares/auth.middleware");
-const { signIn, signOut, getNewAccessToken, getSuperAdminDashboardData,  getTenants , getSuperAdminTenantsCntData , addTenant , updateTenant, deleteTenant , getSuperAdminReportsData , getTenantsDataByStatus, getTenantSubscriptionHistory } = require("../controllers/superadmin.controller");
+const { signIn, signOut, getNewAccessToken, getSuperAdminDashboardData,  getTenants , getSuperAdminTenantsCntData , addTenant , updateTenant, deleteTenant , getSuperAdminReportsData , getTenantsDataByStatus, getTenantSubscriptionHistory, getExchangeRates, updateExchangeRate } = require("../controllers/superadmin.controller");
 const router = Router();
 
 
@@ -19,6 +19,10 @@ router.delete('/tenants/delete/:id' ,  isLoggedIn, isAuthenticated, isSuperAdmin
 router.get('/tenantsData/:status' ,  isLoggedIn, isAuthenticated, isSuperAdmin, getTenantsDataByStatus);
 
 router.get("/reports", isLoggedIn, isAuthenticated, isSuperAdmin, getSuperAdminReportsData);
+router.get("/exchange-rates", isLoggedIn, isAuthenticated, isSuperAdmin, getExchangeRates);
+router.post("/exchange-rates/update", isLoggedIn, isAuthenticated, isSuperAdmin, updateExchangeRate);
+router.post("/exchange-rates/add", isLoggedIn, isAuthenticated, isSuperAdmin, require("../controllers/superadmin.controller").addExchangeRate);
+router.delete("/exchange-rates/delete", isLoggedIn, isAuthenticated, isSuperAdmin, require("../controllers/superadmin.controller").deleteExchangeRate);
 
 
 module.exports = router;

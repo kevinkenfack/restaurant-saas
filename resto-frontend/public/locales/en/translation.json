@@ -1322,7 +1322,15 @@
     "failed_to_export_data": "Failed to export Data. Please try again.",
     "something_went_wrong": "Something went wrong!",
     "please_wait":"Please wait...",
-    "month":"month"
+    "month":"month",
+    "add": "Add"
+  },
+  "superadmin_exchange_rates": {
+    "title": "Exchange Rates",
+    "loading_message": "Please wait...",
+    "error_message": "Error loading exchange rates, please try later!",
+    "currency_code": "Currency Code",
+    "rate_to_usd": "Rate to USD"
   },
   "pos": {
     "title": "POS - Point of Sale",
@@ -1420,7 +1428,8 @@
   "superadmin_navbar": {
     "dashboard": "Dashboard",
     "tenants": "Tenants",
-    "reports": "Reports"
+    "reports": "Reports",
+    "exchange_rates": "Exchange Rates"
   },
   "inventory": {
     "loading_text": "Please wait...",

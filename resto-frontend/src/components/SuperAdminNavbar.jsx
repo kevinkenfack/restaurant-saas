@@ -15,6 +15,7 @@ import {
   IconSettings2,
   IconToolsKitchen3,
   IconUsersGroup,
+  IconCurrencyDollar,
 } from "@tabler/icons-react";
 import { clsx } from "clsx";
 import Logo from "../assets/logo.svg";
@@ -52,6 +53,12 @@ export default function SuperAdminNavbar() {
       text: t('superadmin_navbar.reports'),
       icon: <IconChartArea stroke={iconStroke} />,
       path: "/superadmin/dashboard/reports",
+    },
+    {
+      type: "link",
+      text: t('superadmin_navbar.exchange_rates') || 'Taux de change',
+      icon: <IconCurrencyDollar stroke={iconStroke} />,
+      path: "/superadmin/dashboard/exchange-rates",
     },
   ];
 

@@ -778,3 +778,59 @@ const getFilterCondition = (field, type, from, to) => {
 
     return { params, filter };
 }
+
+// Récupérer tous les taux de change
+exports.getExchangeRatesDB = async () => {
+    const conn = await getMySqlPromiseConnection();
+    try {
+        const [rows] = await conn.query('SELECT * FROM exchange_rates');
+        return rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    } finally {
+        conn.release();
+    }
+};
+
+// Mettre à jour le taux d'une devise
+exports.updateExchangeRateDB = async (currency_code, rate_to_usd) => {
+    const conn = await getMySqlPromiseConnection();
+    try {
+        await conn.query('UPDATE exchange_rates SET rate_to_usd = ? WHERE currency_code = ?', [rate_to_usd, currency_code]);
+        return true;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    } finally {
+        conn.release();
+    }
+};
+
+// Ajouter un taux de change
+exports.addExchangeRateDB = async (currency_code, rate_to_usd) => {
+    const conn = await getMySqlPromiseConnection();
+    try {
+        await conn.query('INSERT INTO exchange_rates (currency_code, rate_to_usd) VALUES (?, ?)', [currency_code, rate_to_usd]);
+        return true;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    } finally {
+        conn.release();
+    }
+};
+
+// Supprimer un taux de change
+exports.deleteExchangeRateDB = async (currency_code) => {
+    const conn = await getMySqlPromiseConnection();
+    try {
+        await conn.query('DELETE FROM exchange_rates WHERE currency_code = ?', [currency_code]);
+        return true;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    } finally {
+        conn.release();
+    }
+};

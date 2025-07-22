@@ -1,7 +1,7 @@
 const { CONFIG } = require("../config");
 const { removeRefreshTokenDB, addRefreshTokenDB, verifyRefreshTokenDB } = require("../services/auth.service");
 
-const { signInDB, getAdminUserDB, getActiveTenantsDB, getInActiveTenantsDB,getAllTenantsDB,  getOrdersProcessedTodayDB, getSalesVolumeTodayDB, getMRRValueDB, getARRValueDB, getRestaurantsTotalCustomersDB, getSuperAdminTopSellingItemsDB, getSuperAdminSalesVolumeDB, getSuperAdminOrdersProcessedDB, getTenantsDB , addTenantDB , updateTenantDB , getTenantCntByIdDB ,getTenantDetailsByIdDB , logoutAllUsersOfTenantDB , deleteTenantDB , getTenantsDataByStatusDB, getTenantSubscriptionHistoryDB, getTenantTotalUsersDB, getTenantDetailsDB, getTenantStoreDetailsDB } = require("../services/superadmin.service")
+const { signInDB, getAdminUserDB, getActiveTenantsDB, getInActiveTenantsDB,getAllTenantsDB,  getOrdersProcessedTodayDB, getSalesVolumeTodayDB, getMRRValueDB, getARRValueDB, getRestaurantsTotalCustomersDB, getSuperAdminTopSellingItemsDB, getSuperAdminSalesVolumeDB, getSuperAdminOrdersProcessedDB, getTenantsDB , addTenantDB , updateTenantDB , getTenantCntByIdDB ,getTenantDetailsByIdDB , logoutAllUsersOfTenantDB , deleteTenantDB , getTenantsDataByStatusDB, getTenantSubscriptionHistoryDB, getTenantTotalUsersDB, getTenantDetailsDB, getTenantStoreDetailsDB, getExchangeRatesDB, updateExchangeRateDB, addExchangeRateDB, deleteExchangeRateDB } = require("../services/superadmin.service")
 const { generateAccessToken, generateRefreshToken } = require("../utils/jwt");
 const {checkEmailExistsSuperadminDB} = require('../services/auth.service');
 
@@ -486,6 +486,83 @@ exports.getSuperAdminReportsData = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: req.__("something_went_wrong_try_later") // Translate message
+        });
+    }
+};
+
+// Récupérer tous les taux de change
+exports.getExchangeRates = async (req, res) => {
+    try {
+        const rates = await getExchangeRatesDB();
+        return res.status(200).json(rates);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: req.__("something_went_wrong_try_later")
+        });
+    }
+};
+
+// Mettre à jour le taux d'une devise
+exports.updateExchangeRate = async (req, res) => {
+    try {
+        const { currency_code, rate_to_usd } = req.body;
+        if (!currency_code || typeof rate_to_usd === 'undefined') {
+            return res.status(400).json({
+                success: false,
+                message: req.__("please_provide_required_details")
+            });
+        }
+        await updateExchangeRateDB(currency_code, rate_to_usd);
+        return res.status(200).json({ success: true, message: req.__("exchange_rate_updated") });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: req.__("something_went_wrong_try_later")
+        });
+    }
+};
+
+// Ajouter un taux de change
+exports.addExchangeRate = async (req, res) => {
+    try {
+        const { currency_code, rate_to_usd } = req.body;
+        if (!currency_code || typeof rate_to_usd === 'undefined') {
+            return res.status(400).json({
+                success: false,
+                message: req.__("please_provide_required_details")
+            });
+        }
+        await addExchangeRateDB(currency_code, rate_to_usd);
+        return res.status(200).json({ success: true, message: req.__("exchange_rate_added") });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: req.__("something_went_wrong_try_later")
+        });
+    }
+};
+
+// Supprimer un taux de change
+exports.deleteExchangeRate = async (req, res) => {
+    try {
+        const { currency_code } = req.body;
+        if (!currency_code) {
+            return res.status(400).json({
+                success: false,
+                message: req.__("please_provide_required_details")
+            });
+        }
+        await deleteExchangeRateDB(currency_code);
+        return res.status(200).json({ success: true, message: req.__("exchange_rate_deleted") });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: req.__("something_went_wrong_try_later")
         });
     }
 };

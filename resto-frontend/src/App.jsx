@@ -66,6 +66,7 @@ import MyToaster from "./components/MyToaster";
 import RefundPolicyPage from "./views/LegalPages/RefundPolicyPage";
 import PrivacyPolicyPage from "./views/LegalPages/PrivacyPolicyPage";
 import TermsConditionsPage from "./views/LegalPages/TermsConditionsPage";
+import SuperAdminExchangeRatesPage from "./views/SuperAdmin/SuperAdminExchangeRatesPage";
 
 
 export default function App() {
@@ -371,6 +372,14 @@ export default function App() {
                   element={
                     <SuperAdminProtectedRoute>
                       <SuperAdminContactSupportPage />
+                    </SuperAdminProtectedRoute>
+                  } 
+                />
+                <Route 
+                  path="exchange-rates" 
+                  element={
+                    <SuperAdminProtectedRoute>
+                      <SuperAdminExchangeRatesPage />
                     </SuperAdminProtectedRoute>
                   } 
                 />

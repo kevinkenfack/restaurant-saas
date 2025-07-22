@@ -137,3 +137,47 @@ export function useSuperAdminTenantSubscriptionHistory(tenantId) {
     APIURL,
   };
 }
+
+export async function getExchangeRates() {
+  try {
+    const response = await ApiClient.get(`/superadmin/exchange-rates`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function updateExchangeRate(currency_code, rate_to_usd) {
+  try {
+    const response = await ApiClient.post(`/superadmin/exchange-rates/update`, {
+      currency_code,
+      rate_to_usd
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function addExchangeRate(currency_code, rate_to_usd) {
+  try {
+    const response = await ApiClient.post(`/superadmin/exchange-rates/add`, {
+      currency_code,
+      rate_to_usd
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function deleteExchangeRate(currency_code) {
+  try {
+    const response = await ApiClient.delete(`/superadmin/exchange-rates/delete`, {
+      data: { currency_code }
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}

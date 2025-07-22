@@ -1325,6 +1325,14 @@
     "please_wait": "S'il vous plaît, attendez...",
     "month": "mois"
   },
+  "superadmin_exchange_rates": {
+    "title": "Taux de change",
+    "loading_message": "Veuillez patienter...",
+    "error_message": "Erreur lors du chargement des taux de change, veuillez réessayer plus tard !",
+    "currency_code": "Code de devise",
+    "rate_to_usd": "Taux de conversion en USD",
+    "add": "Ajouter"
+  },
   "pos": {
     "title": "PDV - Point de vente",
     "new_order": "Nouveau",
@@ -1421,7 +1429,8 @@
   "superadmin_navbar": {
     "dashboard": "Tableau de bord",
     "tenants": "Locataires",
-    "reports": "Rapports"
+    "reports": "Rapports",
+    "exchange_rates": "Taux de change"
   },
   "inventory": {
     "loading_text": "S'il vous plaît, attendez...",
