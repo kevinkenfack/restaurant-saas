@@ -127,6 +127,7 @@
     "email_message": "Here is link to reset your profile password, open link to setup new password. The link is only valid till next 20 minutes, don't share this link with anyone.",
     "reset_button": "Reset Password",
     "app_name": "Menufy App",
+    "email_warning": "The link is only valid till next 20 minutes, don't share this link with anyone.",
     "all_rights_reserved": "All rights reserved",
     "email_subject": "Reset Your Password",
     "welcome": "welcome to Menufy",
