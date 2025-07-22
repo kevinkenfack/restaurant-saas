@@ -7,6 +7,7 @@ import { resetPassword } from "../controllers/auth.controller";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
 import { getPasswordStrength } from "../utils/strongPasswordValidation";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 export default function ResetPasswordPage() {
   const { t } = useTranslation();
@@ -17,11 +18,15 @@ export default function ResetPasswordPage() {
 
   const [passwordStrength, setPasswordStrength] = React.useState({ score: 0, level: "faible" });
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const password = e.target.password.value;
+    const confirmPassword = e.target.confirm_password.value;
 
     if(!token) {
       toast.error(t("reset_password.invalid_request"));
@@ -38,6 +43,16 @@ export default function ResetPasswordPage() {
     const strength = getPasswordStrength(password);
     if (strength.score < 2) {
       toast.error(t("register.password_too_weak"));
+      return;
+    }
+
+    if (!confirmPassword) {
+      e.target.confirm_password.focus();
+      toast.error(t("reset_password.confirm_password_error"));
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast.error(t("reset_password.passwords_do_not_match"));
       return;
     }
 
@@ -83,19 +98,30 @@ export default function ResetPasswordPage() {
               <label className="block" htmlFor="password">
                 {t("reset_password.new_password_label")}
               </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                required
-                placeholder={t("reset_password.new_password_placeholder")}
-                className="mt-2 block w-full bg-gray-100 px-4 py-3 rounded-xl text-base md:text-lg"
-                value={password}
-                onChange={e => {
-                  setPassword(e.target.value);
-                  setPasswordStrength(getPasswordStrength(e.target.value));
-                }}
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  required
+                  placeholder={t("reset_password.new_password_placeholder")}
+                  className="mt-2 block w-full bg-gray-100 px-4 py-3 rounded-xl text-base md:text-lg pr-12"
+                  value={password}
+                  onChange={e => {
+                    setPassword(e.target.value);
+                    setPasswordStrength(getPasswordStrength(e.target.value));
+                  }}
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  aria-label={showPassword ? t("register.hide_password") : t("register.show_password")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-restro-green dark:hover:text-green-400 transition p-1 bg-transparent"
+                  onClick={() => setShowPassword(v => !v)}
+                >
+                  {showPassword ? <IconEye size={22} /> : <IconEyeOff size={22} />}
+                </button>
+              </div>
               {password && (
                 <div className="mt-2">
                   <span className={`text-xs font-semibold 
@@ -108,6 +134,32 @@ export default function ResetPasswordPage() {
                   </span>
                 </div>
               )}
+            </div>
+            <div className="mt-4">
+              <label className="block" htmlFor="confirm_password">
+                {t("reset_password.confirm_password_label")}
+              </label>
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  id="confirm_password"
+                  name="confirm_password"
+                  required
+                  placeholder={t("reset_password.confirm_password_placeholder")}
+                  className="mt-2 block w-full bg-gray-100 px-4 py-3 rounded-xl text-base md:text-lg pr-12"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  aria-label={showConfirmPassword ? t("register.hide_password") : t("register.show_password")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-restro-green dark:hover:text-green-400 transition p-1 bg-transparent"
+                  onClick={() => setShowConfirmPassword(v => !v)}
+                >
+                  {showConfirmPassword ? <IconEye size={22} /> : <IconEyeOff size={22} />}
+                </button>
+              </div>
             </div>
 
             <button

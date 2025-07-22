@@ -94,7 +94,12 @@
     "invalid_request": "Invalid request!",
     "new_password_error": "Please provide new password!",
     "success_message": "Password reset successful!",
-    "error_message": "Error processing your request, Please try later!"
+    "error_message": "Error processing your request, Please try later!",
+    "confirm_password_label": "Confirm Password",
+    "confirm_password_placeholder": "Retype the new password",
+    "confirm_password_error": "Please confirm the password.",
+    "passwords_do_not_match": "Passwords do not match."
+
   },
   "reservations": {
     "title": "Reservations",

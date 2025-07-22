@@ -9,6 +9,7 @@ import { validateEmail } from "../utils/emailValidator";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "../contexts/ThemeContext";
 import { getPasswordStrength } from "../utils/strongPasswordValidation";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 export default function RegistrationPage() {
   const { t } = useTranslation();
@@ -17,6 +18,7 @@ export default function RegistrationPage() {
 
   const [passwordStrength, setPasswordStrength] = React.useState({ score: 0, level: "faible" });
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -160,19 +162,30 @@ export default function RegistrationPage() {
             >
               {t("register.password_label")}
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              required
-              placeholder={t("register.password_placeholder")}
-              className='mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray  focus-visible:ring-restro-ring text-base md:text-lg'
-              value={password}
-              onChange={e => {
-                setPassword(e.target.value);
-                setPasswordStrength(getPasswordStrength(e.target.value));
-              }}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                required
+                placeholder={t("register.password_placeholder")}
+                className='mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray  focus-visible:ring-restro-ring text-base md:text-lg pr-12'
+                value={password}
+                onChange={e => {
+                  setPassword(e.target.value);
+                  setPasswordStrength(getPasswordStrength(e.target.value));
+                }}
+              />
+              <button
+                type="button"
+                tabIndex={-1}
+                aria-label={showPassword ? t("register.hide_password") : t("register.show_password")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-restro-green dark:hover:text-green-400 transition p-1 bg-transparent"
+                onClick={() => setShowPassword(v => !v)}
+              >
+                {showPassword ? <IconEye size={22} /> : <IconEyeOff size={22} />}
+              </button>
+            </div>
             {password && (
               <div className="mt-2">
                 <span className={`text-xs font-semibold 

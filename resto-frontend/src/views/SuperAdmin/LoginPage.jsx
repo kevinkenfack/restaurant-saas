@@ -11,11 +11,13 @@ import {
 } from "../../helpers/UserDetails";
 import { signIn } from "../../controllers/superadmin.controller";
 import { useTheme } from "../../contexts/ThemeContext";
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 export default function SuperAdminLoginPage() {
   const { t } = useTranslation();
   const {theme} = useTheme();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = React.useState(false);
 
   useEffect(() => {
     const restroAuthenticated = isRestroUserAuthenticated();
@@ -130,15 +132,26 @@ export default function SuperAdminLoginPage() {
               <label htmlFor="password" className="text-restro-text">
                 {t("superadmin_login.password_label")}
               </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                required
-                placeholder={t("superadmin_login.password_placeholder")}
-                className="mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray focus-visible:ring-restro-ring text-base md:text-lg"
-                tabIndex={2}
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  required
+                  placeholder={t("superadmin_login.password_placeholder")}
+                  className="mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray focus-visible:ring-restro-ring text-base md:text-lg pr-12"
+                  tabIndex={2}
+                />
+                <button
+                  type="button"
+                  tabIndex={-1}
+                  aria-label={showPassword ? t("register.hide_password") : t("register.show_password")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-restro-green dark:hover:text-green-400 transition p-1 bg-transparent"
+                  onClick={() => setShowPassword(v => !v)}
+                >
+                  {showPassword ? <IconEye size={22} /> : <IconEyeOff size={22} />}
+                </button>
+              </div>
             </div>
 
             <button
