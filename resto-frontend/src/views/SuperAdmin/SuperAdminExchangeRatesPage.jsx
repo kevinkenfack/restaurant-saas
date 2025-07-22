@@ -81,79 +81,90 @@ export default function SuperAdminExchangeRatesPage() {
   return (
     <Page className="px-4 py-6 w-full">
       <h2 className="text-2xl font-bold mb-6">{t('superadmin_exchange_rates.title') || 'Taux de change'}</h2>
-      <form onSubmit={handleAdd} className="flex flex-col md:flex-row gap-2 mb-8 items-end bg-restro-card-bg border border-restro-border-green rounded-xl p-4">
-        <div className="flex-1">
-          <label className="block mb-1 font-medium">Devise (ex: USD)</label>
-          <input
-            type="text"
-            maxLength={6}
-            value={newCurrency}
-            onChange={e => setNewCurrency(e.target.value.replace(/[^a-zA-Z]/g, ''))}
-            className="rounded-lg px-3 py-2 border border-restro-border-green bg-restro-gray w-full uppercase"
-            placeholder="Code devise"
-            required
-          />
+      <form onSubmit={handleAdd} className="mb-8 bg-restro-card-bg border border-restro-border-green rounded-xl p-4">
+        <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-end">
+          <div className="flex-1 min-w-0">
+            <label className="block mb-1 font-medium text-sm">Devise (ex: USD)</label>
+            <input
+              type="text"
+              maxLength={6}
+              value={newCurrency}
+              onChange={e => setNewCurrency(e.target.value.replace(/[^a-zA-Z]/g, ''))}
+              className="rounded-lg px-3 py-2 border border-restro-border-green bg-restro-gray w-full uppercase h-10 text-sm"
+              placeholder="Code devise"
+              required
+            />
+          </div>
+          <div className="flex-1 min-w-0">
+            <label className="block mb-1 font-medium text-sm">Taux vers USD</label>
+            <input
+              type="number"
+              step="any"
+              min="0"
+              value={newRate}
+              onChange={e => setNewRate(e.target.value)}
+              className="rounded-lg px-3 py-2 border border-restro-border-green bg-restro-gray w-full h-10 text-sm"
+              placeholder="Taux"
+              required
+            />
+          </div>
+          <button 
+            type="submit" 
+            className="flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-restro-green text-white hover:bg-restro-green-button-hover transition font-bold w-full sm:w-auto h-10 text-sm whitespace-nowrap" 
+            disabled={adding}
+          >
+            <IconPlus size={18} /> 
+            <span>{adding ? 'Ajout...' : 'Ajouter'}</span>
+          </button>
         </div>
-        <div className="flex-1">
-          <label className="block mb-1 font-medium">Taux vers USD</label>
-          <input
-            type="number"
-            step="any"
-            min="0"
-            value={newRate}
-            onChange={e => setNewRate(e.target.value)}
-            className="rounded-lg px-3 py-2 border border-restro-border-green bg-restro-gray w-full"
-            placeholder="Taux"
-            required
-          />
-        </div>
-        <button type="submit" className="flex items-center gap-2 px-4 py-2 rounded-xl bg-restro-green text-white hover:bg-restro-green-button-hover transition font-bold" disabled={adding}>
-          <IconPlus size={20} /> {adding ? 'Ajout...' : 'Ajouter'}
-        </button>
       </form>
       <div className="overflow-x-auto">
-        <table className="min-w-[400px] w-full border border-restro-border-green rounded-xl">
+        <table className="w-full min-w-[350px] border border-restro-border-green rounded-xl">
           <thead>
             <tr className="bg-restro-card-bg">
-              <th className="px-4 py-2 text-left">Devise</th>
-              <th className="px-4 py-2 text-center">Taux vers USD</th>
-              <th className="px-4 py-2 text-right">Action</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium">Devise</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-center text-xs sm:text-sm font-medium">Taux USD</th>
+              <th className="px-2 sm:px-4 py-2 sm:py-3 text-right text-xs sm:text-sm font-medium">Actions</th>
             </tr>
           </thead>
           <tbody>
             {rates.map((rate, i) => (
               <tr key={rate.currency_code} className="border-t border-restro-border-green">
-                <td className="px-4 py-2 font-bold uppercase">{rate.currency_code}</td>
-                <td className="px-4 py-2 text-center">
+                <td className="px-2 sm:px-4 py-2 sm:py-3 font-bold uppercase text-xs sm:text-sm">{rate.currency_code}</td>
+                <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
                   <input
                     type="number"
                     step="any"
                     min="0"
                     value={rate.rate_to_usd}
                     onChange={e => handleRateChange(i, e.target.value)}
-                    className="rounded-lg px-3 py-2 border border-restro-border-green bg-restro-gray w-32 text-center"
+                    className="rounded-lg px-2 py-1 border border-restro-border-green bg-restro-gray w-16 sm:w-24 text-center text-xs sm:text-sm"
                   />
                 </td>
-                <td className="px-4 py-2 flex gap-2 items-center justify-end">
-                  <button
-                    className="px-4 py-2 rounded-xl bg-restro-green text-white hover:bg-restro-green-button-hover transition flex items-center justify-center"
-                    onClick={() => handleSave(rate)}
-                    disabled={saving}
-                    title="Enregistrer"
-                  >
-                    {saving ? (
-                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
-                    ) : (
-                      <IconDeviceFloppy size={20} />
-                    )}
-                  </button>
-                  <button
-                    className="p-2 rounded-xl bg-red-100 hover:bg-red-200 text-red-600 transition"
-                    onClick={() => handleDelete(rate.currency_code)}
-                    title="Supprimer"
-                  >
-                    <IconTrash size={18} />
-                  </button>
+                <td className="px-2 sm:px-4 py-2 sm:py-3">
+                  <div className="flex gap-1 sm:gap-2 items-center justify-end">
+                    <button
+                      className="px-2 sm:px-3 py-1 sm:py-2 rounded-lg sm:rounded-xl bg-restro-green text-white hover:bg-restro-green-button-hover transition flex items-center justify-center"
+                      onClick={() => handleSave(rate)}
+                      disabled={saving}
+                      title="Enregistrer"
+                    >
+                      {saving ? (
+                        <svg className="animate-spin h-3 w-3 sm:h-4 sm:w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path></svg>
+                      ) : (
+                        <IconDeviceFloppy size={14} className="sm:hidden" />
+                      )}
+                      <IconDeviceFloppy size={16} className="hidden sm:block" />
+                    </button>
+                    <button
+                      className="p-1 sm:p-2 rounded-lg sm:rounded-xl bg-red-100 hover:bg-red-200 text-red-600 transition"
+                      onClick={() => handleDelete(rate.currency_code)}
+                      title="Supprimer"
+                    >
+                      <IconTrash size={14} className="sm:hidden" />
+                      <IconTrash size={16} className="hidden sm:block" />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
