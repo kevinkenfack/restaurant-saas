@@ -192,6 +192,7 @@
   },
   "qr_menu": {
     "loading_message": "Veuillez patienter...",
+    "loading_menu_of": "Chargement du menu en cours...",
     "broken_link": "Lien brisé !",
     "menu_not_available": "Menu non disponible !",
     "menu": "Menu",

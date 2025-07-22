@@ -48,6 +48,10 @@ export default function QRMenuPage() {
     currency: "",
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [infoMenuItem, setInfoMenuItem] = useState(null);
   const infoMenuModalRef = useRef(null);
 
@@ -205,7 +209,22 @@ export default function QRMenuPage() {
     return (
       <div className="w-full">
         <div className="container mx-auto px-4 flex h-screen items-center justify-center">
-          {t("qr_menu.loading_message")}
+          <div className="flex flex-col items-center gap-6">
+            {/* Illustration 2D loader avec spinner autour */}
+            <span className="relative flex items-center justify-center w-56 h-56">
+              {/* Spinner circulaire autour de l'image */}
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="h-56 w-56 rounded-full border-4 border-t-restro-green border-b-restro-green border-l-transparent border-r-transparent animate-spin shadow-xl dark:shadow-restro-green/30" style={{borderTopColor: '#70B56A', borderBottomColor: '#70B56A', animationDuration: '2s'}}></span>
+              </span>
+              <img
+                src="/assets/illustrations/qr-loader.webp"
+                alt="QR Menu Loading"
+                className="w-48 max-w-xs mx-auto z-10"
+              />
+            </span>
+            <span className="text-gray-700 dark:text-gray-200 font-semibold text-lg tracking-wide animate-pulse">{t("qr_menu.loading_message")}</span>
+            <span className="text-gray-500 dark:text-gray-400 text-base mt-[-12px]">{t("qr_menu.loading_menu_of")}</span>
+          </div>
         </div>
       </div>
     );

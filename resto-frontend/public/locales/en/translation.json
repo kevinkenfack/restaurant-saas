@@ -193,6 +193,7 @@
   },
   "qr_menu": {
     "loading_message": "Please wait...",
+    "loading_menu_of": "Loading menu in progress...",
     "broken_link": "Broken Link!",
     "menu_not_available": "Menu Not Available!",
     "menu": "Menu",
