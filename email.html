@@ -1,36 +1,106 @@
 <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        </head>
-        <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #ECF1EB;">
-            <div style="max-width: 500px; margin: 50px auto; background-color: #ffffff; border-radius: 12px; padding: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                
-                <p style="color: #333333; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
-                    Here is link to reset your profile password, open link to setup new password. The link is only valid till next 20 minutes, don't share this link with anyone.
-                </p>
-                
-                <div style="text-align: center; margin: 30px 0;">
-                    <a href="${resetPasswordURL}" 
-                       style="display: inline-block; 
-                              background-color: #70B56A; 
-                              color: #ffffff; 
-                              text-decoration: none; 
-                              padding: 12px 24px; 
-                              border-radius: 12px; 
-                              font-weight: 600; 
-                              font-size: 16px;">
-                        Reset Password
-                    </a>
-                </div>
-                
-                <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
-                    <p style="color: #6b7280; font-size: 14px; margin: 0;">
-                        © 2025 Menufy App - All rights reserved
-                    </p>
-                </div>
-                
-            </div>
-        </body>
-        </html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>
+                        body {
+                            margin: 0;
+                            padding: 0;
+                            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                            background-color: #ECF1EB;
+                            color: #333333;
+                        }
+                        .container {
+                            max-width: 500px;
+                            margin: 50px auto;
+                            background-color: #ffffff;
+                            border-radius: 12px;
+                            padding: 40px;
+                            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+                        }
+                        .header {
+                            text-align: center;
+                            margin-bottom: 30px;
+                        }
+                        .logo {
+                            max-width: 120px; /* Adjust as needed */
+                            height: auto;
+                        }
+                        .content-text {
+                            font-size: 16px;
+                            line-height: 1.6;
+                            margin-bottom: 25px;
+                        }
+                        .warning-box {
+                            background-color: #FFF3CD; /* A soft yellow for warning */
+                            border-left: 5px solid #FFC107; /* A stronger yellow for emphasis */
+                            padding: 15px 20px;
+                            margin-bottom: 30px;
+                            border-radius: 8px;
+                            font-size: 14px;
+                            color: #664D03; /* Darker text for readability */
+                            font-weight: 600;
+                            line-height: 1.5;
+                        }
+                        .button-wrapper {
+                            text-align: center;
+                            margin: 30px 0;
+                        }
+                        .button {
+                            display: inline-block;
+                            background-color: #70B56A; /* Your primary color */
+                            color: #ffffff;
+                            text-decoration: none;
+                            padding: 14px 28px;
+                            border-radius: 12px;
+                            font-weight: 700;
+                            font-size: 17px;
+                            transition: background-color 0.3s ease;
+                        }
+                        .button:hover {
+                            background-color: #5BA057; /* Slightly darker shade on hover */
+                        }
+                        .footer {
+                            text-align: center;
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 1px solid #e5e7eb;
+                        }
+                        .footer-text {
+                            color: #6b7280;
+                            font-size: 14px;
+                            margin: 0;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <!-- You can add your logo here if you have one -->
+                            <!-- <img src="URL_TO_YOUR_LOGO" alt="${req.__("app_name")} Logo" class="logo"> -->
+                        </div>
+                        
+                        <p class="content-text">
+                            ${req.__("email_message")}
+                        </p>
+                        
+                        <div class="warning-box">
+                            ${req.__("email_warning")}
+                        </div>
+                        
+                        <div class="button-wrapper">
+                            <a href="${resetPasswordURL}" class="button">
+                                ${req.__("reset_button")}
+                            </a>
+                        </div>
+                        
+                        <div class="footer">
+                            <p class="footer-text">
+                                © 2025 ${req.__("app_name")} - ${req.__("all_rights_reserved")}
+                            </p>
+                        </div>
+                        
+                    </div>
+                </body>
+                </html>
