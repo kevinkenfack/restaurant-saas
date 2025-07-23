@@ -401,6 +401,9 @@
     "price_per_month": "par mois",
     "loading_message": "Veuillez patienter...",
     "error_message": "Erreur lors du traitement de votre demande !",
+    "already_active_title": "Abonnement déjà actif",
+    "already_active_message": "Vous avez déjà un abonnement en cours. Merci !",
+    "go_to_dashboard": "Aller au tableau de bord",
     "features": {
       "unlimited_orders": "Commandes illimitées",
       "monthly_renewals": "Renouvellements mensuels",

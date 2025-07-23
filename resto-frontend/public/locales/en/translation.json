@@ -400,6 +400,9 @@
     "error_message": "Error processing your request, Please try later!",
     "subscribe_button": "Subscribe",
     "price_per_month": "per month",
+    "already_active_title": "Subscription already active",
+    "already_active_message": "You already have an active subscription. Thank you!",
+    "go_to_dashboard": "Go to dashboard",
     "features": {
       "unlimited_orders": "Unlimited Orders",
       "monthly_renewals": "Monthly Renewals",

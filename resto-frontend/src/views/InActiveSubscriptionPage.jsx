@@ -3,7 +3,7 @@ import Logo from "../assets/logo.svg";
 import LogoDark from "../assets/LogoDark.svg";
 import { iconStroke, stripeProductSubscriptionId, subscriptionPrice } from '../config/config';
 import React from "react";
-import { getStripeSubscriptionURL, signOut } from "../controllers/auth.controller";
+import { getStripeSubscriptionURL, signOut, useSubscriptionDetails } from "../controllers/auth.controller";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserDetailsInLocalStorage } from "../helpers/UserDetails";
@@ -17,6 +17,50 @@ export default function InActiveSubscriptionPage() {
   const navigate = useNavigate();
   const user = getUserDetailsInLocalStorage();
   const {theme} = useTheme();
+  const { data, isLoading, error } = useSubscriptionDetails();
+
+  // Loader pendant le chargement de l'état d'abonnement
+  if (isLoading) {
+    return (
+      <Page className="flex flex-col min-h-[60vh]">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-restro-gray">
+          <img src={theme === "black" ? LogoDark : Logo} alt="logo" className="h-12 block" />
+          <AppBarDropdown />
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center min-h-[40vh]">
+          <div className="flex flex-col items-center justify-center gap-4 mt-12">
+            <span className="loader ease-linear rounded-full border-4 border-t-4 border-restro-green h-12 w-12 mb-4 animate-spin"></span>
+            <p className="text-gray-500 text-lg text-center">{t("inactive_subscription.loading_message") || "Chargement de l'abonnement..."}</p>
+          </div>
+        </div>
+      </Page>
+    );
+  }
+
+  // Si l'abonnement est actif, afficher un message et ne pas afficher l'offre
+  if (data?.is_active) {
+    return (
+      <Page className="flex flex-col min-h-[60vh]">
+        {/* Barre supérieure toujours visible */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-restro-gray">
+          <img src={theme === "black" ? LogoDark : Logo} alt="logo" className="h-12 block" />
+          <AppBarDropdown />
+        </div>
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <div className="w-full max-w-md sm:max-w-lg bg-white dark:bg-black border-2 border-green-500 dark:border-green-700 rounded-2xl shadow-xl px-4 py-8 sm:px-10 sm:py-12 flex flex-col items-center mt-8 sm:mt-12 mx-2">
+            <div className="flex items-center gap-2 bg-gradient-to-r from-green-400 to-green-600 text-white text-base sm:text-lg font-extrabold px-6 sm:px-8 py-2 sm:py-3 rounded-full shadow-2xl border-4 border-white dark:border-black uppercase tracking-wider drop-shadow-lg mb-6">
+              <IconCrown size={28} className="text-white drop-shadow" />
+              {t("subscription.active")}
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold mb-3 text-center">{t("inactive_subscription.already_active_title") || "Abonnement déjà actif"}</h2>
+            <p className="text-gray-700 dark:text-gray-200 text-center mb-6 text-base sm:text-lg">{t("inactive_subscription.already_active_message") || "Vous avez déjà un abonnement en cours. Merci !"}</p>
+            <Link to="/dashboard/home" className="bg-restro-green text-white rounded-xl px-5 py-3 font-bold text-base sm:text-lg hover:bg-restro-green-button-hover transition w-full text-center">{t("inactive_subscription.go_to_dashboard") || "Aller au tableau de bord"}</Link>
+          </div>
+        </div>
+      </Page>
+    );
+  }
+
   const btnSubscribe = async () => {
     toast.loading(t("inactive_subscription.loading_message"));
     try {
