@@ -135,7 +135,7 @@ export default function LandingPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 -mt-12 sm:-mt-16">
         <div className="max-w-5xl mx-auto">
           <img
-            src="/assets/hero.png?v=555"
+            src="/assets/hero.png?v=555555"
             alt="menufy image"
             loading="lazy"
             className="w-full rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl shadow-gray-900/10"
