@@ -79,10 +79,10 @@ export default function ResetPasswordPage() {
 
       <div className="flex flex-col md:flex-row items-center justify-end md:justify-between gap-10 h-screen container mx-auto px-4 md:px-0 py-4 md:py-0 relative">
         <div className="w-full md:w-auto flex flex-col items-start justify-center">
-          <h3 className="text-3xl md:text-5xl lg:text-7xl font-black text-restro-green-dark mb-2 md:mb-4">{t("home.cafe_restaurant")}</h3>
-          <h3 className="text-2xl md:text-4xl lg:text-6xl font-black text-restro-green-light outline-text mt-2 md:mt-6">{t("home.hotel_bar")}</h3>
+          <h3 className="text-3xl md:text-5xl lg:text-7xl font-black text-restro-green-dark dark:text-restro-green-dark-mode mb-2 md:mb-4">{t("home.cafe_restaurant")}</h3>
+          <h3 className="text-2xl md:text-4xl lg:text-6xl font-black text-restro-green-light dark:text-restro-green outline-text mt-2 md:mt-6">{t("home.hotel_bar")}</h3>
         </div>
-        <div className="bg-white rounded-2xl px-8 py-8 w-full sm:w-96 mx-8 sm:mx-0 shadow-2xl"
+        <div className="bg-white dark:bg-black rounded-2xl px-8 py-8 w-full sm:w-96 mx-8 sm:mx-0 shadow-2xl"
           style={{ maxWidth: '540px', minWidth: '320px', width: '100%' }}>
           <div className="flex items-center justify-between">
             <div className="text-restro-green-dark text-xl md:text-2xl font-medium">
@@ -105,7 +105,7 @@ export default function ResetPasswordPage() {
                   name="password"
                   required
                   placeholder={t("reset_password.new_password_placeholder")}
-                  className="mt-2 block w-full bg-gray-100 px-4 py-3 rounded-xl text-base md:text-lg pr-12"
+                  className="mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray text-restro-text focus-visible:ring-restro-ring text-base md:text-lg pr-12"
                   value={password}
                   onChange={e => {
                     setPassword(e.target.value);
@@ -146,7 +146,7 @@ export default function ResetPasswordPage() {
                   name="confirm_password"
                   required
                   placeholder={t("reset_password.confirm_password_placeholder")}
-                  className="mt-2 block w-full bg-gray-100 px-4 py-3 rounded-xl text-base md:text-lg pr-12"
+                  className="mt-2 block w-full px-4 py-3 rounded-xl outline-none focus-visible:ring-1 bg-restro-gray text-restro-text focus-visible:ring-restro-ring text-base md:text-lg pr-12"
                   value={confirmPassword}
                   onChange={e => setConfirmPassword(e.target.value)}
                 />
@@ -164,7 +164,7 @@ export default function ResetPasswordPage() {
 
             <button
               type="submit"
-              className="block w-full mt-6 bg-restro-green text-white rounded-xl px-4 py-3 transition hover:scale-105 active:scale-95 hover:shadow-xl hover:shadow-green-800/20 text-base md:text-lg"
+              className="block w-full mt-6 text-white rounded-xl px-4 py-3 transition hover:scale-105 active:scale-95 hover:shadow-xl bg-restro-green text-base md:text-lg"
             >
               {t("reset_password.reset_button")}
             </button>
