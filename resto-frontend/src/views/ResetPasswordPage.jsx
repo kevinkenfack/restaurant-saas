@@ -85,7 +85,7 @@ export default function ResetPasswordPage() {
         <div className="bg-white dark:bg-black rounded-2xl px-8 py-8 w-full sm:w-96 mx-8 sm:mx-0 shadow-2xl"
           style={{ maxWidth: '540px', minWidth: '320px', width: '100%' }}>
           <div className="flex items-center justify-between">
-            <div className="text-restro-green-dark text-xl md:text-2xl font-medium">
+            <div className="text-xl md:text-2xl font-medium">
               {t("reset_password.title")}
             </div>
             <div>
