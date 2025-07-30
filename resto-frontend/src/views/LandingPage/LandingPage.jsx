@@ -137,6 +137,7 @@ export default function LandingPage() {
           <img
             src="/assets/hero.png?v=555"
             alt="menufy image"
+            loading="lazy"
             className="w-full rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl shadow-gray-900/10"
           />
         </div>
