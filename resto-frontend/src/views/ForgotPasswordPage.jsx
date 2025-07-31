@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Logo from "../assets/logo.svg";
 import { useTheme } from "../contexts/ThemeContext";
 import LogoDark from "../assets/LogoDark.svg"
@@ -11,6 +11,10 @@ export default function ForgotPasswordPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const {theme} = useTheme();
+
+  useEffect(() => {
+      window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

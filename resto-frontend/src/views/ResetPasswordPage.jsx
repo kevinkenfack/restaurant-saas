@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Logo from "../assets/logo.svg";
 import LogoDark from "../assets/LogoDark.svg"
 import { toast } from "react-hot-toast";
@@ -21,6 +21,10 @@ export default function ResetPasswordPage() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [confirmPassword, setConfirmPassword] = React.useState("");
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
