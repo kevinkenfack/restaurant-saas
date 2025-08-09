@@ -46,14 +46,14 @@ export default function AppBarDropdown() {
   };
 
   const itemBaseClasses =
-    "group flex gap-2 w-full items-center rounded-2xl px-3 py-2 text-sm transition-colors ";
+    "group flex gap-2 w-full items-center rounded-xl px-3 py-2 text-sm transition-colors ";
 
   return (
     <Menu as="div" className="relative inline-block text-left z-50">
       <div>
         <Menu.Button
           className={clsx(
-            "text-sm transition rounded-full flex items-center gap-0 md:gap-2",
+            "text-sm transition rounded-xl flex items-center gap-0 md:gap-2 px-2",
             theme === "black"
               ? "bg-restro-gray hover:bg-restro-button-hover text-white"
               : "bg-restro-green-light hover:bg-restro-button-hover text-restro-green-dark"
@@ -76,7 +76,7 @@ export default function AppBarDropdown() {
       >
         <Menu.Items
           className={clsx(
-            "absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 dark:divide-gray-600 rounded-2xl shadow-lg ring-1 ring-black/5 focus:outline-none bg-background border-restro-border-green"
+            "absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 dark:divide-gray-600 rounded-xl shadow-lg ring-1 ring-black/5 focus:outline-none bg-background border-restro-border-green"
             
           )}
         >

@@ -208,7 +208,7 @@ export default function AppBar() {
         {/* search */}
         <button
           onClick={btnShowSearchModal}
-          className="rounded-full flex items-center px-3 py-2 gap-2 bg-restro-green-light text-restro-text"
+          className="rounded-xl flex items-center px-3 py-2 gap-2 bg-restro-green-light text-restro-text"
         >
           <IconSearch stroke={iconStroke} />
           <div
