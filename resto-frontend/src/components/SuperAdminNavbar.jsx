@@ -74,7 +74,9 @@ export default function SuperAdminNavbar() {
   if (isNavbarCollapsed) {
     return (
       <div className ="flex flex-col items-start gap-4 h-screen px-5 py-6 overflow-y-auto fixed left-0 top-0 bg-restro-green-light">
-        <img src={theme === "black" ? LogoDark : Logo} alt="logo" className="w-12 block mb-6" />
+        <Link to="/">
+          <img src={theme === "black" ? LogoDark : Logo} alt="logo" className="w-12 block mb-6" />
+        </Link>
         {navbarItems.map((item, index) => {
           if (item.type == "text") {
             return;

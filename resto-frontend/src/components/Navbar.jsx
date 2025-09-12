@@ -146,7 +146,9 @@ export default function Navbar() {
     return (
        <div className ="flex flex-col items-start gap-4 h-screen px-5 py-6 overflow-y-auto fixed left-0 top-0 bg-restro-green-light">
 
+      <Link to="/">
       <img src={theme === "black" ? LogoDark : Logo} alt="logo" className="w-12 block mb-6" />
+      </Link>
         {navbarItems.filter((navItem)=>{
           const requiredScopes = navItem.scopes;
           if(navItem.type=="link") {
@@ -201,8 +203,9 @@ export default function Navbar() {
   return (
     <div className="relative h-screen">
       <div className="flex flex-col items-start gap-2 md:w-72  md:gap-3 h-screen px-5 py-6 overflow-y-auto fixed left-0 top-0 bg-restro-green-light">
+        <Link to="/" >
         <img src={theme === 'black' ? LogoDark : Logo } alt="logo" className="block w-12 md:w-auto md:h-14 mb-2 md:mb-6"/>
-
+        </Link>
         <div className="hidden md:flex items-center gap-2 w-full md:mb-6">
           <img
             src={AvatarImg}
